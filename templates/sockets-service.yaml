@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-sockets-svc
+  namespace: {{ .Values.namespace }}
+  annotations:
+  {{- if eq .Values.ingress.class "gce" -}}
+    cloud.google.com/neg: '{"ingress": true}'
+    cloud.google.com/backend-config: '{"ports": {"8080":"api-sockets-backendconfig"}}'
+  {{- end -}}
+spec:
+  ports:
+  - port: {{ .Values.sockets.port | default "8080" }}
+    protocol: TCP
+    targetPort: {{ .Values.sockets.port | default "8080" }}
+  selector:
+    app: sockets
+  type: {{ .Values.sockets.service.type | default "ClusterIP" }}

@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-api
+  namespace: {{ .Values.namespace | default "default" }}
+  labels:
+    app: api
+    region: us-east1
+    stage: enterprise
+spec:
+  replicas: {{ .Values.api.replicas | default "1" }}
+  selector:
+    matchLabels:
+      app: api
+      region: us-east1
+      stage: enterprise
+  template:
+    metadata:
+      labels:
+        app: api
+        region: us-east1
+        stage: enterprise
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}-api-envvars
+        image: {{ .Values.api.image }} 
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ .Values.api.port | default "8080" }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: api
+        ports:
+        - containerPort: {{ .Values.api.port | default "8080" }}
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ .Values.api.port | default "8080" }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: {{ .Values.api.cpu | default "256m"}}
+            memory: {{ .Values.api.memory | default "256Mi"}}
+          requests:
+            cpu: {{ .Values.api.cpu | default "256m"}}
+            memory: {{ .Values.api.memory | default "256Mi"}}
+      imagePullSecrets:
+      - name: {{ .Values.image.secretName }}

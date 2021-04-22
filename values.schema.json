@@ -1,0 +1,968 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+      {
+          "image": {
+              "registry": "ghcr.io/cobrowseio",
+              "secretName": "docker-cfg",
+              "dockerconfigjson": ""
+          },
+          "stage": "",
+          "domain": "",
+          "licenseKey": "",
+          "accountCreators": "",
+          "superusers": "",
+          "mongoUrl": "",
+          "smtpUrl": "",
+          "redisUrl": "",
+          "ingress": {
+              "class": "",
+              "tls": {
+                  "secretName": "",
+                  "host": ""
+              }
+          },
+          "api": {
+              "port": 8080,
+              "dockerName": "cobrowse-api-enterprise",
+              "dockerTag": "1.7.29",
+              "replicas": 1,
+              "cpu": "256m",
+              "memory": "256Mi",
+              "debug": "",
+              "service": {
+                  "type": "ClusterIP"
+              }
+          },
+          "frontend": {
+              "port": 8080,
+              "dockerName": "cobrowse-frontend-enterprise",
+              "dockerTag": "2.3.47",
+              "replicas": 1,
+              "cpu": "256m",
+              "memory": "256Mi",
+              "debug": "",
+              "service": {
+                  "type": "ClusterIP"
+              }
+          },
+          "proxy": {
+              "port": 8080,
+              "dockerName": "cobrowse-proxy-enterprise",
+              "dockerTag": "1.0.20",
+              "replicas": 1,
+              "cpu": "256m",
+              "memory": "256Mi",
+              "debug": "",
+              "service": {
+                  "type": "ClusterIP"
+              }
+          },
+          "recording": {
+              "port": 8080,
+              "dockerName": "cobrowse-recording-enterprise",
+              "dockerTag": "1.0.5",
+              "replicas": 1,
+              "cpu": "256m",
+              "memory": "256Mi",
+              "debug": "",
+              "service": {
+                  "type": "ClusterIP"
+              }
+          },
+          "sockets": {
+              "port": 8080,
+              "dockerName": "cobrowse-sockets-enterprise",
+              "dockerTag": "1.1.27",
+              "replicas": 1,
+              "cpu": "256m",
+              "memory": "256Mi",
+              "debug": "",
+              "service": {
+                  "type": "ClusterIP"
+              },
+              "storage": {
+                  "size": "50Gi",
+                  "className": "nfs"
+              },
+              "mountPath": "/data/traces"
+          }
+      }
+  ],
+  "required": [
+      "image",
+      "stage",
+      "domain",
+      "licenseKey",
+      "accountCreators",
+      "superusers",
+      "mongoUrl",
+      "smtpUrl",
+      "redisUrl",
+      "ingress",
+      "api",
+      "frontend",
+      "proxy",
+      "recording",
+      "sockets"
+  ],
+  "properties": {
+      "image": {
+          "$id": "#/properties/image",
+          "type": "object",
+          "title": "The image schema",
+          "default": {},
+          "examples": [
+              {
+                  "registry": "ghcr.io/cobrowseio",
+                  "secretName": "docker-cfg",
+                  "dockerconfigjson": ""
+              }
+          ],
+          "required": [
+              "registry",
+              "secretName",
+              "dockerconfigjson"
+          ],
+          "properties": {
+              "registry": {
+                  "$id": "#/properties/image/properties/registry",
+                  "type": "string",
+                  "title": "The registry schema",
+                  "default": "",
+                  "examples": [
+                      "ghcr.io/cobrowseio"
+                  ]
+              },
+              "secretName": {
+                  "$id": "#/properties/image/properties/secretName",
+                  "type": "string",
+                  "title": "The secretName schema",
+                  "default": "",
+                  "examples": [
+                      "docker-cfg"
+                  ]
+              },
+              "dockerconfigjson": {
+                  "$id": "#/properties/image/properties/dockerconfigjson",
+                  "type": "string",
+                  "title": "The dockerconfigjson schema",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              }
+          },
+          "additionalProperties": true
+      },
+      "stage": {
+          "$id": "#/properties/stage",
+          "type": "string",
+          "title": "The stage schema",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "domain": {
+          "$id": "#/properties/domain",
+          "type": "string",
+          "title": "The domain schema",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "licenseKey": {
+          "$id": "#/properties/licenseKey",
+          "type": "string",
+          "title": "The licenseKey schema",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "accountCreators": {
+          "$id": "#/properties/accountCreators",
+          "type": "string",
+          "title": "The accountCreators schema",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "superusers": {
+          "$id": "#/properties/superusers",
+          "type": "string",
+          "title": "The superusers schema",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "mongoUrl": {
+          "$id": "#/properties/mongoUrl",
+          "type": "string",
+          "title": "The mongoUrl schema",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "smtpUrl": {
+          "$id": "#/properties/smtpUrl",
+          "type": "string",
+          "title": "The smtpUrl schema",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "redisUrl": {
+          "$id": "#/properties/redisUrl",
+          "type": "string",
+          "title": "The redisUrl schema",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "ingress": {
+          "$id": "#/properties/ingress",
+          "type": "object",
+          "title": "The ingress schema",
+          "default": {},
+          "examples": [
+              {
+                  "class": "",
+                  "tls": {
+                      "secretName": "",
+                      "host": ""
+                  }
+              }
+          ],
+          "required": [
+              "class",
+              "tls"
+          ],
+          "properties": {
+              "class": {
+                  "$id": "#/properties/ingress/properties/class",
+                  "type": "string",
+                  "title": "The class schema",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "tls": {
+                  "$id": "#/properties/ingress/properties/tls",
+                  "type": "object",
+                  "title": "The tls schema",
+                  "default": {},
+                  "examples": [
+                      {
+                          "secretName": "",
+                          "host": ""
+                      }
+                  ],
+                  "required": [
+                      "secretName",
+                      "host"
+                  ],
+                  "properties": {
+                      "secretName": {
+                          "$id": "#/properties/ingress/properties/tls/properties/secretName",
+                          "type": "string",
+                          "title": "The secretName schema",
+                          "default": "",
+                          "examples": [
+                              ""
+                          ]
+                      },
+                      "host": {
+                          "$id": "#/properties/ingress/properties/tls/properties/host",
+                          "type": "string",
+                          "title": "The host schema",
+                          "default": "",
+                          "examples": [
+                              ""
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
+      },
+      "api": {
+          "$id": "#/properties/api",
+          "type": "object",
+          "title": "The api schema",
+          "default": {},
+          "examples": [
+              {
+                  "port": 8080,
+                  "dockerName": "cobrowse-api-enterprise",
+                  "dockerTag": "1.7.29",
+                  "replicas": 1,
+                  "cpu": "256m",
+                  "memory": "256Mi",
+                  "debug": "",
+                  "service": {
+                      "type": "ClusterIP"
+                  }
+              }
+          ],
+          "required": [
+              "port",
+              "dockerName",
+              "dockerTag",
+              "replicas",
+              "cpu",
+              "memory",
+              "debug",
+              "service"
+          ],
+          "properties": {
+              "port": {
+                  "$id": "#/properties/api/properties/port",
+                  "type": "integer",
+                  "title": "The port schema",
+                  "default": 0,
+                  "examples": [
+                      8080
+                  ]
+              },
+              "dockerName": {
+                  "$id": "#/properties/api/properties/dockerName",
+                  "type": "string",
+                  "title": "The dockerName schema",
+                  "default": "",
+                  "examples": [
+                      "cobrowse-api-enterprise"
+                  ]
+              },
+              "dockerTag": {
+                  "$id": "#/properties/api/properties/dockerTag",
+                  "type": "string",
+                  "title": "The dockerTag schema",
+                  "default": "",
+                  "examples": [
+                      "1.7.29"
+                  ]
+              },
+              "replicas": {
+                  "$id": "#/properties/api/properties/replicas",
+                  "type": "integer",
+                  "title": "The replicas schema",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "cpu": {
+                  "$id": "#/properties/api/properties/cpu",
+                  "type": "string",
+                  "title": "The cpu schema",
+                  "default": "",
+                  "examples": [
+                      "256m"
+                  ]
+              },
+              "memory": {
+                  "$id": "#/properties/api/properties/memory",
+                  "type": "string",
+                  "title": "The memory schema",
+                  "default": "",
+                  "examples": [
+                      "256Mi"
+                  ]
+              },
+              "debug": {
+                  "$id": "#/properties/api/properties/debug",
+                  "type": "string",
+                  "title": "The debug schema",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "service": {
+                  "$id": "#/properties/api/properties/service",
+                  "type": "object",
+                  "title": "The service schema",
+                  "default": {},
+                  "examples": [
+                      {
+                          "type": "ClusterIP"
+                      }
+                  ],
+                  "required": [
+                      "type"
+                  ],
+                  "properties": {
+                      "type": {
+                          "$id": "#/properties/api/properties/service/properties/type",
+                          "type": "string",
+                          "title": "The type schema",
+                          "default": "",
+                          "examples": [
+                              "ClusterIP"
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
+      },
+      "frontend": {
+          "$id": "#/properties/frontend",
+          "type": "object",
+          "title": "The frontend schema",
+          "default": {},
+          "examples": [
+              {
+                  "port": 8080,
+                  "dockerName": "cobrowse-frontend-enterprise",
+                  "dockerTag": "2.3.47",
+                  "replicas": 1,
+                  "cpu": "256m",
+                  "memory": "256Mi",
+                  "debug": "",
+                  "service": {
+                      "type": "ClusterIP"
+                  }
+              }
+          ],
+          "required": [
+              "port",
+              "dockerName",
+              "dockerTag",
+              "replicas",
+              "cpu",
+              "memory",
+              "debug",
+              "service"
+          ],
+          "properties": {
+              "port": {
+                  "$id": "#/properties/frontend/properties/port",
+                  "type": "integer",
+                  "title": "The port schema",
+                  "default": 0,
+                  "examples": [
+                      8080
+                  ]
+              },
+              "dockerName": {
+                  "$id": "#/properties/frontend/properties/dockerName",
+                  "type": "string",
+                  "title": "The dockerName schema",
+                  "default": "",
+                  "examples": [
+                      "cobrowse-frontend-enterprise"
+                  ]
+              },
+              "dockerTag": {
+                  "$id": "#/properties/frontend/properties/dockerTag",
+                  "type": "string",
+                  "title": "The dockerTag schema",
+                  "default": "",
+                  "examples": [
+                      "2.3.47"
+                  ]
+              },
+              "replicas": {
+                  "$id": "#/properties/frontend/properties/replicas",
+                  "type": "integer",
+                  "title": "The replicas schema",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "cpu": {
+                  "$id": "#/properties/frontend/properties/cpu",
+                  "type": "string",
+                  "title": "The cpu schema",
+                  "default": "",
+                  "examples": [
+                      "256m"
+                  ]
+              },
+              "memory": {
+                  "$id": "#/properties/frontend/properties/memory",
+                  "type": "string",
+                  "title": "The memory schema",
+                  "default": "",
+                  "examples": [
+                      "256Mi"
+                  ]
+              },
+              "debug": {
+                  "$id": "#/properties/frontend/properties/debug",
+                  "type": "string",
+                  "title": "The debug schema",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "service": {
+                  "$id": "#/properties/frontend/properties/service",
+                  "type": "object",
+                  "title": "The service schema",
+                  "default": {},
+                  "examples": [
+                      {
+                          "type": "ClusterIP"
+                      }
+                  ],
+                  "required": [
+                      "type"
+                  ],
+                  "properties": {
+                      "type": {
+                          "$id": "#/properties/frontend/properties/service/properties/type",
+                          "type": "string",
+                          "title": "The type schema",
+                          "default": "",
+                          "examples": [
+                              "ClusterIP"
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
+      },
+      "proxy": {
+          "$id": "#/properties/proxy",
+          "type": "object",
+          "title": "The proxy schema",
+          "default": {},
+          "examples": [
+              {
+                  "port": 8080,
+                  "dockerName": "cobrowse-proxy-enterprise",
+                  "dockerTag": "1.0.20",
+                  "replicas": 1,
+                  "cpu": "256m",
+                  "memory": "256Mi",
+                  "debug": "",
+                  "service": {
+                      "type": "ClusterIP"
+                  }
+              }
+          ],
+          "required": [
+              "port",
+              "dockerName",
+              "dockerTag",
+              "replicas",
+              "cpu",
+              "memory",
+              "debug",
+              "service"
+          ],
+          "properties": {
+              "port": {
+                  "$id": "#/properties/proxy/properties/port",
+                  "type": "integer",
+                  "title": "The port schema",
+                  "default": 0,
+                  "examples": [
+                      8080
+                  ]
+              },
+              "dockerName": {
+                  "$id": "#/properties/proxy/properties/dockerName",
+                  "type": "string",
+                  "title": "The dockerName schema",
+                  "default": "",
+                  "examples": [
+                      "cobrowse-proxy-enterprise"
+                  ]
+              },
+              "dockerTag": {
+                  "$id": "#/properties/proxy/properties/dockerTag",
+                  "type": "string",
+                  "title": "The dockerTag schema",
+                  "default": "",
+                  "examples": [
+                      "1.0.20"
+                  ]
+              },
+              "replicas": {
+                  "$id": "#/properties/proxy/properties/replicas",
+                  "type": "integer",
+                  "title": "The replicas schema",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "cpu": {
+                  "$id": "#/properties/proxy/properties/cpu",
+                  "type": "string",
+                  "title": "The cpu schema",
+                  "default": "",
+                  "examples": [
+                      "256m"
+                  ]
+              },
+              "memory": {
+                  "$id": "#/properties/proxy/properties/memory",
+                  "type": "string",
+                  "title": "The memory schema",
+                  "default": "",
+                  "examples": [
+                      "256Mi"
+                  ]
+              },
+              "debug": {
+                  "$id": "#/properties/proxy/properties/debug",
+                  "type": "string",
+                  "title": "The debug schema",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "service": {
+                  "$id": "#/properties/proxy/properties/service",
+                  "type": "object",
+                  "title": "The service schema",
+                  "default": {},
+                  "examples": [
+                      {
+                          "type": "ClusterIP"
+                      }
+                  ],
+                  "required": [
+                      "type"
+                  ],
+                  "properties": {
+                      "type": {
+                          "$id": "#/properties/proxy/properties/service/properties/type",
+                          "type": "string",
+                          "title": "The type schema",
+                          "default": "",
+                          "examples": [
+                              "ClusterIP"
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
+      },
+      "recording": {
+          "$id": "#/properties/recording",
+          "type": "object",
+          "title": "The recording schema",
+          "default": {},
+          "examples": [
+              {
+                  "port": 8080,
+                  "dockerName": "cobrowse-recording-enterprise",
+                  "dockerTag": "1.0.5",
+                  "replicas": 1,
+                  "cpu": "256m",
+                  "memory": "256Mi",
+                  "debug": "",
+                  "service": {
+                      "type": "ClusterIP"
+                  }
+              }
+          ],
+          "required": [
+              "port",
+              "dockerName",
+              "dockerTag",
+              "replicas",
+              "cpu",
+              "memory",
+              "debug",
+              "service"
+          ],
+          "properties": {
+              "port": {
+                  "$id": "#/properties/recording/properties/port",
+                  "type": "integer",
+                  "title": "The port schema",
+                  "default": 0,
+                  "examples": [
+                      8080
+                  ]
+              },
+              "dockerName": {
+                  "$id": "#/properties/recording/properties/dockerName",
+                  "type": "string",
+                  "title": "The dockerName schema",
+                  "default": "",
+                  "examples": [
+                      "cobrowse-recording-enterprise"
+                  ]
+              },
+              "dockerTag": {
+                  "$id": "#/properties/recording/properties/dockerTag",
+                  "type": "string",
+                  "title": "The dockerTag schema",
+                  "default": "",
+                  "examples": [
+                      "1.0.5"
+                  ]
+              },
+              "replicas": {
+                  "$id": "#/properties/recording/properties/replicas",
+                  "type": "integer",
+                  "title": "The replicas schema",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "cpu": {
+                  "$id": "#/properties/recording/properties/cpu",
+                  "type": "string",
+                  "title": "The cpu schema",
+                  "default": "",
+                  "examples": [
+                      "256m"
+                  ]
+              },
+              "memory": {
+                  "$id": "#/properties/recording/properties/memory",
+                  "type": "string",
+                  "title": "The memory schema",
+                  "default": "",
+                  "examples": [
+                      "256Mi"
+                  ]
+              },
+              "debug": {
+                  "$id": "#/properties/recording/properties/debug",
+                  "type": "string",
+                  "title": "The debug schema",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "service": {
+                  "$id": "#/properties/recording/properties/service",
+                  "type": "object",
+                  "title": "The service schema",
+                  "default": {},
+                  "examples": [
+                      {
+                          "type": "ClusterIP"
+                      }
+                  ],
+                  "required": [
+                      "type"
+                  ],
+                  "properties": {
+                      "type": {
+                          "$id": "#/properties/recording/properties/service/properties/type",
+                          "type": "string",
+                          "title": "The type schema",
+                          "default": "",
+                          "examples": [
+                              "ClusterIP"
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
+      },
+      "sockets": {
+          "$id": "#/properties/sockets",
+          "type": "object",
+          "title": "The sockets schema",
+          "default": {},
+          "examples": [
+              {
+                  "port": 8080,
+                  "dockerName": "cobrowse-sockets-enterprise",
+                  "dockerTag": "1.1.27",
+                  "replicas": 1,
+                  "cpu": "256m",
+                  "memory": "256Mi",
+                  "debug": "",
+                  "service": {
+                      "type": "ClusterIP"
+                  },
+                  "storage": {
+                      "size": "50Gi",
+                      "className": "nfs"
+                  },
+                  "mountPath": "/data/traces"
+              }
+          ],
+          "required": [
+              "port",
+              "dockerName",
+              "dockerTag",
+              "replicas",
+              "cpu",
+              "memory",
+              "debug",
+              "service",
+              "storage",
+              "mountPath"
+          ],
+          "properties": {
+              "port": {
+                  "$id": "#/properties/sockets/properties/port",
+                  "type": "integer",
+                  "title": "The port schema",
+                  "default": 0,
+                  "examples": [
+                      8080
+                  ]
+              },
+              "dockerName": {
+                  "$id": "#/properties/sockets/properties/dockerName",
+                  "type": "string",
+                  "title": "The dockerName schema",
+                  "default": "",
+                  "examples": [
+                      "cobrowse-sockets-enterprise"
+                  ]
+              },
+              "dockerTag": {
+                  "$id": "#/properties/sockets/properties/dockerTag",
+                  "type": "string",
+                  "title": "The dockerTag schema",
+                  "default": "",
+                  "examples": [
+                      "1.1.27"
+                  ]
+              },
+              "replicas": {
+                  "$id": "#/properties/sockets/properties/replicas",
+                  "type": "integer",
+                  "title": "The replicas schema",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "cpu": {
+                  "$id": "#/properties/sockets/properties/cpu",
+                  "type": "string",
+                  "title": "The cpu schema",
+                  "default": "",
+                  "examples": [
+                      "256m"
+                  ]
+              },
+              "memory": {
+                  "$id": "#/properties/sockets/properties/memory",
+                  "type": "string",
+                  "title": "The memory schema",
+                  "default": "",
+                  "examples": [
+                      "256Mi"
+                  ]
+              },
+              "debug": {
+                  "$id": "#/properties/sockets/properties/debug",
+                  "type": "string",
+                  "title": "The debug schema",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "service": {
+                  "$id": "#/properties/sockets/properties/service",
+                  "type": "object",
+                  "title": "The service schema",
+                  "default": {},
+                  "examples": [
+                      {
+                          "type": "ClusterIP"
+                      }
+                  ],
+                  "required": [
+                      "type"
+                  ],
+                  "properties": {
+                      "type": {
+                          "$id": "#/properties/sockets/properties/service/properties/type",
+                          "type": "string",
+                          "title": "The type schema",
+                          "default": "",
+                          "examples": [
+                              "ClusterIP"
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              },
+              "storage": {
+                  "$id": "#/properties/sockets/properties/storage",
+                  "type": "object",
+                  "title": "The storage schema",
+                  "default": {},
+                  "examples": [
+                      {
+                          "size": "50Gi",
+                          "className": "nfs"
+                      }
+                  ],
+                  "required": [
+                      "size",
+                      "className"
+                  ],
+                  "properties": {
+                      "size": {
+                          "$id": "#/properties/sockets/properties/storage/properties/size",
+                          "type": "string",
+                          "title": "The size schema",
+                          "default": "",
+                          "examples": [
+                              "50Gi"
+                          ]
+                      },
+                      "className": {
+                          "$id": "#/properties/sockets/properties/storage/properties/className",
+                          "type": "string",
+                          "title": "The className schema",
+                          "default": "",
+                          "examples": [
+                              "nfs"
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              },
+              "mountPath": {
+                  "$id": "#/properties/sockets/properties/mountPath",
+                  "type": "string",
+                  "title": "The mountPath schema",
+                  "default": "",
+                  "examples": [
+                      "/data/traces"
+                  ]
+              }
+          },
+          "additionalProperties": true
+      }
+  },
+  "additionalProperties": true
+}

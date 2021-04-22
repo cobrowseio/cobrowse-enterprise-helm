@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-proxy
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: proxy
+    region: us-east1
+    stage: enterprise
+spec:
+  replicas: {{ .Values.proxy.replicas | default "1" }}
+  selector:
+    matchLabels:
+      app: proxy
+      region: us-east1
+      stage: enterprise
+  template:
+    metadata:
+      labels:
+        app: proxy
+        region: us-east1
+        stage: enterprise
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}-proxy-envvars
+        image: {{ .Values.proxy.image }} 
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ .Values.proxy.port | default "8080"}}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: proxy
+        ports:
+        - containerPort: {{ .Values.proxy.port | default "8080"}}
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ .Values.proxy.port | default "8080"}}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: {{ .Values.proxy.cpu | default "256m"}}
+            memory: {{ .Values.proxy.memory | default "256Mi"}}
+          requests:
+            cpu: {{ .Values.proxy.cpu | default "256m"}}
+            memory: {{ .Values.proxy.memory | default "256Mi"}}
+      imagePullSecrets:
+      - name: {{ .Values.image.secretName }}

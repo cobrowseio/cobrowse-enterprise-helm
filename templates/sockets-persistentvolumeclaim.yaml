@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-sockets-pvc
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ .Values.sockets.storage.size | default "50Gi"}}
+  storageClassName: {{ .Values.sockets.storage.className | default "nfs"}}

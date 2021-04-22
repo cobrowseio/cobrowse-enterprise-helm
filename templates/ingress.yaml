@@ -1,0 +1,66 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+  {{- if eq .Values.ingress.class "gce" -}}
+    kubernetes.io/ingress.global-static-ip-name: cobrowse-{{ .Values.stage }}-ip
+    networking.gke.io/managed-certificates: cobrowse-api-ssl
+    networking.gke.io/v1beta1.FrontendConfig: api-frontend-config
+  {{- else if eq .Values.ingress.class "azure/application-gateway" -}}
+    kubernetes.io/ingress.class: azure/application-gateway
+    appgw.ingress.kubernetes.io/ssl-redirect: true
+    certmanager.k8s.io/cluster-issuer: letsencrypt-production
+    cert-manager.io/acme-challenge-type: http01
+  {{- else -}}
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: true
+    certmanager.k8s.io/cluster-issuer: letsencrypt-production
+    cert-manager.io/acme-challenge-type: http01
+  {{- end -}}
+  name: api-ingress
+  namespace: default
+spec:
+  backend:
+    serviceName: {{ .Release.Name }}-frontend-svc
+    servicePort: {{ .Values.frontend.port | default "8080" }}
+  {{- if ne .Values.ingress.class "gce" -}}
+  tls:
+    secretName: ""
+    host: ""
+  {{- end -}}
+  rules:
+  - host: {{ .Values.domain }
+    http:
+      paths:
+      - backend:
+          serviceName: {{ .Release.Name }}-api-svc
+          servicePort: {{ .Values.api.port | default "8080" }}
+      {{- if eq .Values.ingress.class "nginx" -}}
+        path: "/api/"
+      {{- else -}}
+        path: "/api/*"
+      {{- end -}}
+      - backend:
+          serviceName: {{ .Release.Name }}-recording-svc
+          servicePort: {{ .Values.recording.port | default "8080" }}
+      {{- if eq .Values.ingress.class "nginx" -}}
+        path: "/recording/"
+      {{- else -}}
+        path: "/recording/*"
+      {{- end -}}
+      - backend:
+          serviceName: {{ .Release.Name }}-proxy-svc
+          servicePort: {{ .Values.proxy.port | default "8080" }}
+      {{- if eq .Values.ingress.class "nginx" -}}
+        path: "/proxy/"
+      {{- else -}}
+        path: "/proxy/*"
+      {{- end -}}
+      - backend:
+          serviceName: {{ .Release.Name }}-sockets-svc
+          servicePort: {{ .Values.sockets.port | default "8080" }}
+      {{- if eq .Values.ingress.class "nginx" -}}
+        path: "/sockets/"
+      {{- else -}}
+        path: "/sockets/*"
+      {{- end -}}

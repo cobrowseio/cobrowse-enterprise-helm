@@ -1,0 +1,92 @@
+# Common configurations
+
+image:
+  secretName: "docker-cfg"
+  dockerconfigjson: ""
+
+stage: ""
+domain: ""
+licenseKey: ""
+accountCreators: ""
+superusers: ""
+
+mongoUrl: ""
+smtpUrl: ""
+redisUrl: ""
+
+ingress:
+  class: ""
+  tls:
+    secretName: ""
+    host: ""
+
+# API configurations
+api:
+  port: 8080 
+  image: ""
+  replicas: 1
+  cpu: "256m"
+  memory: "256Mi"
+  debug: ""
+
+  service:
+    type: "ClusterIP"
+
+
+# Frontend configurations
+frontend:
+  port: 8080
+  image: ""
+  replicas: 1
+  cpu: "256m"
+  memory: "256Mi"
+  debug: ""
+
+  service:
+    type: "ClusterIP"
+
+
+# Proxy configurations
+proxy:
+  port: 8080
+  image: ""
+  replicas: 1
+  cpu: "256m"
+  memory: "256Mi"
+  debug: ""
+
+  service: 
+    type: "ClusterIP"
+
+
+# Recording configurations
+recording:
+  port: 8080
+  image: ""
+  replicas: 1
+  cpu: "256m"
+  memory: "256Mi"
+  debug: ""
+
+  service:
+    type: "ClusterIP"
+
+
+# Sockets configurations
+sockets:
+  port: 8080
+  image: ""
+  replicas: 1
+  cpu: "256m"
+  memory: "256Mi"
+  debug: ""
+
+  service:
+    type: "ClusterIP"
+  
+  storage: 
+    size: "50Gi"
+    className: "nfs" 
+  mountPath: "/data/traces"
+
+

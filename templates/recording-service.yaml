@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-recording-svc
+  namespace: {{ .Values.namespace }}
+  annotations:
+  {{- if eq .Values.ingress.class "gce" -}}
+    cloud.google.com/neg: '{"ingress": true}'
+  {{- end -}}
+spec:
+  ports:
+  - port: {{ .Values.recording.port | default "8080" }}
+    protocol: TCP
+    targetPort: {{ .Values.recording.port | default "8080" }}
+  selector:
+    app: recording
+  type: {{ .Values.recording.service.type | default "ClusterIP" }}

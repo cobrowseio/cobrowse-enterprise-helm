@@ -1,0 +1,84 @@
+# Common configurations
+image:
+  # Defaults to "ghcr.io/cobrowseio"
+  # registry: 
+  secretName: "docker-cfg"
+  dockerconfigjson: ""
+
+stage: ""
+domain: ""
+licenseKey: ""
+accountCreators: ""
+superusers: ""
+
+mongoUrl: ""
+smtpUrl: ""
+redisUrl: ""
+
+ingress:
+  # For Azure Application Gateway
+  class: "azure/application-gateway"
+  tls:
+    secretName: ""
+    host: ""
+
+# API configurations
+api:
+  port: 8080 
+  # dockerName: cobrowse-api-enterprise
+  dockerTag: 1.7.29
+  # replicas: 1
+  # cpu: "256m"
+  # memory: "256Mi"
+  debug: ""
+
+
+# Frontend configurations
+frontend:
+  port: 8080 
+  # dockerName: cobrowse-frontend-enterprise
+  dockerTag: 2.3.47
+  # replicas: 1
+  # cpu: "256m"
+  # memory: "256Mi"
+  debug: ""
+
+
+# Proxy configurations
+proxy:
+  port: 8080 
+  # dockerName: cobrowse-proxy-enterprise
+  dockerTag: 1.0.20
+  # replicas: 1
+  # cpu: "256m"
+  # memory: "256Mi"
+  debug: ""
+
+
+# Recording configurations
+recording:
+  port: 8080 
+  # dockerName: cobrowse-recording-enterprise
+  dockerTag: 1.0.5
+  # replicas: 1
+  # cpu: "256m"
+  # memory: "256Mi"
+  debug: ""
+
+
+# Sockets configurations
+sockets:
+  port: 8080 
+  # dockerName: cobrowse-sockets-enterprise
+  dockerTag: 1.1.27
+  # replicas: 1
+  # cpu: "256m"
+  # memory: "256Mi"
+  debug: ""
+
+  storage: 
+    size: "50Gi"
+    className: "nfs" 
+  mountPath: "/data/traces"
+
+

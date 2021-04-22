@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-recording
+  namespace: {{ .Values.namespace }}
+  annotations:
+  labels:
+    app: recording
+    region: us-east1
+    stage: enterprise
+spec:
+  replicas: {{ .Values.recording.replicas | default "1" }}
+  selector:
+    matchLabels:
+      app: recording
+      region: us-east1
+      stage: enterprise
+  template:
+    metadata:
+      labels:
+        app: recording
+        region: us-east1
+        stage: enterprise
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}-recording-envvars
+        image: {{ .Values.recording.image }} 
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ .Values.recording.port | default "8080" }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: recording
+        ports:
+        - containerPort: {{ .Values.recording.port | default "8080" }}
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ .Values.recording.port | default "8080" }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: {{ .Values.recording.cpu | default "256m"}}
+            memory: {{ .Values.recording.memory | default "256Mi"}}
+          requests:
+            cpu: {{ .Values.recording.cpu | default "256m"}}
+            memory: {{ .Values.recording.memory | default "256Mi"}}
+      imagePullSecrets:
+      - name: {{ .Values.image.secretName }}

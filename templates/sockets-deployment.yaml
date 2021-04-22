@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-sockets
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "cobrowse.name" . }}
+    chart: {{ template "cobrowse.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  labels:
+    app: sockets
+    region: us-east1
+    stage: enterprise
+spec:
+  replicas: {{ .Values.sockets.replicas | default "1" }}
+  selector:
+    matchLabels:
+      app: sockets
+      region: us-east1
+      stage: enterprise
+  template:
+    metadata:
+      labels:
+        app: sockets
+        region: us-east1
+        stage: enterprise
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}-proxy-envvars
+        image: {{ .Values.proxy.image }} 
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ .Values.sockets.port | default "8080" }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: sockets
+        ports:
+        - containerPort: {{ .Values.sockets.port | default "8080" }}
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ .Values.sockets.port | default "8080" }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: {{ .Values.sockets.cpu | default "256m"}}
+            memory: {{ .Values.sockets.memory | default "256Mi"}}
+          requests:
+            cpu: {{ .Values.sockets.cpu | default "256m"}}
+            memory: {{ .Values.sockets.memory | default "256Mi"}}
+        volumeMounts:
+        - mountPath: {{ .Values.sockets.mountPath | default "/data/traces"}}
+          mountPropagation: None
+          name: data-traces
+      imagePullSecrets:
+      - name: {{ .Values.image.secretName }}
+      volumes:
+      - name: data-traces
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-sockets-pvc
