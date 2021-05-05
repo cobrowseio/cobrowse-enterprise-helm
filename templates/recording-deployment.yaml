@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-recording
+  namespace: {{ .Values.namespace | default "default" }}
+  annotations:
+  labels:
+    component: recording
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  replicas: {{ .Values.recording.replicas | default "1" }}
+  selector:
+    matchLabels:
+      component: recording
+      stage: {{ .Values.stage | quote }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/recording-secret.yaml") . | sha256sum }}
+      labels:
+        component: recording
+        stage: {{ .Values.stage | quote }}
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}-recording-envvars
+        image: {{ .Values.recording.image }} 
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ int .Values.recording.port }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: recording
+        ports:
+        - containerPort: {{ int .Values.recording.port }}
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ int .Values.recording.port }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: {{ .Values.recording.cpu | default "256m"}}
+            memory: {{ .Values.recording.memory | default "256Mi"}}
+          requests:
+            cpu: {{ .Values.recording.cpu | default "256m"}}
+            memory: {{ .Values.recording.memory | default "256Mi"}}
+      imagePullSecrets:
+      - name: {{ .Release.Name }}-docker-cfg

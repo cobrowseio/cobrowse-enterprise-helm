@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-frontend
+  namespace: {{ .Values.namespace | default "default" }}
+  labels:
+    component: frontend
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  replicas: {{ .Values.frontend.replicas | default "1" }}
+  selector:
+    matchLabels:
+      component: frontend
+      stage: {{ .Values.stage | quote }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/frontend-secret.yaml") . | sha256sum }}
+      labels:
+        component: frontend
+        stage: {{ .Values.stage | quote }}
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}-frontend-envvars
+        image: {{ .Values.frontend.image }} 
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          tcpSocket:
+            port: {{ int .Values.frontend.port }}
+          timeoutSeconds: 1
+        name: frontend
+        ports:
+        - containerPort: {{ int .Values.frontend.port }}
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          tcpSocket:
+            port: {{ int .Values.frontend.port }}
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: {{ .Values.frontend.cpu | default "256m"}}
+            memory: {{ .Values.frontend.memory | default "256Mi"}}
+          requests:
+            cpu: {{ .Values.frontend.cpu | default "256m"}}
+            memory: {{ .Values.frontend.memory | default "256Mi"}}
+      imagePullSecrets:
+      - name: {{ .Release.Name }}-docker-cfg

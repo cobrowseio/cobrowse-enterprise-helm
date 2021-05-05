@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-sockets
+  namespace: {{ .Values.namespace | default "default" }}
+  labels:
+    component: sockets
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  replicas: {{ .Values.sockets.replicas | default "1" }}
+  selector:
+    matchLabels:
+      component: sockets
+      stage: {{ .Values.stage | quote }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/sockets-secret.yaml") . | sha256sum }}
+      labels:
+        component: sockets
+        stage: {{ .Values.stage | quote }}
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}-proxy-envvars
+        image: {{ .Values.proxy.image }} 
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ int .Values.sockets.port }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: sockets
+        ports:
+        - containerPort: {{ int .Values.sockets.port }}
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ int .Values.sockets.port }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: {{ .Values.sockets.cpu | default "256m"}}
+            memory: {{ .Values.sockets.memory | default "256Mi"}}
+          requests:
+            cpu: {{ .Values.sockets.cpu | default "256m"}}
+            memory: {{ .Values.sockets.memory | default "256Mi"}}
+        volumeMounts:
+        - mountPath: {{ .Values.sockets.mountPath | default "/data/traces"}}
+          mountPropagation: None
+          name: data-traces
+      imagePullSecrets:
+      - name: {{ .Release.Name }}-docker-cfg
+      volumes:
+      - name: data-traces
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-sockets-pvc

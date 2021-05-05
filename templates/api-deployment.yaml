@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-api
+  namespace: {{ .Values.namespace | default "default" }}
+  labels:
+    component: api
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  replicas: {{ .Values.api.replicas | default "1" }}
+  selector:
+    matchLabels:
+      component: api
+      stage: {{ .Values.stage | quote }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/api-secret.yaml") . | sha256sum }}
+      labels:
+        component: api
+        stage: {{ .Values.stage | quote }}
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}-api-envvars
+        image: {{ .Values.api.image }} 
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ int .Values.api.port }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: api
+        ports:
+        - containerPort: {{ int .Values.api.port }}
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /up
+            port: {{ int .Values.api.port }}
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: {{ .Values.api.cpu | default "256m" }}
+            memory: {{ .Values.api.memory | default "256Mi" }}
+          requests:
+            cpu: {{ .Values.api.cpu | default "256m" }}
+            memory: {{ .Values.api.memory | default "256Mi" }}
+      imagePullSecrets:
+      - name: {{ .Release.Name }}-docker-cfg

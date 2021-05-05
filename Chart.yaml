@@ -1,0 +1,11 @@
+apiVersion: v1
+name: cobrowse
+version: 1.0.0
+kubeVersion: ">=1.18.0-0 < 1.19.0-0"
+description: Chart for the Cobrowse Platform
+keywords:
+  - cobrowse
+home: https://github.com/cobrowseio/cobrowse-enterprise-helm
+maintainers:
+  - name: Cobrowse.io
+    email: hello@cobrowse.io
