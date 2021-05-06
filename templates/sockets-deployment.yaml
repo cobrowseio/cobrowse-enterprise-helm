@@ -27,13 +27,13 @@ spec:
       containers:
       - envFrom:
         - secretRef:
-            name: {{ .Release.Name }}-proxy-envvars
-        image: {{ .Values.proxy.image }} 
+            name: {{ .Release.Name }}-sockets-envvars
+        image: {{ printf "ghcr.io/cobrowseio/cobrowse-api-sockets-enterprise:%s" .Values.sockets.imageTag | quote }}
         livenessProbe:
           failureThreshold: 3
           httpGet:
             path: /up
-            port: {{ int .Values.sockets.port }}
+            port: 8080
             scheme: HTTP
           initialDelaySeconds: 30
           periodSeconds: 30
@@ -41,13 +41,13 @@ spec:
           timeoutSeconds: 1
         name: sockets
         ports:
-        - containerPort: {{ int .Values.sockets.port }}
+        - containerPort: 8080
           protocol: TCP
         readinessProbe:
           failureThreshold: 3
           httpGet:
             path: /up
-            port: {{ int .Values.sockets.port }}
+            port: 8080
             scheme: HTTP
           initialDelaySeconds: 30
           periodSeconds: 30
@@ -61,7 +61,7 @@ spec:
             cpu: {{ .Values.sockets.cpu | default "256m"}}
             memory: {{ .Values.sockets.memory | default "256Mi"}}
         volumeMounts:
-        - mountPath: {{ .Values.sockets.mountPath | default "/data/traces"}}
+        - mountPath: "/data/traces"
           mountPropagation: None
           name: data-traces
       imagePullSecrets:

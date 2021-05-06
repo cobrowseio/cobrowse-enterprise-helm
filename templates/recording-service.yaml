@@ -15,9 +15,9 @@ metadata:
   {{- end }}
 spec:
   ports:
-  - port: {{ int .Values.recording.port }}
+  - port: 8080
     protocol: TCP
-    targetPort: {{ int .Values.recording.port }}
+    targetPort: 8080
   selector:
     component: recording
     stage: {{ .Values.stage | quote }}

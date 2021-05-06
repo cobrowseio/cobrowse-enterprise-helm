@@ -27,6 +27,6 @@ Create imagepullsecretfor docker registry
 */}}
 {{- define "imagePullSecret" }}
 {{- with .Values.imageCredentials }}
-{{- printf "{\"auths\":{\"%s\":{\"username\":\"%s\",\"password\":\"%s\",\"auth\":\"%s\"}}}" .registry .username .password (printf "%s:%s" .username .password | b64enc) | b64enc }}
+{{- printf "{\"auths\":{\"ghcr.io\":{\"username\":\"cobrowse-enterprise\",\"password\":\"%s\",\"auth\":\"%s\"}}}" .password (printf "cobrowse-enterprise:%s" .password | b64enc) | b64enc }}
 {{- end }}
 {{- end }}

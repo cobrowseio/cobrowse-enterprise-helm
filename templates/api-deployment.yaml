@@ -28,12 +28,12 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-api-envvars
-        image: {{ .Values.api.image }} 
+        image: {{ printf "ghcr.io/cobrowseio/cobrowse-api-enterprise:%s" .Values.api.imageTag }}
         livenessProbe:
           failureThreshold: 3
           httpGet:
             path: /up
-            port: {{ int .Values.api.port }}
+            port: 8080
             scheme: HTTP
           initialDelaySeconds: 30
           periodSeconds: 30
@@ -41,14 +41,14 @@ spec:
           timeoutSeconds: 1
         name: api
         ports:
-        - containerPort: {{ int .Values.api.port }}
+        - containerPort: 8080
           name: http
           protocol: TCP
         readinessProbe:
           failureThreshold: 3
           httpGet:
             path: /up
-            port: {{ int .Values.api.port }}
+            port: 8080
             scheme: HTTP
           initialDelaySeconds: 30
           periodSeconds: 30

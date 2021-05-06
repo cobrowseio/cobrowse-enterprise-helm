@@ -14,5 +14,5 @@ spec:
   - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.sockets.storage.size | default "50Gi" }}
-  storageClassName: {{ .Values.sockets.storage.className | default "nfs" }}
+      storage: "50Gi"
+  storageClassName: "nfs"

@@ -28,12 +28,12 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-proxy-envvars
-        image: {{ .Values.proxy.image }} 
+        image: {{ printf "ghcr.io/cobrowseio/cobrowse-proxy-enterprise:%s" .Values.proxy.imageTag | quote }}
         livenessProbe:
           failureThreshold: 3
           httpGet:
             path: /up
-            port: {{ int .Values.proxy.port }}
+            port: 8080
             scheme: HTTP
           initialDelaySeconds: 30
           periodSeconds: 30
@@ -41,14 +41,14 @@ spec:
           timeoutSeconds: 1
         name: proxy
         ports:
-        - containerPort: {{ int .Values.proxy.port }}
+        - containerPort: 8080
           name: http
           protocol: TCP
         readinessProbe:
           failureThreshold: 3
           httpGet:
             path: /up
-            port: {{ int .Values.proxy.port }}
+            port: 8080
             scheme: HTTP
           initialDelaySeconds: 30
           periodSeconds: 30

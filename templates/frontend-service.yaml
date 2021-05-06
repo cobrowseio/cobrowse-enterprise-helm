@@ -15,9 +15,9 @@ metadata:
   {{- end }}
 spec:
   ports:
-  - port: {{ int .Values.frontend.port }}
+  - port: 8080
     protocol: TCP
-    targetPort: {{ int .Values.frontend.port }}
+    targetPort: 8080
   selector:
     component: frontend
     stage: {{ .Values.stage | quote }}

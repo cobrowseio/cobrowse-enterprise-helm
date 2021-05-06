@@ -15,9 +15,9 @@ metadata:
   {{- end }}
 spec:
   ports:
-  - port: {{ int .Values.proxy.port }}
+  - port: 8080
     protocol: TCP
-    targetPort: {{ int .Values.proxy.port }}
+    targetPort: 8080
   selector:
     component: proxy
     stage: {{ .Values.stage | quote }}

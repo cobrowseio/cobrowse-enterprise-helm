@@ -28,18 +28,18 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-frontend-envvars
-        image: {{ .Values.frontend.image }} 
+        image: {{ printf "ghcr.io/cobrowseio/cobrowse-frontend-enterprise:%s" .Values.frontend.imageTag | quote }}
         livenessProbe:
           failureThreshold: 3
           initialDelaySeconds: 30
           periodSeconds: 30
           successThreshold: 1
           tcpSocket:
-            port: {{ int .Values.frontend.port }}
+            port: 8080
           timeoutSeconds: 1
         name: frontend
         ports:
-        - containerPort: {{ int .Values.frontend.port }}
+        - containerPort: 8080
           name: http
           protocol: TCP
         readinessProbe:
@@ -48,7 +48,7 @@ spec:
           periodSeconds: 30
           successThreshold: 1
           tcpSocket:
-            port: {{ int .Values.frontend.port }}
+            port: 8080
           timeoutSeconds: 1
         resources:
           limits:

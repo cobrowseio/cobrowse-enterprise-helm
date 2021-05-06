@@ -29,7 +29,7 @@ metadata:
 spec:
   backend:
     serviceName: {{ .Release.Name }}-frontend-svc
-    servicePort: {{ int .Values.frontend.port }}
+    servicePort: 8080
 {{- if or (eq .Values.ingress.class "nginx") (eq .Values.ingress.class "azure/application-gateway") }}
   tls:
   - hosts: 
@@ -42,21 +42,33 @@ spec:
       paths:
       - backend:
           serviceName: {{ .Release.Name }}-api-svc
-          servicePort: {{ int .Values.api.port }}
-        path: "/api"
-        pathType: Prefix
+          servicePort: 8080
+{{- if eq .Values.ingress.class "nginx" }}
+        path: "/api/"
+{{- else }}
+        path: "/api/*"
+{{- end }}
       - backend:
           serviceName: {{ .Release.Name }}-recording-svc
-          servicePort: {{ int .Values.recording.port }}
-        path: "/recording"
-        pathType: Prefix
+          servicePort: 8080
+{{- if eq .Values.ingress.class "nginx" }}
+        path: "/recording/"
+{{- else }}
+        path: "/recording/*"
+{{- end }}
       - backend:
           serviceName: {{ .Release.Name }}-proxy-svc
-          servicePort: {{ int .Values.proxy.port }}
-        path: "/proxy"
-        pathType: Prefix
+          servicePort: 8080
+{{- if eq .Values.ingress.class "nginx" }}
+        path: "/proxy/"
+{{- else }}
+        path: "/proxy/*"
+{{- end }}
       - backend:
           serviceName: {{ .Release.Name }}-sockets-svc
-          servicePort: {{ int .Values.sockets.port }}
-        path: "/sockets"
-        pathType: Prefix
+          servicePort: 8080
+{{- if eq .Values.ingress.class "nginx" }}
+        path: "/sockets/"
+{{- else }}
+        path: "/sockets/*"
+{{- end }}
