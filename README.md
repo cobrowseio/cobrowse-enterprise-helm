@@ -1,7 +1,7 @@
-# Cobrowse
+# Cobrowse Enterprise
 
 [Cobrowse](https://github.com/cobrowseio/cobrowse-enterprise-helm)
-is an out-of-tree cobrowse app for Kubernetes. This chart will deploy the Kubernetes cobrowse application. This includes the following services: api, frontend, recording, proxy, and sockets.
+is an app packaged for Kubernetes. This chart will deploy the Kubernetes cobrowse application. This includes the following services: api, frontend, recording, proxy, and sockets.
 
 ## TL;DR;
 
