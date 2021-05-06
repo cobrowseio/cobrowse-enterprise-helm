@@ -1,63 +1,670 @@
 {
-    "imageCredentials": {
-      "password": ""
-    },
-    "stage": "",
-    "domain": "",
-    "license": "",
-    "superusers": "",
-    "mongoUrl": "",
-    "redisUrl": "",
-    "ingress": {
-      "class": ""
-    },
-    "api": {
-      "imageTag": "1.7.35",
-      "replicas": 1,
-      "cpu": "",
-      "memory": "",
-      "debug": "",
-      "service": {
-        "type": ""
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+      {
+          "imageCredentials": {
+              "password": ""
+          },
+          "stage": "",
+          "domain": "",
+          "license": "",
+          "superusers": "",
+          "mongoUrl": "",
+          "redisUrl": "",
+          "ingress": {
+              "class": ""
+          },
+          "api": {
+              "replicas": 1,
+              "cpu": "",
+              "memory": "",
+              "debug": "",
+              "service": {
+                  "type": ""
+              }
+          },
+          "frontend": {
+              "replicas": 1,
+              "cpu": "",
+              "memory": "",
+              "service": {
+                  "type": ""
+              }
+          },
+          "proxy": {
+              "replicas": 1,
+              "cpu": "",
+              "memory": "",
+              "debug": "",
+              "service": {
+                  "type": ""
+              }
+          },
+          "recording": {
+              "replicas": 1,
+              "cpu": "",
+              "memory": "",
+              "debug": "",
+              "service": {
+                  "type": ""
+              }
+          },
+          "sockets": {
+              "replicas": 1,
+              "cpu": "",
+              "memory": "",
+              "debug": "",
+              "service": {
+                  "type": ""
+              }
+          }
       }
-    },
-    "frontend": {
-      "imageTag": "2.4.9",
-      "replicas": 1,
-      "cpu": "",
-      "memory": "",
-      "service": {
-        "type": ""
+  ],
+  "required": [
+      "imageCredentials",
+      "stage",
+      "domain",
+      "license",
+      "superusers",
+      "mongoUrl",
+      "redisUrl",
+      "ingress",
+      "api",
+      "frontend",
+      "proxy",
+      "recording",
+      "sockets"
+  ],
+  "properties": {
+      "imageCredentials": {
+          "$id": "#/properties/imageCredentials",
+          "type": "object",
+          "title": "The imageCredentials schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+              {
+                  "password": ""
+              }
+          ],
+          "required": [
+              "password"
+          ],
+          "properties": {
+              "password": {
+                  "$id": "#/properties/imageCredentials/properties/password",
+                  "type": "string",
+                  "title": "The password schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              }
+          },
+          "additionalProperties": true
+      },
+      "stage": {
+          "$id": "#/properties/stage",
+          "type": "string",
+          "title": "The stage schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "domain": {
+          "$id": "#/properties/domain",
+          "type": "string",
+          "title": "The domain schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "license": {
+          "$id": "#/properties/license",
+          "type": "string",
+          "title": "The license schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "superusers": {
+          "$id": "#/properties/superusers",
+          "type": "string",
+          "title": "The superusers schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "mongoUrl": {
+          "$id": "#/properties/mongoUrl",
+          "type": "string",
+          "title": "The mongoUrl schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "redisUrl": {
+          "$id": "#/properties/redisUrl",
+          "type": "string",
+          "title": "The redisUrl schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+              ""
+          ]
+      },
+      "ingress": {
+          "$id": "#/properties/ingress",
+          "type": "object",
+          "title": "The ingress schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+              {
+                  "class": ""
+              }
+          ],
+          "required": [
+              "class"
+          ],
+          "properties": {
+              "class": {
+                  "$id": "#/properties/ingress/properties/class",
+                  "type": "string",
+                  "title": "The class schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              }
+          },
+          "additionalProperties": true
+      },
+      "api": {
+          "$id": "#/properties/api",
+          "type": "object",
+          "title": "The api schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+              {
+                  "replicas": 1,
+                  "cpu": "",
+                  "memory": "",
+                  "debug": "",
+                  "service": {
+                      "type": ""
+                  }
+              }
+          ],
+          "required": [
+              "replicas",
+              "cpu",
+              "memory",
+              "debug",
+              "service"
+          ],
+          "properties": {
+              "replicas": {
+                  "$id": "#/properties/api/properties/replicas",
+                  "type": "integer",
+                  "title": "The replicas schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "cpu": {
+                  "$id": "#/properties/api/properties/cpu",
+                  "type": "string",
+                  "title": "The cpu schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "memory": {
+                  "$id": "#/properties/api/properties/memory",
+                  "type": "string",
+                  "title": "The memory schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "debug": {
+                  "$id": "#/properties/api/properties/debug",
+                  "type": "string",
+                  "title": "The debug schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "service": {
+                  "$id": "#/properties/api/properties/service",
+                  "type": "object",
+                  "title": "The service schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                      {
+                          "type": ""
+                      }
+                  ],
+                  "required": [
+                      "type"
+                  ],
+                  "properties": {
+                      "type": {
+                          "$id": "#/properties/api/properties/service/properties/type",
+                          "type": "string",
+                          "title": "The type schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                              ""
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
+      },
+      "frontend": {
+          "$id": "#/properties/frontend",
+          "type": "object",
+          "title": "The frontend schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+              {
+                  "replicas": 1,
+                  "cpu": "",
+                  "memory": "",
+                  "service": {
+                      "type": ""
+                  }
+              }
+          ],
+          "required": [
+              "replicas",
+              "cpu",
+              "memory",
+              "service"
+          ],
+          "properties": {
+              "replicas": {
+                  "$id": "#/properties/frontend/properties/replicas",
+                  "type": "integer",
+                  "title": "The replicas schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "cpu": {
+                  "$id": "#/properties/frontend/properties/cpu",
+                  "type": "string",
+                  "title": "The cpu schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "memory": {
+                  "$id": "#/properties/frontend/properties/memory",
+                  "type": "string",
+                  "title": "The memory schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "service": {
+                  "$id": "#/properties/frontend/properties/service",
+                  "type": "object",
+                  "title": "The service schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                      {
+                          "type": ""
+                      }
+                  ],
+                  "required": [
+                      "type"
+                  ],
+                  "properties": {
+                      "type": {
+                          "$id": "#/properties/frontend/properties/service/properties/type",
+                          "type": "string",
+                          "title": "The type schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                              ""
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
+      },
+      "proxy": {
+          "$id": "#/properties/proxy",
+          "type": "object",
+          "title": "The proxy schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+              {
+                  "replicas": 1,
+                  "cpu": "",
+                  "memory": "",
+                  "debug": "",
+                  "service": {
+                      "type": ""
+                  }
+              }
+          ],
+          "required": [
+              "replicas",
+              "cpu",
+              "memory",
+              "debug",
+              "service"
+          ],
+          "properties": {
+              "replicas": {
+                  "$id": "#/properties/proxy/properties/replicas",
+                  "type": "integer",
+                  "title": "The replicas schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "cpu": {
+                  "$id": "#/properties/proxy/properties/cpu",
+                  "type": "string",
+                  "title": "The cpu schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "memory": {
+                  "$id": "#/properties/proxy/properties/memory",
+                  "type": "string",
+                  "title": "The memory schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "debug": {
+                  "$id": "#/properties/proxy/properties/debug",
+                  "type": "string",
+                  "title": "The debug schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "service": {
+                  "$id": "#/properties/proxy/properties/service",
+                  "type": "object",
+                  "title": "The service schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                      {
+                          "type": ""
+                      }
+                  ],
+                  "required": [
+                      "type"
+                  ],
+                  "properties": {
+                      "type": {
+                          "$id": "#/properties/proxy/properties/service/properties/type",
+                          "type": "string",
+                          "title": "The type schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                              ""
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
+      },
+      "recording": {
+          "$id": "#/properties/recording",
+          "type": "object",
+          "title": "The recording schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+              {
+                  "replicas": 1,
+                  "cpu": "",
+                  "memory": "",
+                  "debug": "",
+                  "service": {
+                      "type": ""
+                  }
+              }
+          ],
+          "required": [
+              "replicas",
+              "cpu",
+              "memory",
+              "debug",
+              "service"
+          ],
+          "properties": {
+              "replicas": {
+                  "$id": "#/properties/recording/properties/replicas",
+                  "type": "integer",
+                  "title": "The replicas schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "cpu": {
+                  "$id": "#/properties/recording/properties/cpu",
+                  "type": "string",
+                  "title": "The cpu schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "memory": {
+                  "$id": "#/properties/recording/properties/memory",
+                  "type": "string",
+                  "title": "The memory schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "debug": {
+                  "$id": "#/properties/recording/properties/debug",
+                  "type": "string",
+                  "title": "The debug schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "service": {
+                  "$id": "#/properties/recording/properties/service",
+                  "type": "object",
+                  "title": "The service schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                      {
+                          "type": ""
+                      }
+                  ],
+                  "required": [
+                      "type"
+                  ],
+                  "properties": {
+                      "type": {
+                          "$id": "#/properties/recording/properties/service/properties/type",
+                          "type": "string",
+                          "title": "The type schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                              ""
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
+      },
+      "sockets": {
+          "$id": "#/properties/sockets",
+          "type": "object",
+          "title": "The sockets schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+              {
+                  "replicas": 1,
+                  "cpu": "",
+                  "memory": "",
+                  "debug": "",
+                  "service": {
+                      "type": ""
+                  }
+              }
+          ],
+          "required": [
+              "replicas",
+              "cpu",
+              "memory",
+              "debug",
+              "service"
+          ],
+          "properties": {
+              "replicas": {
+                  "$id": "#/properties/sockets/properties/replicas",
+                  "type": "integer",
+                  "title": "The replicas schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "cpu": {
+                  "$id": "#/properties/sockets/properties/cpu",
+                  "type": "string",
+                  "title": "The cpu schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "memory": {
+                  "$id": "#/properties/sockets/properties/memory",
+                  "type": "string",
+                  "title": "The memory schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "debug": {
+                  "$id": "#/properties/sockets/properties/debug",
+                  "type": "string",
+                  "title": "The debug schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "service": {
+                  "$id": "#/properties/sockets/properties/service",
+                  "type": "object",
+                  "title": "The service schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                      {
+                          "type": ""
+                      }
+                  ],
+                  "required": [
+                      "type"
+                  ],
+                  "properties": {
+                      "type": {
+                          "$id": "#/properties/sockets/properties/service/properties/type",
+                          "type": "string",
+                          "title": "The type schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                              ""
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
       }
-    },
-    "proxy": {
-      "imageTag": "1.0.22",
-      "replicas": 1,
-      "cpu": "",
-      "memory": "",
-      "debug": "",
-      "service": {
-        "type": ""
-      }
-    },
-    "recording": {
-      "imageTag": "1.0.7",
-      "replicas": 1,
-      "cpu": "",
-      "memory": "",
-      "debug": "",
-      "service": {
-        "type": ""
-      }
-    },
-    "sockets": {
-      "imageTag": "1.2.1",
-      "replicas": 1,
-      "cpu": "",
-      "memory": "",
-      "debug": "",
-      "service": {
-        "type": ""
-      }
-    }
-  }
+  },
+  "additionalProperties": true
+}

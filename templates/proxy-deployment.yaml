@@ -28,7 +28,7 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-proxy-envvars
-        image: {{ printf "ghcr.io/cobrowseio/cobrowse-proxy-enterprise:%s" .Values.proxy.imageTag | quote }}
+        image: ghcr.io/cobrowseio/cobrowse-proxy-enterprise:1.0.22
         livenessProbe:
           failureThreshold: 3
           httpGet:

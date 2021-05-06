@@ -18,7 +18,6 @@ ingress:
 
 # API configurations
 api:
-  imageTag: "1.7.35"
   replicas: 1
   cpu: ""
   memory: ""
@@ -30,7 +29,6 @@ api:
 
 # Frontend configurations
 frontend:
-  imageTag: "2.4.9"
   replicas: 1
   cpu: ""
   memory: ""
@@ -41,7 +39,6 @@ frontend:
 
 # Proxy configurations
 proxy:
-  imageTag: "1.0.22"
   replicas: 1
   cpu: ""
   memory: ""
@@ -53,7 +50,6 @@ proxy:
 
 # Recording configurations
 recording:
-  imageTag: "1.0.7"
   replicas: 1
   cpu: ""
   memory: ""
@@ -65,7 +61,6 @@ recording:
 
 # Sockets configurations
 sockets:
-  imageTag: "1.2.1"
   replicas: 1
   cpu: ""
   memory: ""
