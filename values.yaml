@@ -1,0 +1,70 @@
+# Common configurations
+
+imageCredentials:
+  password: ""
+
+stage: ""
+domain: ""
+license: ""
+superusers: ""
+mongoUrl: ""
+redisUrl: ""
+
+# Kubernetes Ingress configuration
+
+ingress:
+  class: ""
+
+
+# API configurations
+api:
+  replicas: 1
+  cpu: ""
+  memory: ""
+  debug: ""
+
+  service:
+    type: ""
+
+
+# Frontend configurations
+frontend:
+  replicas: 1
+  cpu: ""
+  memory: ""
+
+  service:
+    type: ""
+
+
+# Proxy configurations
+proxy:
+  replicas: 1
+  cpu: ""
+  memory: ""
+  debug: ""
+
+  service: 
+    type: ""
+
+
+# Recording configurations
+recording:
+  replicas: 1
+  cpu: ""
+  memory: ""
+  debug: ""
+
+  service:
+    type: ""
+
+
+# Sockets configurations
+sockets:
+  replicas: 1
+  cpu: ""
+  memory: ""
+  debug: ""
+
+  service:
+    type: ""
