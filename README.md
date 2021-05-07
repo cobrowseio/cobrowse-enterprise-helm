@@ -6,7 +6,7 @@ is an app packaged for Kubernetes. This chart will deploy the Kubernetes cobrows
 ## TL;DR;
 
 ```console
-$ helm add repo cobrowse-enterprise https://cobrowseio.github.io/cobrowse-enterprise-helm
+$ helm add repo cobrowse-enterprise https://cobrowseio.github.io/cobrowse-enterprise-helm/packages
 $ helm install cobrowse-enterprise
 ```
 
@@ -54,30 +54,25 @@ their default values.
 | `mongoUrl`                     | Endpoint of the mongoDB database                     | `nil`                                                    |
 | `redisUrl`                     | Endpoint of the redis server/cluster (i.e. redis://[USERNAME]:PASSWORD@HOST:PORT )                                                                            | `false`                                                  |
 | `ingress.class`                | Class of the Ingress controller                                                                             | `nil`                                                    |
-| `api.imageTag`                    | The image tag of the API container service                                                                           | `nil`                                                    |
 | `api.replicas`                 | The number of API pods to deploy                                                   | `1`                                                   |
 | `api.cpu`                      | The cpu specification (request and limits) of each API pod                         | `256m`              |
 | `api.memory`                   | The memory specification (request and limits) of each API pod                                    | `256Mi`                                                  |
 | `api.debug`                    | -                                                                     | `nil`                                                    |
 | `api.service.type`             | The service type used to expose of the API deployment                              | `ClusterIP`   |
-| `frontend.imageTag`                    | The image tag of the Frontend container service                                                                           | `nil`                                                    |
 | `frontend.replicas`                 | The number of Frontend pods to deploy                                                   | `1`                                                   |
 | `frontend.cpu`                      | The cpu specification (request and limits) of each Frontend pod                         | `256m`              |
 | `frontend.memory`                   | The memory specification (request and limits) of each Frontend pod                                    | `256Mi`                                                  |
 | `frontend.service.type`             | The service type used to expose of the Frontend deployment                              | `ClusterIP`   |
-| `proxy.imageTag`                    | The image tag of the Proxy container service                                                                           | `nil`                                                    |
 | `proxy.replicas`                 | The number of Proxy pods to deploy                                                   | `1`                                                   |
 | `proxy.cpu`                      | The cpu specification (request and limits) of each Proxy pod                         | `256m`              |
 | `proxy.memory`                   | The memory specification (request and limits) of each Proxy pod                                    | `256Mi`                                                  |
 | `proxy.debug`                    | -                                                                     | `nil`                                                    |
 | `proxy.service.type`             | The service type used to expose of the Proxy deployment                              | `ClusterIP`   |
-| `recording.imageTag`                    | The image tag of the Recording container service                                                                           | `nil`                                                    |
 | `recording.replicas`                 | The number of Recording pods to deploy                                                   | `1`                                                   |
 | `recording.cpu`                      | The cpu specification (request and limits) of each Recording pod                         | `256m`              |
 | `recording.memory`                   | The memory specification (request and limits) of each Recording pod                                    | `256Mi`                                                  |
 | `recording.debug`                    | -                                                                     | `nil`                                                    |
 | `recording.service.type`             | The service type used to expose of the Recording deployment                              | `ClusterIP`   |
-| `sockets.imageTag`                    | The image tag of the Sockets container service                                                                           | `nil`                                                    |
 | `sockets.replicas`                 | The number of Sockets pods to deploy                                                   | `1`                                                   |
 | `sockets.cpu`                      | The cpu specification (request and limits) of each Sockets pod                         | `256m`              |
 | `sockets.memory`                   | The memory specification (request and limits) of each Sockets pod                                    | `256Mi`                                                  |

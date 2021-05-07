@@ -1,0 +1,44 @@
+name: Release Cobrowse Enterprise helm chart
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  helm-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.4.0
+
+      - name: Helm Lint
+        run: |
+          helm lint
+
+      - name: Helm package
+        run: |
+          helm package . -d packages
+
+      - name: Helm repo index
+        run: |
+          helm repo index packages --url https://rpbaquing.github.io/cobrowse-chart/packages 
+
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git commit -m "Helm release"
+        
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: master
