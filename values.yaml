@@ -6,8 +6,10 @@ imageCredentials:
 domain: ""
 license: ""
 superusers: ""
-mongoUrl: ""
-redisUrl: ""
+mongo:
+  url: ""
+redis:
+  url: ""
 stage: "enterprise"
 storage: "50Gi"
 sslGeneration: ""

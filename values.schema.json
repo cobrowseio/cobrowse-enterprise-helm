@@ -14,8 +14,12 @@
           "domain": "",
           "license": "",
           "superusers": "",
-          "mongoUrl": "",
-          "redisUrl": "",
+          "mongo": {
+            "url": ""
+          },
+          "redis": {
+            "url": ""
+          },
           "ingress": {
               "class": ""
           },
@@ -71,8 +75,8 @@
       "domain",
       "license",
       "superusers",
-      "mongoUrl",
-      "redisUrl",
+      "mongo",
+      "redis",
       "ingress",
       "api",
       "frontend",
@@ -149,25 +153,19 @@
               ""
           ]
       },
-      "mongoUrl": {
-          "$id": "#/properties/mongoUrl",
-          "type": "string",
-          "title": "The mongoUrl schema",
+      "mongo": {
+          "$id": "#/properties/mongo",
+          "type": "object",
+          "title": "The mongo schema",
           "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-              ""
-          ]
+          "default": {}
       },
-      "redisUrl": {
-          "$id": "#/properties/redisUrl",
-          "type": "string",
-          "title": "The redisUrl schema",
+      "redis": {
+          "$id": "#/properties/redis",
+          "type": "object",
+          "title": "The redis schema",
           "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-              ""
-          ]
+          "default": {}
       },
       "ingress": {
           "$id": "#/properties/ingress",
