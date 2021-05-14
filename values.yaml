@@ -9,6 +9,7 @@ superusers: ""
 mongoUrl: ""
 redisUrl: ""
 stage: "enterprise"
+storage: "50Gi"
 sslGeneration: ""
 
 # Kubernetes Ingress configuration

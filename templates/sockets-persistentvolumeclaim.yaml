@@ -14,5 +14,5 @@ spec:
   - ReadWriteMany
   resources:
     requests:
-      storage: "50Gi"
+      storage: {{ .Values.storage | quote }}
   storageClassName: "nfs"
