@@ -12,7 +12,8 @@ redis:
   url: ""
 stage: "enterprise"
 storage: "50Gi"
-sslGeneration: ""
+ssl:
+  generator: ""
 
 # Kubernetes Ingress configuration
 

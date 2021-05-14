@@ -9,7 +9,7 @@ metadata:
     stage: {{ .Values.stage | quote }}
   annotations:
     kubernetes.io/ingress.class: {{ .Values.ingress.class | quote }}
-{{- if eq .Values.sslGeneration "cert-manager" }}
+{{- if eq .Values.ssl.generator "cert-manager" }}
     certmanager.k8s.io/cluster-issuer: "letsencrypt-production"
     cert-manager.io/acme-challenge-type: "http01"
 {{- end }}
@@ -30,7 +30,7 @@ spec:
   backend:
     serviceName: {{ .Release.Name }}-frontend-svc
     servicePort: 8080
-{{- if eq .Values.sslGeneration "cert-manager" }}
+{{- if eq .Values.ssl.generator "cert-manager" }}
   tls:
   - hosts:
     - {{ .Values.domain }}
