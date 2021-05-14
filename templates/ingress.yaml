@@ -9,26 +9,28 @@ metadata:
     stage: {{ .Values.stage | quote }}
   annotations:
     kubernetes.io/ingress.class: {{ .Values.ingress.class | quote }}
+{{- if eq .Values.sslGeneration "cert-manager" }}
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-production"
+    cert-manager.io/acme-challenge-type: "http01"
+{{- end }}
 {{- if eq .Values.ingress.class "gce" }}
-    kubernetes.io/ingress.global-static-ip-name: "cobrowse-api-ip"
     networking.gke.io/managed-certificates: "cobrowse-api-ssl"
     networking.gke.io/v1beta1.FrontendConfig: "api-frontend-config"
 {{- else if eq .Values.ingress.class "azure/application-gateway" }}
     appgw.ingress.kubernetes.io/ssl-redirect: "true"
-    certmanager.k8s.io/cluster-issuer: "letsencrypt-production"
-    cert-manager.io/acme-challenge-type: "http01"
 {{- else if eq .Values.ingress.class "nginx" }}
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    certmanager.k8s.io/cluster-issuer: "letsencrypt-production"
-    cert-manager.io/acme-challenge-type: "http01"
 {{- end }}
+  {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
   name: api-ingress
   namespace: {{ .Values.namespace | default "default" }}
 spec:
   backend:
     serviceName: {{ .Release.Name }}-frontend-svc
     servicePort: 8080
-{{- if or (eq .Values.ingress.class "nginx") (eq .Values.ingress.class "azure/application-gateway") }}
+{{- if eq .Values.sslGeneration "cert-manager" }}
   tls:
   - hosts:
     - {{ .Values.domain }}

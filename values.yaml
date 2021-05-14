@@ -3,17 +3,19 @@
 imageCredentials:
   password: ""
 
-stage: ""
 domain: ""
 license: ""
 superusers: ""
 mongoUrl: ""
 redisUrl: ""
+stage: "enterprise"
+sslGeneration: ""
 
 # Kubernetes Ingress configuration
 
 ingress:
   class: ""
+  annotations: {}
 
 
 # API configurations
@@ -44,7 +46,7 @@ proxy:
   memory: ""
   debug: ""
 
-  service: 
+  service:
     type: ""
 
 
