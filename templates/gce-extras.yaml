@@ -3,7 +3,7 @@ apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
   name: cobrowse-api-ssl
-  namespace: {{ .Values.namespace | default "default" }}
+  namespace: {{ .Release.Namespace | default "default" }}
   labels:
     app: {{ template "fullname" . }}
     chart: {{ template "chart" . }}
@@ -18,7 +18,7 @@ apiVersion: cloud.google.com/v1beta1
 kind: BackendConfig
 metadata:
   name: api-sockets-backendconfig
-  namespace: {{ .Values.namespace | default "default" }}
+  namespace: {{ .Release.Namespace | default "default" }}
   labels:
     app: {{ template "fullname" . }}
     chart: {{ template "chart" . }}
@@ -32,7 +32,7 @@ apiVersion: networking.gke.io/v1beta1
 kind: FrontendConfig
 metadata:
   name: api-frontend-config
-  namespace: {{ .Values.namespace | default "default" }}
+  namespace: {{ .Release.Namespace | default "default" }}
   labels:
     app: {{ template "fullname" . }}
     chart: {{ template "chart" . }}

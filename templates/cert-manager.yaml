@@ -3,7 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-production
-  namespace: {{ .Values.namespace | default "default" }}
+  namespace: {{ .Release.Namespace | default "default" }}
   labels:
     app: {{ template "fullname" . }}
     chart: {{ template "chart" . }}
@@ -25,7 +25,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: tls-secret
-  namespace: {{ .Values.namespace | default "default" }}
+  namespace: {{ .Release.Namespace | default "default" }}
   labels:
     app: {{ template "fullname" . }}
     chart: {{ template "chart" . }}

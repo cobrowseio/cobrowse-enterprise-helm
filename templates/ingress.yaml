@@ -25,7 +25,7 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
   name: api-ingress
-  namespace: {{ .Values.namespace | default "default" }}
+  namespace: {{ .Release.Namespace | default "default" }}
 spec:
   backend:
     serviceName: {{ .Release.Name }}-frontend-svc
