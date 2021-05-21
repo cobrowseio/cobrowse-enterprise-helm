@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
@@ -27,9 +27,11 @@ metadata:
   name: api-ingress
   namespace: {{ .Release.Namespace | default "default" }}
 spec:
-  backend:
-    serviceName: {{ .Release.Name }}-frontend-svc
-    servicePort: 8080
+  defaultBackend:
+    service:
+      name: {{ .Release.Name }}-frontend-svc
+      port:
+        number: 8080
 {{- if eq .Values.ssl.generator "cert-manager" }}
   tls:
   - hosts:
@@ -40,35 +42,63 @@ spec:
   - host: {{ .Values.domain }}
     http:
       paths:
-      - backend:
-          serviceName: {{ .Release.Name }}-api-svc
-          servicePort: 8080
 {{- if eq .Values.ingress.class "nginx" }}
-        path: "/api/"
-{{- else }}
-        path: "/api/*"
-{{- end }}
       - backend:
-          serviceName: {{ .Release.Name }}-recording-svc
-          servicePort: 8080
-{{- if eq .Values.ingress.class "nginx" }}
-        path: "/recording/"
-{{- else }}
-        path: "/recording/*"
-{{- end }}
+          service:
+            name: {{ .Release.Name }}-api-svc
+            port:
+              number: 8080
+        path: /api
+        pathType: Prefix
       - backend:
-          serviceName: {{ .Release.Name }}-proxy-svc
-          servicePort: 8080
-{{- if eq .Values.ingress.class "nginx" }}
-        path: "/proxy/"
-{{- else }}
-        path: "/proxy/*"
-{{- end }}
+          service:
+            name: {{ .Release.Name }}-recording-svc
+            port:
+              number: 8080
+        path: /recording
+        pathType: Prefix
       - backend:
-          serviceName: {{ .Release.Name }}-sockets-svc
-          servicePort: 8080
-{{- if eq .Values.ingress.class "nginx" }}
-        path: "/sockets/"
+          service:
+            name: {{ .Release.Name }}-proxy-svc
+            port:
+              number: 8080
+        path: /proxy
+        pathType: Prefix
+      - backend:
+          service:
+            name: {{ .Release.Name }}-sockets-svc
+            port:
+              number: 8080
+        path: /sockets
+        pathType: Prefix
 {{- else }}
-        path: "/sockets/*"
+      - backend:
+          service:
+            name: {{ .Release.Name }}-api-svc
+            port:
+              number: 8080
+        path: /api/*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: {{ .Release.Name }}-recording-svc
+            port:
+              number: 8080
+        path: /recording/*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: {{ .Release.Name }}-proxy-svc
+            port:
+              number: 8080
+        path: /proxy/*
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: {{ .Release.Name }}-sockets-svc
+            port:
+              number: 8080
+        path: /sockets/*
+        pathType: ImplementationSpecific
 {{- end }}
+      
