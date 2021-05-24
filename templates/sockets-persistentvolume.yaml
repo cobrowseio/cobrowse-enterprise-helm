@@ -1,4 +1,4 @@
-{{- if eq .Values.storage.type "external" }}
+{{- if .Values.storage.server }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -16,6 +16,6 @@ spec:
   accessModes:
   - ReadWriteMany
   nfs:
-    path: /{{ .Values.storage.filesharename }}
-    server: {{ .Values.storage.hostname }}
+    path: {{ .Values.storage.path }}
+    server: {{ .Values.storage.server }}
 {{- end }}

@@ -29,9 +29,8 @@
             },
             "storage": {
                 "size": "50Gi",
-                "type": "",
-                "hostname": "",
-                "filesharename": ""
+                "server": "",
+                "path": ""
             },
             "api": {
                 "replicas": 1,
@@ -300,16 +299,14 @@
             "examples": [
                 {
                     "size": "50Gi",
-                    "type": "",
-                    "hostname": "",
-                    "filesharename": ""
+                    "server": "",
+                    "path": ""
                 }
             ],
             "required": [
                 "size",
-                "type",
-                "hostname",
-                "filesharename"
+                "server",
+                "path"
             ],
             "properties": {
                 "size": {
@@ -322,30 +319,20 @@
                         "50Gi"
                     ]
                 },
-                "type": {
-                    "$id": "#/properties/storage/properties/type",
+                "server": {
+                    "$id": "#/properties/storage/properties/server",
                     "type": "string",
-                    "title": "The type schema",
+                    "title": "The server schema",
                     "description": "An explanation about the purpose of this instance.",
                     "default": "",
                     "examples": [
                         ""
                     ]
                 },
-                "hostname": {
-                    "$id": "#/properties/storage/properties/hostname",
+                "path": {
+                    "$id": "#/properties/storage/properties/path",
                     "type": "string",
-                    "title": "The hostname schema",
-                    "description": "An explanation about the purpose of this instance.",
-                    "default": "",
-                    "examples": [
-                        ""
-                    ]
-                },
-                "filesharename": {
-                    "$id": "#/properties/storage/properties/filesharename",
-                    "type": "string",
-                    "title": "The filesharename schema",
+                    "title": "The path schema",
                     "description": "An explanation about the purpose of this instance.",
                     "default": "",
                     "examples": [

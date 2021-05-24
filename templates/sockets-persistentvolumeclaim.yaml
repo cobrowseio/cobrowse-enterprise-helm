@@ -15,7 +15,7 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage.size | quote }}
-{{- if ne .Values.storage.type "external" }}
+{{- if not .Values.storage.server }}
   storageClassName: "nfs"
 {{- else }}
   storageClassName: ""
