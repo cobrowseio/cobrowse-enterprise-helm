@@ -11,16 +11,28 @@ mongo:
 redis:
   url: ""
 stage: "enterprise"
-storage: "50Gi"
 ssl:
   generator: ""
 
 # Kubernetes Ingress configuration
-
 ingress:
   class: ""
   annotations: {}
 
+# Persistent Volume Storage
+storage:
+  size: "50Gi"
+  type: "" # See available types below and required configurations
+  hostname: ""
+  filesharename: ""
+  
+  # When NFS Server Provisioner is deployed inside the Kubernetes cluster
+  # type: internal
+  
+  # When using external NFS outside cluster such as Azure Fileshare, GCP Filestore, On-prem NFS Server
+  # type: external
+  # hostname: ""
+  # filesharename: ""
 
 # API configurations
 api:

@@ -1,7 +1,8 @@
+{{- if eq .Values.storage.type "external" }}
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: PersistentVolume
 metadata:
-  name: {{ .Release.Name }}-sockets-pvc
+  name: {{ .Release.Name }}-sockets-pv
   namespace: {{ .Release.Namespace | default "default" }}
   labels:
     app: {{ template "fullname" . }}
@@ -10,14 +11,11 @@ metadata:
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
 spec:
+  capacity:
+    storage: {{ .Values.storage.size }}
   accessModes:
   - ReadWriteMany
-  resources:
-    requests:
-      storage: {{ .Values.storage.size | quote }}
-{{- if ne .Values.storage.type "external" }}
-  storageClassName: "nfs"
-{{- else }}
-  storageClassName: ""
-  volumeName: {{ .Release.Name }}-sockets-pv
+  nfs:
+    path: /{{ .Values.storage.filesharename }}
+    server: {{ .Values.storage.hostname }}
 {{- end }}
