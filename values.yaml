@@ -25,10 +25,6 @@ storage:
   server: ""
   path: ""
 
-  # When using external NFS outside cluster such as Azure Fileshare, GCP Filestore, On-prem NFS Server
-  # server: ""
-  # path: ""
-
 # API configurations
 api:
   replicas: 1
