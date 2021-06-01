@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ .Release.Name }}-sockets
   namespace: {{ .Release.Namespace | default "default" }}
@@ -11,6 +11,7 @@ metadata:
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
 spec:
+  serviceName: {{ .Release.Name }}-sockets-headless
   replicas: {{ .Values.sockets.replicas | default "1" }}
   selector:
     matchLabels:
@@ -53,6 +54,9 @@ spec:
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 1
+        volumeMounts:
+        - mountPath: "/data/traces"
+          name: data-traces
         resources:
           limits:
             cpu: {{ .Values.sockets.cpu | default "256m"}}
@@ -60,10 +64,6 @@ spec:
           requests:
             cpu: {{ .Values.sockets.cpu | default "256m"}}
             memory: {{ .Values.sockets.memory | default "256Mi"}}
-        volumeMounts:
-        - mountPath: "/data/traces"
-          mountPropagation: None
-          name: data-traces
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
       volumes:
