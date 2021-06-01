@@ -25,6 +25,15 @@ spec:
         component: sockets
         stage: {{ .Values.stage | quote }}
     spec:
+{{- if .Values.storage.server }}
+      initContainers:
+      - name: update-data-ownership
+        image: alpine
+        command: [ "chmod", "-R", "777", "/data/traces" ]
+        volumeMounts:
+        - mountPath: "/data/traces"
+          name: data-traces
+{{- end }}
       containers:
       - envFrom:
         - secretRef:
