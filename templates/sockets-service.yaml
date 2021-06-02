@@ -44,6 +44,6 @@ spec:
     targetPort: 8080
   selector:
     component: sockets
-    stage: enterprise
+    stage: {{ .Values.stage | quote }}
   type: "ClusterIP"
   clusterIP: None
