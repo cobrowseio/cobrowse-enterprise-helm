@@ -22,6 +22,9 @@ ingress:
 # Persistent Volume Storage
 storage:
   size: "50Gi"
+  # you can either use a storage class
+  class: "nfs"
+  # or configure your own NFS server
   server: ""
   path: ""
 

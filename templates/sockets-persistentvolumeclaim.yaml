@@ -16,7 +16,7 @@ spec:
     requests:
       storage: {{ .Values.storage.size | quote }}
 {{- if not .Values.storage.server }}
-  storageClassName: "nfs"
+  storageClassName: {{ .Values.storage.class | quote }}
 {{- else }}
   storageClassName: ""
   volumeName: {{ .Release.Name }}-sockets-pv
