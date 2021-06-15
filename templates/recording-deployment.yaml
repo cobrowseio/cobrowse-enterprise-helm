@@ -29,7 +29,7 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-recording-envvars
-        image: ghcr.io/cobrowseio/cobrowse-recording-enterprise:1.0.8
+        image: ghcr.io/cobrowseio/cobrowse-recording-enterprise:1.0.9
         livenessProbe:
           failureThreshold: 3
           httpGet:

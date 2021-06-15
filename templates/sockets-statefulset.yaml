@@ -38,7 +38,7 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-sockets-envvars
-        image: ghcr.io/cobrowseio/cobrowse-api-sockets-enterprise:1.2.7
+        image: ghcr.io/cobrowseio/cobrowse-api-sockets-enterprise:1.2.8
         livenessProbe:
           failureThreshold: 3
           httpGet:
