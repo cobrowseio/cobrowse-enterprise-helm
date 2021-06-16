@@ -28,7 +28,7 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-frontend-envvars
-        image: ghcr.io/cobrowseio/cobrowse-frontend-enterprise:2.5.13
+        image: ghcr.io/cobrowseio/cobrowse-frontend-enterprise:2.5.14
         livenessProbe:
           failureThreshold: 3
           initialDelaySeconds: 30
