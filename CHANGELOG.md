@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.8](#) (2021-09-06)
+
+
+### Bug Fixes
+
+* update deployment strategy to allow 50% surge ([71c6009](#))
+* **images:** update image versions ([e273afb](#))
+
 ### [1.5.7](#) (2021-06-24)
 
 
