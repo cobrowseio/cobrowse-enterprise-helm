@@ -13,6 +13,12 @@ metadata:
     stage: {{ .Values.stage | quote }}
 spec:
   replicas: {{ .Values.recording.replicas | default "1" }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 0
+  minReadySeconds: 30
   selector:
     matchLabels:
       component: recording
