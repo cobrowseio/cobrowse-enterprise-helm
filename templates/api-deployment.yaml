@@ -34,7 +34,7 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-api-envvars
-        image: ghcr.io/cobrowseio/cobrowse-api-enterprise:1.10.4
+        image: ghcr.io/cobrowseio/cobrowse-api-enterprise:1.12.1
         livenessProbe:
           failureThreshold: 3
           httpGet:
