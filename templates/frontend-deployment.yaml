@@ -34,8 +34,8 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-frontend-envvars
-        image: {{ .Values.frontend.image.ref | default "ghcr.io/cobrowseio/cobrowse-frontend-enterprise:2.9.0" }}
-        imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
+        image: {{ (.Values.frontend.image).ref | default "ghcr.io/cobrowseio/cobrowse-frontend-enterprise:2.9.0" }}
+        imagePullPolicy: {{ (.Values.frontend.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
           initialDelaySeconds: 30

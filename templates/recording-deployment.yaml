@@ -35,8 +35,8 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-recording-envvars
-        image: {{ .Values.recording.image.ref | default "ghcr.io/cobrowseio/cobrowse-recording-enterprise:1.0.11" }}
-        imagePullPolicy: {{ .Values.recording.image.pullPolicy }}
+        image: {{ (.Values.recording.image).ref | default "ghcr.io/cobrowseio/cobrowse-recording-enterprise:1.0.11" }}
+        imagePullPolicy: {{ (.Values.recording.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
           httpGet:
