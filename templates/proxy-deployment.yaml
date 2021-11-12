@@ -34,7 +34,8 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-proxy-envvars
-        image: ghcr.io/cobrowseio/cobrowse-proxy-enterprise:1.1.9
+        image: {{ (.Values.proxy.image).ref | default "ghcr.io/cobrowseio/cobrowse-proxy-enterprise:1.1.9" }}
+        imagePullPolicy: {{ (.Values.proxy.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
           httpGet:
