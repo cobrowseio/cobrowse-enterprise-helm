@@ -38,7 +38,8 @@ spec:
       - envFrom:
         - secretRef:
             name: {{ .Release.Name }}-sockets-envvars
-        image: ghcr.io/cobrowseio/cobrowse-api-sockets-enterprise:1.2.11
+        image: {{ .Values.sockets.image.ref | default "ghcr.io/cobrowseio/cobrowse-api-sockets-enterprise:1.2.11" }}
+        imagePullPolicy: {{ .Values.sockets.image.pullPolicy }}
         livenessProbe:
           failureThreshold: 3
           httpGet:
