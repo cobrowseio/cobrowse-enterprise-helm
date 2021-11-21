@@ -1,6 +1,7 @@
 # Common configurations
 
 imageCredentials:
+  disabled: false
   password: ""
 
 domain: ""
