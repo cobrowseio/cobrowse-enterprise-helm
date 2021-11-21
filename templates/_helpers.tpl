@@ -37,3 +37,10 @@ The name of the secret for the ImagePullSecret
 {{- define "imagePullSecretName" }}
 {{- default (printf "%s-docker-cfg" .Release.Name) .Values.imageCredentials.pullSecretName }}
 {{- end }}
+
+{{/*
+The name of the TLS secret for the Ingress
+*/}}
+{{- define "tlsSecretName" }}
+{{- default "tls-secret" .Values.ssl.tls.name }}
+{{- end }}
