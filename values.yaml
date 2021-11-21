@@ -2,6 +2,7 @@
 
 imageCredentials:
   disabled: false
+  pullSecretName: ""
   password: ""
 
 domain: ""

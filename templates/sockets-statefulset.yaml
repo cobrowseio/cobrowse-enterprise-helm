@@ -75,7 +75,7 @@ spec:
             cpu: {{ .Values.sockets.cpu | default "256m"}}
             memory: {{ .Values.sockets.memory | default "256Mi"}}
       imagePullSecrets:
-      - name: {{ .Release.Name }}-docker-cfg
+      - name: {{ template "imagePullSecretName" . }}
       volumes:
       - name: data-traces
         persistentVolumeClaim:

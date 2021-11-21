@@ -70,4 +70,4 @@ spec:
             cpu: {{ .Values.recording.cpu | default "256m"}}
             memory: {{ .Values.recording.memory | default "256Mi"}}
       imagePullSecrets:
-      - name: {{ .Release.Name }}-docker-cfg
+      - name: {{ template "imagePullSecretName" . }}

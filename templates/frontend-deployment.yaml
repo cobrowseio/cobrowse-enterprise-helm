@@ -65,4 +65,4 @@ spec:
             cpu: {{ .Values.frontend.cpu | default "256m"}}
             memory: {{ .Values.frontend.memory | default "256Mi"}}
       imagePullSecrets:
-      - name: {{ .Release.Name }}-docker-cfg
+      - name: {{ template "imagePullSecretName" . }}
