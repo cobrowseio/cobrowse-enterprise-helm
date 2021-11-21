@@ -32,7 +32,7 @@ spec:
       name: {{ .Release.Name }}-frontend-svc
       port:
         number: 8080
-{{- if eq .Values.ssl.generator "cert-manager" }}
+{{- if or (eq .Values.ssl.generator "cert-manager") .Values.ssl.tls.enabled }}
   tls:
   - hosts:
     - {{ .Values.domain }}

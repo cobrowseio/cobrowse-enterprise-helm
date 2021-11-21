@@ -15,6 +15,7 @@ redis:
 stage: "enterprise"
 ssl:
   tls:
+    enabled: false
     name: ""
   generator: ""
 
