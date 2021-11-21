@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.13](#) (2021-11-21)
+
+### Bug Fixes
+
+* **Image Pull Secret:** Allowing to override the `imagePullSecret` to use a custom name ([5a584e1](#))
+* **TLS Secret Name:** Allowing to set a custom name for the TLS `secretName` ([8e07bd9](#))
+* **Ingress with TLS:** Adding an option to have TLS on the `Ingress` without the need of `CertManager` ([dc8d624](#))
+* **Sensitive Secrets:** Moving sensitive secrets to be consumed with custom secret - `license_key` for example ([2198f76](#))
+
 ### [1.5.12](#) (2021-10-22)
 
 
