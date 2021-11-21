@@ -6,6 +6,9 @@ imageCredentials:
   password: ""
 
 domain: ""
+secret:
+  create: true
+
 license: ""
 superusers: ""
 mongo:
