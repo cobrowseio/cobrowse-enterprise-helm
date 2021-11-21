@@ -1,7 +1,7 @@
 # Common configurations
 
 imageCredentials:
-  disabled: false
+  create: false
   pullSecretName: ""
   password: ""
 
