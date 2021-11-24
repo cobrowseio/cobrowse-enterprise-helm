@@ -36,8 +36,16 @@ spec:
 {{- end }}
       containers:
       - envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-sockets-envvars
+        - configMapRef:
+            name: {{ .Release.Name }}-sockets-custom-envvars
+            optional: true
         - secretRef:
             name: {{ .Release.Name }}-sockets-envvars
+        - secretRef:
+            name: {{ .Release.Name }}-sockets-custom-envvars
+            optional: true
         image: {{ (.Values.sockets.image).ref | default "ghcr.io/cobrowseio/cobrowse-api-sockets-enterprise:1.2.11" }}
         imagePullPolicy: {{ (.Values.sockets.image).pullPolicy }}
         livenessProbe:

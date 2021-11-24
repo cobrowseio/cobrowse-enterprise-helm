@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-api-envvars
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+data:
+  PORT: "8080"
+  STAGE: {{ .Values.stage | quote }}
+  DEBUG: {{ default "" .Values.api.debug | quote }}
+  frontend_url: {{ printf "https://%s" .Values.domain | quote }}
+  control__url_template: {{ printf "https://%s" .Values.domain | quote }}
+  streaming__url_template: {{ printf "https://%s" .Values.domain | quote }}
+  streaming__default_region: "api"
+  streaming__locate_url: {{ printf "https://%s/sockets/1/region" .Values.domain | quote }}
+  license_key: {{ default "" .Values.license | quote }}
+  superusers: {{ default "" .Values.superusers | b64enc | quote }}
