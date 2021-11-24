@@ -27,6 +27,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/api-secret.yaml") . | sha256sum }}
       labels:
+        app: {{ template "fullname" . }}
         component: api
         stage: {{ .Values.stage | quote }}
     spec:

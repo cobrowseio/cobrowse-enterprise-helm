@@ -27,6 +27,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/proxy-secret.yaml") . | sha256sum }}
       labels:
+        app: {{ template "fullname" . }}
         component: proxy
         stage: {{ .Values.stage | quote }}
     spec:

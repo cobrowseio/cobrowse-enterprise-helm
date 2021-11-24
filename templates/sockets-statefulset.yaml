@@ -22,6 +22,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/sockets-secret.yaml") . | sha256sum }}
       labels:
+        app: {{ template "fullname" . }}
         component: sockets
         stage: {{ .Values.stage | quote }}
     spec:
