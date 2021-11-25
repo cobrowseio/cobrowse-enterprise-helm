@@ -33,8 +33,16 @@ spec:
     spec:
       containers:
       - envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-recording-envvars
+        - configMapRef:
+            name: {{ .Release.Name }}-recording-custom-envvars
+            optional: true
         - secretRef:
             name: {{ .Release.Name }}-recording-envvars
+        - secretRef:
+            name: {{ .Release.Name }}-recording-custom-envvars
+            optional: true
         image: {{ (.Values.recording.image).ref | default "ghcr.io/cobrowseio/cobrowse-recording-enterprise:1.0.11" }}
         imagePullPolicy: {{ (.Values.recording.image).pullPolicy }}
         livenessProbe:
