@@ -22,6 +22,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/sockets-secret.yaml") . | sha256sum }}
       labels:
+        app: {{ template "fullname" . }}
         component: sockets
         stage: {{ .Values.stage | quote }}
     spec:
@@ -61,6 +62,7 @@ spec:
         name: sockets
         ports:
         - containerPort: 8080
+          name: http
           protocol: TCP
         readinessProbe:
           failureThreshold: 3

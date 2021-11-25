@@ -28,6 +28,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/recording-secret.yaml") . | sha256sum }}
       labels:
+        app: {{ template "fullname" . }}
         component: recording
         stage: {{ .Values.stage | quote }}
     spec:
