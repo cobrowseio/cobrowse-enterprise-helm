@@ -27,11 +27,6 @@ metadata:
   name: api-ingress
   namespace: {{ .Release.Namespace | default "default" }}
 spec:
-  defaultBackend:
-    service:
-      name: {{ .Release.Name }}-frontend-svc
-      port:
-        number: 8080
 {{- if eq .Values.ssl.generator "cert-manager" }}
   tls:
   - hosts:
