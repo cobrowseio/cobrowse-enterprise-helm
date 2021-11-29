@@ -15,7 +15,10 @@ module.exports = {
   packageFiles: [tracker],
   bumpFiles: [tracker],
   scripts: {
-    postbump: "helm package . -d packages && helm repo index packages --url https://cobrowseio.github.io/cobrowse-enterprise-helm/packages ; git add packages ; git commit -m \"build(helm): package helm chart\""
+    prebump:
+      './scripts/ensure-github-token.sh && ./scripts/generate-component-changelog.sh > .release-notes.tmpl.md',
+    postbump:
+      'helm package . -d packages && helm repo index packages --url https://cobrowseio.github.io/cobrowse-enterprise-helm/packages ; git add packages ; git commit -m "build(helm): package helm chart" ; sed "s/{VERSION}/$(./scripts/get-chart-version.sh)/" .release-notes.tmpl.md | hub release create -d -F- v$(./scripts/get-chart-version.sh)',
   },
   commitUrlFormat: "#",
   compareUrlFormat: "#",
