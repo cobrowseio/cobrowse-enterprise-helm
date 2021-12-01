@@ -50,7 +50,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-sockets-custom-envvars
             optional: true
-        image: {{ (.Values.sockets.image).ref | default "ghcr.io/cobrowseio/cobrowse-api-sockets-enterprise:1.2.11" }}
+        image: {{ (.Values.sockets.image).ref | default "ghcr.io/cobrowseio/cobrowse-api-sockets-enterprise:1.3.1" }}
         imagePullPolicy: {{ (.Values.sockets.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
