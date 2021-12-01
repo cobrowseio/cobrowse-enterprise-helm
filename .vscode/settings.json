@@ -1,0 +1,13 @@
+{
+  "eslint.enable": false,
+  "prettier.enable": false,
+  "standard.enable": true,
+  "standard.autoFixOnSave": true,
+  "standard.engine": "standard",
+  "[yaml]": {
+    "editor.formatOnSave": false
+  },
+  "[dockerfile]": {
+    "editor.formatOnSave": false
+  }
+}
