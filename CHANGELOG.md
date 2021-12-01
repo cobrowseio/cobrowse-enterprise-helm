@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](#) (2021-12-01)
+
+
+### Features
+
+* add pod label to select cobrowse enterprise services ([d622550](#))
+* allow for custom configmaps and secrets managed in kubernetes ([41656ef](#))
+* always enable prometheus scraping ([e7ec67b](#))
+* always use pathType=Prefix for Ingress ([d7496a2](#))
+* configurable service images references ([6bbde11](#))
+* name the sockets port ([7b71478](#))
+
+
+### Bug Fixes
+
+* **images:** update image versions ([315da2f](#))
+* fix DEBUG helm value for api ([2fa4969](#))
+* guard for unspecified dict parent ([5fc555f](#))
+* suffix /* at end of azure ingress prefix path ([556ad6d](#))
+
 ### [1.5.12](#) (2021-10-22)
 
 
