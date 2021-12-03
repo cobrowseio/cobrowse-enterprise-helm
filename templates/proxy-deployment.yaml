@@ -82,5 +82,7 @@ spec:
             memory: {{ .Values.proxy.memory | default "256Mi"}}
         securityContext:
           {{ include "defaultSecurityContext" . | nindent 10 }}
+          runAsGroup: {{ (.Values.proxy.runAs).group | default "1000" }}
+          runAsUser: {{ (.Values.proxy.runAs).user | default "1000" }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
