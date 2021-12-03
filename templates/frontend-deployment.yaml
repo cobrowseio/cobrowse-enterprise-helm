@@ -43,7 +43,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-frontend-custom-envvars
             optional: true
-        image: {{ (.Values.frontend.image).ref | default "ghcr.io/cobrowseio/cobrowse-frontend-enterprise:2.11.4" }}
+        image: {{ (.Values.frontend.image).ref | default "ghcr.io/cobrowseio/cobrowse-frontend-enterprise:2.11.5" }}
         imagePullPolicy: {{ (.Values.frontend.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
