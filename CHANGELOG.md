@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](#) (2021-12-03)
+
+
+### Features
+
+* allow docker credentials to be managed externally from helm ([5d48e60](#))
+
+
+### Bug Fixes
+
+* **images:** update image versions ([767bd5f](#))
+
 ## [1.6.0](#) (2021-12-01)
 
 
