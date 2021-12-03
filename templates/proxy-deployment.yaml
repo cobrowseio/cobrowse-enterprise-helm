@@ -80,5 +80,7 @@ spec:
           requests:
             cpu: {{ .Values.proxy.cpu | default "256m"}}
             memory: {{ .Values.proxy.memory | default "256Mi"}}
+        securityContext:
+          {{ include "defaultSecurityContext" . | nindent 10 }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg

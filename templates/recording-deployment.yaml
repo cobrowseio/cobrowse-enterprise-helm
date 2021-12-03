@@ -81,5 +81,7 @@ spec:
           requests:
             cpu: {{ .Values.recording.cpu | default "256m"}}
             memory: {{ .Values.recording.memory | default "256Mi"}}
+        securityContext:
+          {{ include "defaultSecurityContext" . | nindent 10 }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
