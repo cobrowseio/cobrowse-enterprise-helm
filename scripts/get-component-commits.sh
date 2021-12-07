@@ -63,7 +63,7 @@ if [ -z "$CHART_VERSION" ]; then
   usage
 fi
 
-GIT_URL="https://$COBROWSEIO_GITHUB_TOKEN@github.com/cobrowseio/$REPO.git"
+GIT_URL="https://$GITHUB_TOKEN@github.com/cobrowseio/$REPO.git"
 GIT_DIR="/tmp/.$COMPONENT.git"
 
 FROM=$(./scripts/get-component-version.sh -c "$COMPONENT" -v "$CHART_VERSION")
