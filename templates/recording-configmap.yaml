@@ -1,7 +1,7 @@
 apiVersion: v1
-kind: Secret
+kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-frontend-envvars
+  name: {{ .Release.Name }}-recording-envvars
   namespace: {{ .Release.Namespace | default "default" }}
   labels:
     app: {{ template "fullname" . }}
@@ -9,5 +9,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
-type: Opaque
-data: {}
+data:
+  PORT: "8080"
+  STAGE: {{ .Values.stage | quote }}
+  DEBUG: {{ default "" .Values.recording.debug | quote }}

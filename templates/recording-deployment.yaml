@@ -27,15 +27,27 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/recording-secret.yaml") . | sha256sum }}
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "8080"
       labels:
+        app: {{ template "fullname" . }}
         component: recording
         stage: {{ .Values.stage | quote }}
     spec:
       containers:
       - envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-recording-envvars
+        - configMapRef:
+            name: {{ .Release.Name }}-recording-custom-envvars
+            optional: true
         - secretRef:
             name: {{ .Release.Name }}-recording-envvars
-        image: {{ (.Values.recording.image).ref | default "ghcr.io/cobrowseio/cobrowse-recording-enterprise:1.0.11" }}
+        - secretRef:
+            name: {{ .Release.Name }}-recording-custom-envvars
+            optional: true
+        image: {{ (.Values.recording.image).ref | default "ghcr.io/cobrowseio/cobrowse-recording-enterprise:1.2.3" }}
         imagePullPolicy: {{ (.Values.recording.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
@@ -69,5 +81,9 @@ spec:
           requests:
             cpu: {{ .Values.recording.cpu | default "256m"}}
             memory: {{ .Values.recording.memory | default "256Mi"}}
+        securityContext:
+          {{ include "defaultSecurityContext" . | nindent 10 }}
+          runAsGroup: {{ (.Values.recording.runAs).group | default "1000" }}
+          runAsUser: {{ (.Values.recording.runAs).user | default "1000" }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg

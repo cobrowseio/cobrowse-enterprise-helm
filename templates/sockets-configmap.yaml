@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-sockets-envvars
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+data:
+  PORT: "8080"
+  STAGE: {{ default "" .Values.stage | quote }}
+  DEBUG: {{ default "" .Values.sockets.debug | quote }}
+  api_url: {{ printf "http://%s-api-svc:8080" .Release.Name | quote }}
+  peering_port: "8081"
+  peering_hostname_template: {{ printf "<%%=hostname%%>.%s-sockets-headless" .Release.Name | quote }}

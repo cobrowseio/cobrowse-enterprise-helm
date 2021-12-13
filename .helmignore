@@ -1,2 +1,5 @@
 .git
+.release-notes.tmpl.md
+.vscode
 packages
+scripts

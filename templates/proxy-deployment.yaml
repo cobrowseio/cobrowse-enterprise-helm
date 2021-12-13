@@ -26,15 +26,27 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/proxy-secret.yaml") . | sha256sum }}
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "8080"
       labels:
+        app: {{ template "fullname" . }}
         component: proxy
         stage: {{ .Values.stage | quote }}
     spec:
       containers:
       - envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-proxy-envvars
+        - configMapRef:
+            name: {{ .Release.Name }}-proxy-custom-envvars
+            optional: true
         - secretRef:
             name: {{ .Release.Name }}-proxy-envvars
-        image: {{ (.Values.proxy.image).ref | default "ghcr.io/cobrowseio/cobrowse-proxy-enterprise:1.1.9" }}
+        - secretRef:
+            name: {{ .Release.Name }}-proxy-custom-envvars
+            optional: true
+        image: {{ (.Values.proxy.image).ref | default "ghcr.io/cobrowseio/cobrowse-proxy-enterprise:1.3.6" }}
         imagePullPolicy: {{ (.Values.proxy.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
@@ -68,5 +80,9 @@ spec:
           requests:
             cpu: {{ .Values.proxy.cpu | default "256m"}}
             memory: {{ .Values.proxy.memory | default "256Mi"}}
+        securityContext:
+          {{ include "defaultSecurityContext" . | nindent 10 }}
+          runAsGroup: {{ (.Values.proxy.runAs).group | default "1000" }}
+          runAsUser: {{ (.Values.proxy.runAs).user | default "1000" }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg

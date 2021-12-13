@@ -21,7 +21,11 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/sockets-secret.yaml") . | sha256sum }}
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "8080"
       labels:
+        app: {{ template "fullname" . }}
         component: sockets
         stage: {{ .Values.stage | quote }}
     spec:
@@ -36,9 +40,17 @@ spec:
 {{- end }}
       containers:
       - envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-sockets-envvars
+        - configMapRef:
+            name: {{ .Release.Name }}-sockets-custom-envvars
+            optional: true
         - secretRef:
             name: {{ .Release.Name }}-sockets-envvars
-        image: {{ (.Values.sockets.image).ref | default "ghcr.io/cobrowseio/cobrowse-api-sockets-enterprise:1.2.11" }}
+        - secretRef:
+            name: {{ .Release.Name }}-sockets-custom-envvars
+            optional: true
+        image: {{ (.Values.sockets.image).ref | default "ghcr.io/cobrowseio/cobrowse-api-sockets-enterprise:1.3.1" }}
         imagePullPolicy: {{ (.Values.sockets.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
@@ -53,6 +65,7 @@ spec:
         name: sockets
         ports:
         - containerPort: 8080
+          name: http
           protocol: TCP
         readinessProbe:
           failureThreshold: 3
@@ -74,6 +87,10 @@ spec:
           requests:
             cpu: {{ .Values.sockets.cpu | default "256m"}}
             memory: {{ .Values.sockets.memory | default "256Mi"}}
+        securityContext:
+          {{ include "defaultSecurityContext" . | nindent 10 }}
+          runAsGroup: {{ (.Values.sockets.runAs).group | default "1000" }}
+          runAsUser: {{ (.Values.sockets.runAs).user | default "1000" }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
       volumes:

@@ -1,4 +1,4 @@
-{{- if and .Values.imageCredentials .Values.imageCredentials.password }}
+{{ if and .Values.imageCredentials .Values.imageCredentials.password -}}
   apiVersion: v1
   kind: Secret
   metadata:
