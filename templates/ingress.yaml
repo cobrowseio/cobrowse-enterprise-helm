@@ -1,3 +1,5 @@
+
+   
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
@@ -38,34 +40,32 @@ spec:
     http:
       paths:
       - backend:
-          service:
-            name: {{ .Release.Name }}-api-svc
-            port:
-              number: 8080
+          serviceName: {{ .Release.Name }}-api-svc
+          servicePort: 8080
         # Azure bug: https://github.com/Azure/application-gateway-kubernetes-ingress/issues/1238
         path: {{ ternary "/api/*" "/api" (eq .Values.ingress.class "azure/application-gateway") | quote }}
         pathType: Prefix
       - backend:
-          service:
-            name: {{ .Release.Name }}-recording-svc
-            port:
-              number: 8080
+          serviceName: {{ .Release.Name }}-recording-svc
+          servicePort: 8080
         # Azure bug: https://github.com/Azure/application-gateway-kubernetes-ingress/issues/1238
         path: {{ ternary "/recording/*" "/recording" (eq .Values.ingress.class "azure/application-gateway") | quote }}
         pathType: Prefix
       - backend:
-          service:
-            name: {{ .Release.Name }}-proxy-svc
-            port:
-              number: 8080
+          serviceName: {{ .Release.Name }}-proxy-svc
+          servicePort: 8080
         # Azure bug: https://github.com/Azure/application-gateway-kubernetes-ingress/issues/1238
         path: {{ ternary "/proxy/*" "/proxy" (eq .Values.ingress.class "azure/application-gateway") | quote }}
         pathType: Prefix
       - backend:
-          service:
-            name: {{ .Release.Name }}-sockets-svc
-            port:
-              number: 8080
+          serviceName: {{ .Release.Name }}-sockets-svc
+          servicePort: 8080
         # Azure bug: https://github.com/Azure/application-gateway-kubernetes-ingress/issues/1238
         path: {{ ternary "/sockets/*" "/sockets" (eq .Values.ingress.class "azure/application-gateway") | quote }}
+        pathType: Prefix
+      - backend:
+          serviceName: {{ .Release.Name }}-frontend-svc
+          servicePort: 8080
+        # Azure bug: https://github.com/Azure/application-gateway-kubernetes-ingress/issues/1238
+        path: {{ ternary "/*" "/" (eq .Values.ingress.class "azure/application-gateway") | quote }}
         pathType: Prefix
