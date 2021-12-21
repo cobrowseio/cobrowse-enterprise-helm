@@ -19,4 +19,4 @@ data:
   streaming__default_region: "api"
   streaming__locate_url: {{ printf "https://%s/sockets/1/region" .Values.domain | quote }}
   license_key: {{ default "" .Values.license | quote }}
-  superusers: {{ default "" .Values.superusers | b64enc | quote }}
+  superusers: {{ default "" .Values.superusers | quote }}
