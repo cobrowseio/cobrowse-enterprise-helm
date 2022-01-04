@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](#) (2022-01-04)
+
+
+### Features
+
+* restrict all containers to read-only root fs ([268846d](#))
+* runAs specified user and group ([4fa2052](#))
+
+
+### Bug Fixes
+
+* **images:** update image versions ([d6e18c0](#))
+* remove base64 encoding from superusers configmap entry ([e83ed52](#))
+
 ### [1.7.1](#) (2021-12-07)
 
 
