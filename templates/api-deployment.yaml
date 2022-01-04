@@ -46,7 +46,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-api-custom-envvars
             optional: true
-        image: {{ (.Values.api.image).ref | default "ghcr.io/cobrowseio/cobrowse-api-enterprise:1.15.1" }}
+        image: {{ (.Values.api.image).ref | default "ghcr.io/cobrowseio/cobrowse-api-enterprise:1.16.6" }}
         imagePullPolicy: {{ (.Values.api.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
