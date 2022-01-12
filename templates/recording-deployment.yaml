@@ -74,6 +74,9 @@ spec:
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 1
+        volumeMounts:
+        - mountPath: "/tmp/.cbio"
+          name: cache
         resources:
           limits:
             cpu: {{ .Values.recording.cpu | default "256m"}}
@@ -87,3 +90,7 @@ spec:
           runAsUser: {{ (.Values.recording.runAs).user | default "1000" }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
+      volumes:
+      - name: cache
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-sockets-pvc
