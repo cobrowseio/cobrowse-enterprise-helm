@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.2](#) (2022-01-27)
+
+
+### Bug Fixes
+
+* **images:** update image versions ([fd0c60d](#))
+* make recordings cache dir naming more consistent ([c208278](#))
+* store recording cache on a volume ([a991adb](#))
+
 ### [1.8.1](#) (2022-01-11)
 
 
