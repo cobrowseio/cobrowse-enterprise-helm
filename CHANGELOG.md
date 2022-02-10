@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.5](#) (2022-02-10)
+
+
+### Bug Fixes
+
+* **images:** update image versions ([810fab0](#))
+* **images:** update image versions ([f31c1ae](#))
+
 ### [1.8.4](#) (2022-02-02)
 
 
