@@ -9,3 +9,7 @@ $ helm install cobrowse-enterprise
 ```
 
 Please see [the docs](https://docs.cobrowse.io/enterprise-self-hosting/helm) for more details.
+
+## Release Notes
+
+[See here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
