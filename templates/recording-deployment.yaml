@@ -77,13 +77,15 @@ spec:
         volumeMounts:
         - mountPath: "/data"
           name: data-recordings
+        - mountPath: "/tmp"
+          name: tmp
         resources:
           limits:
-            cpu: {{ .Values.recording.cpu | default "256m"}}
-            memory: {{ .Values.recording.memory | default "256Mi"}}
+            cpu: {{ .Values.recording.cpu | default "1000m"}}
+            memory: {{ .Values.recording.memory | default "1G"}}
           requests:
-            cpu: {{ .Values.recording.cpu | default "256m"}}
-            memory: {{ .Values.recording.memory | default "256Mi"}}
+            cpu: {{ .Values.recording.cpu | default "1000m"}}
+            memory: {{ .Values.recording.memory | default "1G"}}
         securityContext:
           {{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.recording.runAs).group | default "1000" }}
@@ -94,3 +96,6 @@ spec:
       - name: data-recordings
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}-sockets-pvc
+      - name: tmp
+        emptyDir:
+          medium: Memory
