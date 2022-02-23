@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-chromium-envvars
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+data:
+  PORT: "9222"
+  STAGE: {{ default "" .Values.stage | quote }}
