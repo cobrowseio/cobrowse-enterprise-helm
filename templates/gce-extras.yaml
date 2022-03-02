@@ -28,6 +28,20 @@ metadata:
 spec:
   timeoutSec: 604800
 ---
+apiVersion: cloud.google.com/v1beta1
+kind: BackendConfig
+metadata:
+  name: api-recording-backendconfig
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  timeoutSec: 604800
+---
 apiVersion: networking.gke.io/v1beta1
 kind: FrontendConfig
 metadata:
