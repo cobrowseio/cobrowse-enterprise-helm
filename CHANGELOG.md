@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](#) (2022-03-10)
+
+
+### Features
+
+* chromium sidecar ([2ec8cea](#))
+* give recording servers access to frontend_url ([b43136b](#))
+* map /tmp to memory so puppeteer can store profiles there ([e7e6193](#))
+
+
+### Bug Fixes
+
+* certmanager tls certificate name was out of sync ([caf133a](#))
+* increase gke ingress timeout for recording downloads ([2b1cf80](#))
+
 ### [1.8.5](#) (2022-02-10)
 
 
