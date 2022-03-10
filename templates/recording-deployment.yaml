@@ -36,6 +36,7 @@ spec:
         stage: {{ .Values.stage | quote }}
     spec:
       containers:
+      # Recording container
       - envFrom:
         - configMapRef:
             name: {{ .Release.Name }}-recording-envvars
@@ -81,15 +82,63 @@ spec:
           name: tmp
         resources:
           limits:
-            cpu: {{ .Values.recording.cpu | default "1000m"}}
-            memory: {{ .Values.recording.memory | default "1G"}}
+            cpu: {{ .Values.recording.cpu | default "256m"}}
+            memory: {{ .Values.recording.memory | default "256Mi"}}
           requests:
-            cpu: {{ .Values.recording.cpu | default "1000m"}}
-            memory: {{ .Values.recording.memory | default "1G"}}
+            cpu: {{ .Values.recording.cpu | default "256m"}}
+            memory: {{ .Values.recording.memory | default "256Mi"}}
         securityContext:
           {{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.recording.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.recording.runAs).user | default "1000" }}
+      # Chromium container
+      - envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-chromium-envvars
+        - configMapRef:
+            name: {{ .Release.Name }}-chromium-custom-envvars
+            optional: true
+        image: {{ (.Values.chromium.image).ref | default "ghcr.io/cobrowseio/cobrowse-chromium-enterprise:1.3.12" }}
+        imagePullPolicy: {{ (.Values.chromium.image).pullPolicy }}
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /json
+            port: 9222
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: chromium
+        ports:
+        - containerPort: 9222
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 90
+          httpGet:
+            path: /json
+            port: 9222
+            scheme: HTTP
+          initialDelaySeconds: 1
+          periodSeconds: 1
+          successThreshold: 1
+          timeoutSeconds: 1
+        volumeMounts:
+        - mountPath: "/tmp"
+          name: tmp
+        resources:
+          limits:
+            cpu: {{ .Values.chromium.cpu | default "700m"}}
+            memory: {{ .Values.chromium.memory | default "1G"}}
+          requests:
+            cpu: {{ .Values.chromium.cpu | default "700m"}}
+            memory: {{ .Values.chromium.memory | default "1G"}}
+        securityContext:
+          {{ include "defaultSecurityContext" . | nindent 10 }}
+          runAsGroup: {{ (.Values.chromium.runAs).group | default "1000" }}
+          runAsUser: {{ (.Values.chromium.runAs).user | default "1000" }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
       volumes:
