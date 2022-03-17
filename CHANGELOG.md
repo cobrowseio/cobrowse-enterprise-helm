@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](#) (2022-03-17)
+
+
+### Bug Fixes
+
+* **images:** update image versions ([35d050b](#))
+* use busybox for sockets init container ([d4cd34b](#))
+
 ## [1.9.0](#) (2022-03-10)
 
 
