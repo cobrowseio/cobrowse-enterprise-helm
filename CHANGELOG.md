@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.5](#) (2022-07-18)
+
+
+### Bug Fixes
+
+* **images:** update image versions ([885d641](#))
+
 ### [1.9.4](#) (2022-06-13)
 
 
