@@ -12,6 +12,7 @@ const tracker = {
 }
 
 module.exports = {
+  header: '#Changelog\n\nThis is the changelog for the heml chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases/tag/v1.9.5)\n',
   packageFiles: [tracker],
   bumpFiles: [tracker],
   scripts: {
