@@ -20,6 +20,12 @@ metadata:
     appgw.ingress.kubernetes.io/ssl-redirect: "true"
 {{- else if eq .Values.ingress.class "nginx" }}
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+{{- else if eq .Values.ingress.class "alb" }}
+    # https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/ingress/annotations/
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/target-type: "ip"
+    alb.ingress.kubernetes.io/healthcheck-path: /up
 {{- end }}
   {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key }}: {{ $value | quote }}

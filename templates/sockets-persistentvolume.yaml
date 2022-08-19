@@ -18,4 +18,26 @@ spec:
   nfs:
     path: {{ .Values.storage.path }}
     server: {{ .Values.storage.server }}
+{{- else if eq .Values.storage.class "aws-efs" }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Release.Name }}-sockets-pv
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: {{ .Values.storage.size }}
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: {{ .Values.storage.awsEfs.fsApId | quote }}
+  storageClassName: {{ .Values.storage.class | quote }}
+  volumeMode: Filesystem
 {{- end }}

@@ -28,6 +28,11 @@ storage:
   server: ""
   path: ""
 
+  awsEfs:
+    # if the class is aws-efs, this is required
+    # e.g., "fs-abc123::fsap-def456"
+    fsApId: ""
+
 # API configurations
 api:
   replicas: 1
