@@ -1,3 +1,4 @@
+{{- if or (.Values.storage.class) (eq .Values.storage.class "") }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -15,9 +16,7 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage.size | quote }}
-{{- if not .Values.storage.server }}
+{{- if .Values.storage.class }}
   storageClassName: {{ .Values.storage.class | quote }}
-{{- else }}
-  storageClassName: ""
-  volumeName: {{ .Release.Name }}-sockets-pv
+{{- end }}
 {{- end }}

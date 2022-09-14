@@ -21,17 +21,19 @@ ingress:
 
 # Persistent Volume Storage
 storage:
+  # * class: ""           - Supports dynamic provisioning when you have a
+  #                         default storage class
+  # * class: "class-name" - Supports dynamic provisioning when you have a
+  #                         specific storage class available
+  # * class: "null"       - Supports static provisioning. You should
+  #                         configure your own statically-provisioned PVC
+  #                         resource with name "cobrowse-sockets-pvc"
+  #                       - Also supports pre-configured PVC. You can
+  #                         set the sockets.storage.persistentVolumeClaimName
+  #                         and recording.storage.persistentVolumeClaimName
+  #                         values to reference your own pre-configured PVC(s)
+  class: ""
   size: "50Gi"
-  # you can either use a storage class
-  class: "nfs"
-  # or configure your own NFS server
-  server: ""
-  path: ""
-
-  awsEfs:
-    # if the class is aws-efs, this is required
-    # e.g., "fs-abc123::fsap-def456"
-    fsApId: ""
 
 # API configurations
 api:
@@ -75,6 +77,10 @@ recording:
   service:
     type: ""
 
+  storage: {
+    # persistentVolumeClaimName: "cobrowse-sockets-pvc"
+  }
+
 # Chromium configurations
 chromium:
   cpu: ""
@@ -90,3 +96,7 @@ sockets:
 
   service:
     type: ""
+
+  storage: {
+    # persistentVolumeClaimName: "cobrowse-sockets-pvc"
+  }

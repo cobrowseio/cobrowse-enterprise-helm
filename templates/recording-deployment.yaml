@@ -144,7 +144,7 @@ spec:
       volumes:
       - name: data-recordings
         persistentVolumeClaim:
-          claimName: {{ .Release.Name }}-sockets-pvc
+          claimName: {{ (.Values.recording.storage).persistentVolumeClaimName | default (printf "%s-sockets-pvc" .Release.Name) | quote }}
       - name: tmp
         emptyDir:
           medium: Memory
