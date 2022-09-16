@@ -28,9 +28,7 @@
                 "annotations": {}
             },
             "storage": {
-                "size": "50Gi",
-                "server": "",
-                "path": ""
+                "size": "50Gi"
             },
             "api": {
                 "replicas": 1,
@@ -298,17 +296,28 @@
             "default": {},
             "examples": [
                 {
-                    "size": "50Gi",
-                    "server": "",
-                    "path": ""
+                    "size": "50Gi"
+                },
+                {
+                    "class": "",
+                    "size": "50Gi"
                 }
             ],
             "required": [
-                "size",
-                "server",
-                "path"
+                "size"
             ],
             "properties": {
+                  "class": {
+                    "$id": "#/properties/storage/properties/class",
+                    "type": "string",
+                    "title": "The the storage class",
+                    "description": "The storage class name. If set to empty string (default), it can use DefaultStorageClass. If omitted, then the PVC for sockets is unmanaged from Helm.",
+                    "default": "",
+                    "examples": [
+                        "",
+                        "nfs"
+                    ]
+                },
                 "size": {
                     "$id": "#/properties/storage/properties/size",
                     "type": "string",
@@ -317,26 +326,6 @@
                     "default": "",
                     "examples": [
                         "50Gi"
-                    ]
-                },
-                "server": {
-                    "$id": "#/properties/storage/properties/server",
-                    "type": "string",
-                    "title": "The server schema",
-                    "description": "An explanation about the purpose of this instance.",
-                    "default": "",
-                    "examples": [
-                        ""
-                    ]
-                },
-                "path": {
-                    "$id": "#/properties/storage/properties/path",
-                    "type": "string",
-                    "title": "The path schema",
-                    "description": "An explanation about the purpose of this instance.",
-                    "default": "",
-                    "examples": [
-                        ""
                     ]
                 }
             },
@@ -710,6 +699,32 @@
                         }
                     },
                     "additionalProperties": true
+                },
+                "storage": {
+                    "$id": "#/properties/recording/properties/storage",
+                    "type": "object",
+                    "title": "The storage schema",
+                    "description": "How to store recordings.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "persistentVolumeClaimName": "recording-pvc"
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "persistentVolumeClaimName": {
+                            "$id": "#/properties/recording/properties/storage/properties/persistentVolumeClaimName",
+                            "type": "string",
+                            "title": "The name of the persistent volume claim",
+                            "description": "Which persistent volume claim to use for recording storage.",
+                            "default": "cobrowse-sockets-pvc",
+                            "examples": [
+                                "recording-pvc"
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
                 }
             },
             "additionalProperties": true
@@ -802,6 +817,32 @@
                             "default": "",
                             "examples": [
                                 ""
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "storage": {
+                    "$id": "#/properties/sockets/properties/storage",
+                    "type": "object",
+                    "title": "The storage schema",
+                    "description": "How to store session traces.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "persistentVolumeClaimName": "sockets-pvc"
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "persistentVolumeClaimName": {
+                            "$id": "#/properties/sockets/properties/storage/properties/persistentVolumeClaimName",
+                            "type": "string",
+                            "title": "The name of the persistent volume claim",
+                            "description": "Which persistent volume claim to use for sockets storage.",
+                            "default": "cobrowse-sockets-pvc",
+                            "examples": [
+                                "sockets-pvc"
                             ]
                         }
                     },
