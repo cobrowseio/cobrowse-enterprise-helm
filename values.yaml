@@ -21,18 +21,17 @@ ingress:
 
 # Persistent Volume Storage
 storage:
-  # * class: ""           - Supports dynamic provisioning when you have a
-  #                         default storage class
   # * class: "class-name" - Supports dynamic provisioning when you have a
-  #                         specific storage class available
+  #                         specific storage class available, such as "nfs"
   # * class: "null"       - Supports static provisioning. You should
   #                         configure your own statically-provisioned PVC
-  #                         resource with name "cobrowse-sockets-pvc"
+  #                         resource with name "cobrowse-sockets-pvc", and
+  #                         accompanying PV resource
   #                       - Also supports pre-configured PVC. You can
   #                         set the sockets.storage.persistentVolumeClaimName
   #                         and recording.storage.persistentVolumeClaimName
-  #                         values to reference your own pre-configured PVC(s)
-  class: ""
+  #                         values to reference any pre-configured PVC(s)
+  class: "nfs"
   size: "50Gi"
 
 # API configurations
