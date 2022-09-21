@@ -23,7 +23,7 @@ ingress:
 storage:
   # * class: "class-name" - Supports dynamic provisioning when you have a
   #                         specific storage class available, such as "nfs"
-  # * class: "null"       - Supports static provisioning. You should
+  # * class: null         - Supports static provisioning. You should
   #                         configure your own statically-provisioned PVC
   #                         resource with name "cobrowse-sockets-pvc", and
   #                         accompanying PV resource
