@@ -18,14 +18,12 @@
 #
 # Arguments:
 #
-# `--next-version`: The next version of the helm chart being released
 # `--prev-version`: The source version from which to get component version
 #                   references. If unspecified, will use the version specified
 #                   in the working copy of `Chart.yaml`. This is usually what
 #                   you want.
 ##
 
-HELM_NEXT_VERSION=""
 HELM_PREV_VERSION=$(./scripts/get-chart-version.sh)
 
 usage() { echo "Usage: $0 [--prev-version <helm chart version (default: $HELM_PREV_VERSION)>]" 1>&2; exit 1; }
