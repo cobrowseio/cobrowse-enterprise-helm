@@ -34,6 +34,10 @@ storage:
   class: "nfs"
   size: "50Gi"
 
+# Default cobrowse service image configuration
+image:
+  repo: "ghcr.io/cobrowseio"
+
 # API configurations
 api:
   replicas: 1
