@@ -49,7 +49,7 @@ fi
 
 get_past_version () {
   git show "v$2:./templates/$1.yaml" \
-    | grep ghcr.io/cobrowseio \
+    | grep "image:" \
     | grep -Eo ":[0-9]+.[0-9]+.[0-9]+" \
     | head -n 1 \
     | cut -c2-
@@ -57,7 +57,7 @@ get_past_version () {
 
 get_current_version () {
   cat "./templates/$1.yaml" \
-    | grep ghcr.io/cobrowseio \
+    | grep "image:" \
     | grep -Eo ":[0-9]+.[0-9]+.[0-9]+" \
     | head -n 1 \
     | cut -c2-
