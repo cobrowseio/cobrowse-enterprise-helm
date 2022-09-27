@@ -1,6 +1,4 @@
 on:
-  repository_dispatch:
-    types: [bump_image_version]
   workflow_dispatch:
     inputs:
       component:
