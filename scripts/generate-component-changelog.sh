@@ -1,4 +1,6 @@
-#!/usr/bin/env bash -e
+#!/usr/bin/env bash
+
+set -e
 
 ##
 # Output a changelog for each referenced service component as-of the previous
