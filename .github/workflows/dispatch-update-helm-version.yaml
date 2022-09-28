@@ -27,6 +27,6 @@ jobs:
               workflow_id: 'bump-helm-version.yaml',
               ref: 'master',
               inputs: {
-                version: '${{ inputs.version }}''
+                version: '${{ inputs.version }}'
               }
             })
