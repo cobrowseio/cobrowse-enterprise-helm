@@ -1,0 +1,68 @@
+on:
+  workflow_dispatch:
+    inputs:
+      release-as:
+        description: Standard version --release-as argument (e.g., "major", "minor", "patch", "1.9.5" or empty)
+        type: string
+      prerelease:
+        description: Standard version --prerelease argument
+        type: boolean
+permissions:
+  contents: write
+env:
+  # Will be used to:
+  #  - Clone from service repos for purposes of generating changelogs
+  #  - Create a draft release in github
+  RELEASE_TOKEN: ${{ secrets.COBROWSEIO_GITHUB_TOKEN }}
+jobs:
+  standard-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+        name: Install NodeJS
+        with:
+          node-version: '18'
+          check-latest: true
+      - name: Install hub
+        run: sudo apt-get install -y hub
+      - uses: actions/checkout@v3
+        name: Checkout source code
+        with:
+          # Needed to include tags
+          fetch-depth: 0
+      - name: Run standard version
+        run: |
+          git config --global user.name '${{ github.actor }}'
+          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
+          npx standard-version${{ inputs.release-as && format(' --release-as "{0}"', inputs.release-as) || '' }}${{ inputs.prerelease && ' --prerelease' || '' }}
+        env:
+          GITHUB_TOKEN: ${{ env.RELEASE_TOKEN }}
+      - name: Push version tag
+        run: git push --follow-tags
+      - id: version
+        name: Extract version
+        run: echo "::set-output name=version::$(./scripts/get-chart-version.sh)"
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+  dispatch-aws-helm-update:
+    needs: [standard-version]
+    uses: ./.github/workflows/dispatch-update-helm-version.yaml
+    with:
+      repo: cobrowse-enterprise-awseks
+      version: ${{ needs.standard-version.outputs.version }}
+    secrets: inherit
+  dispatch-azure-helm-update:
+    needs: [standard-version]
+    uses: ./.github/workflows/dispatch-update-helm-version.yaml
+    with:
+      repo: cobrowse-enterprise-azure
+      version: ${{ needs.standard-version.outputs.version }}
+    secrets: inherit
+  dispatch-gcp-helm-update:
+    needs: [standard-version]
+    uses: ./.github/workflows/dispatch-update-helm-version.yaml
+    with:
+      repo: cobrowse-enterprise-gcp
+      version: ${{ needs.standard-version.outputs.version }}
+    secrets: inherit
+

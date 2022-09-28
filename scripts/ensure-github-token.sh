@@ -1,4 +1,6 @@
-#!/usr/bin/env bash -e
+#!/usr/bin/env bash
+
+set -e
 
 if [ -z "$GITHUB_TOKEN" ]; then
   echo "You must have GITHUB_TOKEN set with repo access" 1>&2

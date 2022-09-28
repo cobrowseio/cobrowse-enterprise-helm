@@ -1,4 +1,5 @@
 .git
+.github
 .release-notes.tmpl.md
 .vscode
 packages

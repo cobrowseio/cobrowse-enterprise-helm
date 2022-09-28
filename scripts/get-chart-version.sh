@@ -1,3 +1,5 @@
-#!/usr/bin/env bash -e
+#!/usr/bin/env bash
 
-grep 'version:' Chart.yaml | grep -Eo "[0-9]+\.[0-9]+\.[0-9]+"
+set -e
+
+grep 'version:' Chart.yaml | grep -Eo "[0-9]+\.[0-9]+\.[0-9]+.*"
