@@ -1,0 +1,32 @@
+on:
+  workflow_call:
+    inputs:
+      repo:
+        description: The target repository to dispatch the version update
+        required: true
+        type: string
+      version:
+        description: The new helm version to apply
+        required: true
+        type: string
+permissions: {}
+env:
+  DISPATCH_TOKEN: ${{ secrets.COBROWSEIO_GITHUB_TOKEN }}
+jobs:
+  dispatch-update-helm-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository dispatch
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ env.DISPATCH_TOKEN }}
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: '${{ inputs.repo }}',
+              workflow_id: 'bump-helm-version.yaml',
+              ref: 'master',
+              inputs: {
+                version: '${{ inputs.version }}''
+              }
+            })

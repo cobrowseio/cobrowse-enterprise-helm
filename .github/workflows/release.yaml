@@ -39,8 +39,30 @@ jobs:
           GITHUB_TOKEN: ${{ env.RELEASE_TOKEN }}
       - name: Push version tag
         run: git push --follow-tags
-
-
-
-
+      - id: version
+        name: Extract version
+        run: echo "::set-output name=version::$(./scripts/get-chart-version.sh)"
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+  dispatch-aws-helm-update:
+    needs: [standard-version]
+    uses: ./.github/workflows/bump-helm-version.yaml
+    with:
+      repo: cobrowse-enterprise-awseks
+      version: ${{ needs.standard-version.outputs.version }}
+    secrets: inherit
+  dispatch-azure-helm-update:
+    needs: [standard-version]
+    uses: ./.github/workflows/bump-helm-version.yaml
+    with:
+      repo: cobrowse-enterprise-azure
+      version: ${{ needs.standard-version.outputs.version }}
+    secrets: inherit
+  dispatch-gcp-helm-update:
+    needs: [standard-version]
+    uses: ./.github/workflows/bump-helm-version.yaml
+    with:
+      repo: cobrowse-enterprise-gcp
+      version: ${{ needs.standard-version.outputs.version }}
+    secrets: inherit
 
