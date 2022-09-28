@@ -19,20 +19,16 @@ jobs:
   bump-image-version:
     runs-on: ubuntu-latest
     steps:
-      - name: Resolve inputs
-        run: |
-          echo "INPUT_COMPONENT=${{ inputs.component || github.event.client_payload.component }}" >> $GITHUB_ENV
-          echo "INPUT_COMPONENT_VERSION=${{ inputs.component_version || github.event.client_payload.component_version }}" >> $GITHUB_ENV
       - name: Resolve deployment file
-        run: echo 'DEPLOYMENT_FILE_PATH="templates/${{ env.INPUT_COMPONENT }}-${{ env.INPUT_COMPONENT == 'sockets' && 'statefulset' || 'deployment' }}.yaml"' >> $GITHUB_ENV
+        run: echo 'DEPLOYMENT_FILE_PATH="templates/${{ inputs.component }}-${{ inputs.component == 'sockets' && 'statefulset' || 'deployment' }}.yaml"' >> $GITHUB_ENV
       - name: Checkout source code
         uses: actions/checkout@v3
       - name: Update deployment version
-        run: sed -Ei 's/(image:.*-enterprise):[0-9.]+/\1:${{ env.INPUT_COMPONENT_VERSION }}/g' "${{ env.DEPLOYMENT_FILE_PATH }}"
+        run: sed -Ei 's/(image:.*-enterprise):[0-9.]+/\1:${{ inputs.component_version }}/g' "${{ env.DEPLOYMENT_FILE_PATH }}"
       - name: Commit version bump
         run: |
           git config --global user.name '${{ github.actor }}'
           git config --global user.email '${{ github.actor }}@users.noreply.github.com'
           git add "${{ env.DEPLOYMENT_FILE_PATH }}"
-          git commit -m "fix(${{ env.INPUT_COMPONENT }}): bump image version to ${{ env.INPUT_COMPONENT_VERSION }}"
+          git commit -m "fix(${{ inputs.component }}): bump image version to ${{ inputs.component_version }}"
           git push
