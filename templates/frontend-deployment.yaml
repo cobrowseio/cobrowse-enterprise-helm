@@ -43,7 +43,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-frontend-custom-envvars
             optional: true
-        image: {{ (.Values.frontend.image).ref | default (printf "%s/cobrowse-frontend-enterprise:2.24.5" .Values.image.repo) }}
+        image: {{ (.Values.frontend.image).ref | default (printf "%s/cobrowse-frontend-enterprise:2.24.6" .Values.image.repo) }}
         imagePullPolicy: {{ (.Values.frontend.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
