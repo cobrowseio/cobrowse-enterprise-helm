@@ -1,0 +1,34 @@
+on:
+  workflow_dispatch:
+    inputs:
+      component:
+        description: The helm service component to update
+        type: choice
+        options:
+          - api
+          - frontend
+          - proxy
+          - recording
+          - sockets
+        required: true
+      component_version:
+        description: The new version of the component
+        type: string
+        required: true
+jobs:
+  bump-image-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve deployment file
+        run: echo 'DEPLOYMENT_FILE_PATH="templates/${{ inputs.component }}-${{ inputs.component == 'sockets' && 'statefulset' || 'deployment' }}.yaml"' >> $GITHUB_ENV
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - name: Update deployment version
+        run: sed -Ei 's/(image:.*-enterprise):[0-9.]+/\1:${{ inputs.component_version }}/g' "${{ env.DEPLOYMENT_FILE_PATH }}"
+      - name: Commit version bump
+        run: |
+          git config --global user.name '${{ github.actor }}'
+          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
+          git add "${{ env.DEPLOYMENT_FILE_PATH }}"
+          git commit -m "fix(${{ inputs.component }}): bump image version to ${{ inputs.component_version }}"
+          git push
