@@ -11,7 +11,7 @@ on:
         type: string
 permissions: {}
 env:
-  DISPATCH_TOKEN: ${{ secrets.COBROWSEIO_GITHUB_TOKEN }}
+  DISPATCH_TOKEN: ${{ secrets.GH_REPO_TOKEN }}
 jobs:
   dispatch-update-helm-version:
     runs-on: ubuntu-latest
