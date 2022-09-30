@@ -37,3 +37,10 @@ Create the default SecurityContext for all service components
 {{- define "defaultSecurityContext" }}
 {{- dict "allowPrivilegeEscalation" false "privileged" false "readOnlyRootFilesystem" true | toYaml }}
 {{- end }}
+
+{{/*
+Create the default image reference for the specified image and version
+*/}}
+{{- define "image" }}
+{{- printf "%s%s%s" (ternary .repo "" (ne .repo "")) (ternary "/" "" (ne .repo "")) .image }}
+{{- end }}
