@@ -1,6 +1,29 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+This is the changelog for the heml chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases/tag/v1.10.0)
+
+## [1.10.0](#) (2022-10-03)
+
+
+### Features
+
+* add support for dynamic provisioning with default storage class ([9ae1942](#))
+* configurable service image repo ([#24](#)) ([37f8957](#))
+* make nfs storage class the default ([6454e81](#))
+* support aws-efs storage class option and pv ([82d13f3](#))
+* support use of local images through image.repo ([#27](#)) ([a78c26f](#))
+
+
+### Bug Fixes
+
+* **api:** bump image version to 1.25.3 ([55fda23](#))
+* **api:** bump image version to 1.25.4 ([cff56fe](#))
+* **eks:** disable TLS 1.0 and 1.1 ([885a8d7](#))
+* **frontend:** bump image version to 2.24.4 ([1181353](#))
+* **frontend:** bump image version to 2.24.5 ([9ce5e61](#))
+* **frontend:** bump image version to 2.24.6 ([03fc33b](#))
+* helm no longer deploys a PV ([080f9d2](#))
+* quotes are not needed for null in helm values ([#23](#)) ([d3d33e6](#))
 
 ### [1.9.5](#) (2022-07-18)
 
