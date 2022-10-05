@@ -1,3 +1,4 @@
+name: Bump service image
 on:
   workflow_dispatch:
     inputs:

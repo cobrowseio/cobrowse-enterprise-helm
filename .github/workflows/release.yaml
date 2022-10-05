@@ -1,3 +1,4 @@
+name: Run release
 on:
   workflow_dispatch:
     inputs:
