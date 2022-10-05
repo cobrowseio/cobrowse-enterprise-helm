@@ -1,8 +1,35 @@
 # Changelog
 
-This is the changelog for the heml chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases/tag/v1.10.0)
+This is the changelog for the heml chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases/tag/v2.0.0)
 
-## [1.10.0](#) (2022-10-03)
+## [2.0.0](#) (2022-10-05)
+
+
+### Upgrade instructions
+
+#### 1. If you specify a value for `storage.server`
+
+If you specify an NFS server path using the cobrowse helm chart value `storage.server`, you are using static provisioning with an NFS volume. You should perform the following steps to ensure helm does not attempt to delete your PVC and PV resources upon upgrade:
+
+  1. Detach your PV and PVC from helm management
+
+    ```bash
+    $ kubectl annotate pvc cobrowse-sockets-pvc "helm.sh/resource-policy=keep"
+    $ kubectl annotate pv cobrowse-sockets-pv "helm.sh/resource-policy=keep"
+    ```
+
+  2. Update your helm values to set `storage.class` to the value `null`. For example:
+
+    ```yaml
+    storage:
+      class: null
+    ```
+
+  3. Update your helm values to remove the values `storage.server` and `storage.path`
+
+#### 2. Apply the new helm chart version
+
+Run `helm upgrade`.
 
 
 ### Features
