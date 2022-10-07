@@ -13,4 +13,5 @@ data:
   PORT: "8080"
   STAGE: {{ .Values.stage | quote }}
   DEBUG: {{ default "" .Values.recording.debug | quote }}
+  api_url: {{ printf "http://%s-api-svc:8080" .Release.Name | quote }}
   frontend_url: {{ printf "https://%s" .Values.domain | quote }}
