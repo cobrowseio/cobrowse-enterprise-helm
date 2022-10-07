@@ -73,4 +73,4 @@ TO=$(./scripts/get-component-version.sh -c "$COMPONENT")
 
 rm -rf "$GIT_DIR"
 git clone -q --filter=blob:none --bare "$GIT_URL" "$GIT_DIR"
-git --git-dir "$GIT_DIR" log --pretty=format:"* %s (%h)" --first-parent "v$FROM...v$TO"
+git --git-dir "$GIT_DIR" log --pretty=format:"* %s (%h)" --first-parent "v$FROM...v$TO" | grep -Ev "^\\* chore"
