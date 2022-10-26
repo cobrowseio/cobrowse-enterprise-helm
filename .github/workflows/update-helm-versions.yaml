@@ -1,0 +1,40 @@
+name: Update Helm versions
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - v*.*.*
+permissions:
+  contents: write
+jobs:
+  helm-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout source code
+      - id: version
+        name: Extract version
+        run: echo "::set-output name=version::$(./scripts/get-chart-version.sh)"
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+  dispatch-aws-helm-update:
+    needs: [helm-version]
+    uses: ./.github/workflows/dispatch-update-helm-version.yaml
+    with:
+      repo: cobrowse-enterprise-awseks
+      version: ${{ needs.helm-version.outputs.version }}
+    secrets: inherit
+  dispatch-azure-helm-update:
+    needs: [helm-version]
+    uses: ./.github/workflows/dispatch-update-helm-version.yaml
+    with:
+      repo: cobrowse-enterprise-azure
+      version: ${{ needs.helm-version.outputs.version }}
+    secrets: inherit
+  dispatch-gcp-helm-update:
+    needs: [helm-version]
+    uses: ./.github/workflows/dispatch-update-helm-version.yaml
+    with:
+      repo: cobrowse-enterprise-gcp
+      version: ${{ needs.helm-version.outputs.version }}
+    secrets: inherit
