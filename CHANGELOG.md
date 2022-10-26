@@ -1,6 +1,28 @@
 # Changelog
 
-This is the changelog for the heml chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases/tag/v2.0.0)
+This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases/tag/v2.1.0)
+
+## [2.1.0](#) (2022-10-26)
+
+
+### Features
+
+* recording can call token validation on api ([#28](#)) ([fd8b657](#))
+
+
+### Bug Fixes
+
+* **api:** bump image version to 1.26.0 ([317c664](#))
+* **api:** bump image version to 1.27.0 ([e606e97](#))
+* **api:** bump image version to 1.27.1 ([aadf3a6](#))
+* **frontend:** bump image version to 2.24.10 ([171948f](#))
+* **frontend:** bump image version to 2.24.11 ([99fbe2c](#))
+* **frontend:** bump image version to 2.24.12 ([620d733](#))
+* **frontend:** bump image version to 2.24.13 ([7c67962](#))
+* **frontend:** bump image version to 2.24.7 ([3555ddc](#))
+* **frontend:** bump image version to 2.24.8 ([f49e946](#))
+* **frontend:** bump image version to 2.24.9 ([2c374b4](#))
+* **sockets:** bump image version to 1.4.0 ([52e0cd0](#))
 
 ## [2.0.0](#) (2022-10-05)
 
