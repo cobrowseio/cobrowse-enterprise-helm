@@ -46,7 +46,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-proxy-custom-envvars
             optional: true
-        image: {{ (.Values.proxy.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-proxy-enterprise:1.3.22" )) }}
+        image: {{ (.Values.proxy.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-proxy-enterprise:1.3.23" )) }}
         imagePullPolicy: {{ (.Values.proxy.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
