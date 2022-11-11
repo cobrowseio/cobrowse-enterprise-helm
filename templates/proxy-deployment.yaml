@@ -11,7 +11,7 @@ metadata:
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
 spec:
-  replicas: {{ .Values.proxy.replicas | default "1" }}
+  replicas: {{ .Values.proxy.replicas }}
   strategy:
     type: RollingUpdate
     rollingUpdate:

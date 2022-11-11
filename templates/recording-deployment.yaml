@@ -12,7 +12,7 @@ metadata:
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
 spec:
-  replicas: {{ .Values.recording.replicas | default "1" }}
+  replicas: {{ .Values.recording.replicas }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
