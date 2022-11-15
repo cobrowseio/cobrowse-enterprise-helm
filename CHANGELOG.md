@@ -1,6 +1,25 @@
 # Changelog
 
-This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases/tag/v2.1.0)
+This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases/tag/v2.1.1)
+
+### [2.1.1](#) (2022-11-15)
+
+
+### Bug Fixes
+
+* allow override proxy and recording replicas to 0 ([#30](#)) ([58454b8](#))
+* **api:** bump image version to 1.27.2 ([6eb02c8](#))
+* **api:** bump image version to 1.29.0 ([4727cd2](#))
+* **api:** bump image version to 1.29.1 ([7426b9e](#))
+* **frontend:** bump image version to 2.25.0 ([fa06fd3](#))
+* **frontend:** bump image version to 2.26.0 ([26cf7ad](#))
+* **frontend:** bump image version to 2.26.1 ([03968f4](#))
+* **frontend:** bump image version to 2.26.2 ([a3dc75c](#))
+* **proxy:** bump image version to 1.3.23 ([96e50ce](#))
+* **proxy:** bump image version to 1.3.24 ([2afbbc1](#))
+* **recording:** bump image version to 1.8.3 ([bcb1a62](#))
+* **recording:** bump image version to 1.8.4 ([b786c35](#))
+* **sockets:** bump image version to 1.4.1 ([c9daee7](#))
 
 ## [2.1.0](#) (2022-10-26)
 
