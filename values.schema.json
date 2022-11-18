@@ -290,7 +290,7 @@
         },
         "storage": {
             "$id": "#/properties/storage",
-            "type": "object",
+            "type": ["object", "boolean"],
             "title": "The storage schema",
             "description": "An explanation about the purpose of this instance.",
             "default": {},

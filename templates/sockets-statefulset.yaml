@@ -86,5 +86,10 @@ spec:
       - name: {{ .Release.Name }}-docker-cfg
       volumes:
       - name: data-traces
+{{- if .Values.storage }}
         persistentVolumeClaim:
           claimName: {{ (.Values.sockets.storage).persistentVolumeClaimName | default (printf "%s-sockets-pvc" .Release.Name) | quote }}
+{{- else }}
+        emptyDir:
+          sizeLimit: 1Mi
+{{- end }}
