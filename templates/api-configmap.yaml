@@ -20,3 +20,6 @@ data:
   streaming__locate_url: {{ printf "https://%s/sockets/1/region" .Values.domain | quote }}
   license_key: {{ default "" .Values.license | quote }}
   superusers: {{ default "" .Values.superusers | quote }}
+{{- if not .Values.storage }}
+  storage_provisioned: "false"
+{{- end }}
