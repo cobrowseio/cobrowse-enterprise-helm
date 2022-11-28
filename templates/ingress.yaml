@@ -11,6 +11,7 @@ metadata:
     kubernetes.io/ingress.class: {{ .Values.ingress.class | quote }}
 {{- if eq .Values.ssl.generator "cert-manager" }}
     certmanager.k8s.io/cluster-issuer: "{{ .Release.Name }}-letsencrypt-production"
+    cert-manager.io/cluster-issuer: "{{ .Release.Name }}-letsencrypt-production"
     cert-manager.io/acme-challenge-type: "http01"
 {{- end }}
 {{- if eq .Values.ingress.class "gce" }}
