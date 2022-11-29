@@ -1,4 +1,4 @@
-{{- if or (.Values.storage.class) (eq .Values.storage.class "") }}
+{{- if and (.Values.storage) (or (.Values.storage.class) (eq .Values.storage.class "")) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
