@@ -12,7 +12,7 @@ const tracker = {
 }
 
 module.exports = {
-  header: '# Changelog\n\nThis is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases/tag/v{VERSION})\n',
+  header: '# Changelog\n\nThis is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)\n',
   packageFiles: [tracker],
   bumpFiles: [tracker],
   scripts: {
