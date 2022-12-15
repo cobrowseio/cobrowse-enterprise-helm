@@ -31,5 +31,5 @@ jobs:
           git config --global user.name '${{ github.actor }}'
           git config --global user.email '${{ github.actor }}@users.noreply.github.com'
           git add "${{ env.DEPLOYMENT_FILE_PATH }}"
-          git commit -m "fix(${{ inputs.component }}): bump image version to ${{ inputs.component_version }}"
+          git commit -m "chore(${{ inputs.component }}): bump image version to ${{ inputs.component_version }}"
           git push
