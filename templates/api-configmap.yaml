@@ -14,10 +14,7 @@ data:
   STAGE: {{ .Values.stage | quote }}
   DEBUG: {{ default "" .Values.api.debug | quote }}
   frontend_url: {{ printf "https://%s" .Values.domain | quote }}
-  control__url_template: {{ printf "https://%s" .Values.domain | quote }}
-  streaming__url_template: {{ printf "https://%s" .Values.domain | quote }}
-  streaming__default_region: "api"
-  streaming__locate_url: {{ printf "https://%s/sockets/1/region" .Values.domain | quote }}
+  sockets_url: {{ printf "http://%s-sockets-svc:8080" .Release.Name | quote }}
   license_key: {{ default "" .Values.license | quote }}
   superusers: {{ default "" .Values.superusers | quote }}
 {{- if not .Values.storage }}
