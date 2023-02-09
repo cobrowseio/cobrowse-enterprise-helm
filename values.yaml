@@ -47,6 +47,8 @@ api:
 
   service:
     type: ""
+  containerSecurityContext:
+    enabled: true
 
 
 # Frontend configurations
@@ -57,6 +59,8 @@ frontend:
 
   service:
     type: ""
+  containerSecurityContext:
+    enabled: true
 
 
 # Proxy configurations
@@ -68,6 +72,8 @@ proxy:
 
   service:
     type: ""
+  containerSecurityContext:
+    enabled: true
 
 
 # Recording configurations
@@ -83,11 +89,15 @@ recording:
   storage: {
     # persistentVolumeClaimName: "cobrowse-sockets-pvc"
   }
+  containerSecurityContext:
+    enabled: true
 
 # Chromium configurations
 chromium:
   cpu: ""
   memory: ""
+  containerSecurityContext:
+    enabled: true
 
 
 # Sockets configurations
@@ -103,3 +113,5 @@ sockets:
   storage: {
     # persistentVolumeClaimName: "cobrowse-sockets-pvc"
   }
+  containerSecurityContext:
+    enabled: true

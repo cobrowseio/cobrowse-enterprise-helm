@@ -87,10 +87,12 @@ spec:
           requests:
             cpu: {{ .Values.recording.cpu | default "256m"}}
             memory: {{ .Values.recording.memory | default "256Mi"}}
+        {{- if .Values.recording.containerSecurityContext.enabled }}
         securityContext:
           {{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.recording.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.recording.runAs).user | default "1000" }}
+        {{- end }}
       # Chromium container
       - envFrom:
         - configMapRef:
@@ -135,10 +137,12 @@ spec:
           requests:
             cpu: {{ .Values.chromium.cpu | default "700m"}}
             memory: {{ .Values.chromium.memory | default "1G"}}
+        {{- if .Values.chromium.containerSecurityContext.enabled }}
         securityContext:
           {{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.chromium.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.chromium.runAs).user | default "1000" }}
+        {{- end }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
       volumes:
