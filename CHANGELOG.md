@@ -2,6 +2,14 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.3.0](#) (2023-02-16)
+
+
+### Features
+
+* add sockets_url env var to API service, remove unused config ([7bc0bf5](#))
+* **all:** add config to disable securityContext for al containers ([b03905c](#))
+
 ### [2.2.2](#) (2023-01-25)
 
 ### [2.2.1](#) (2023-01-17)
