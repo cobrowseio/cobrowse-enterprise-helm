@@ -78,10 +78,12 @@ spec:
           requests:
             cpu: {{ .Values.sockets.cpu | default "256m" }}
             memory: {{ .Values.sockets.memory | default "256Mi" }}
+        {{- if .Values.containerSecurityContext.enabled }}
         securityContext:
           {{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.sockets.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.sockets.runAs).user | default "1000" }}
+        {{- end }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
       volumes:

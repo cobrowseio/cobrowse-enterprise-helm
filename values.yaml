@@ -103,3 +103,6 @@ sockets:
   storage: {
     # persistentVolumeClaimName: "cobrowse-sockets-pvc"
   }
+
+containerSecurityContext:
+  enabled: true
