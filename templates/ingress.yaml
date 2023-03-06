@@ -10,9 +10,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: {{ .Values.ingress.class | quote }}
 {{- if eq .Values.ssl.generator "cert-manager" }}
-    certmanager.k8s.io/cluster-issuer: "{{ .Release.Name }}-letsencrypt-production"
-    cert-manager.io/cluster-issuer: "{{ .Release.Name }}-letsencrypt-production"
-    cert-manager.io/acme-challenge-type: "http01"
+    cert-manager.io/issuer: "{{ .Release.Name }}-issuer"
 {{- end }}
 {{- if eq .Values.ingress.class "gce" }}
     networking.gke.io/managed-certificates: "cobrowse-api-ssl"
@@ -44,7 +42,7 @@ spec:
   tls:
   - hosts:
     - {{ .Values.domain }}
-    secretName: "{{ .Release.Name }}-tls-secret"
+    secretName: "{{ .Release.Name }}-cert"
 {{- end }}
   rules:
   - host: {{ .Values.domain }}

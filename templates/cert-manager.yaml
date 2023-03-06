@@ -1,8 +1,8 @@
 {{- if eq .Values.ssl.generator "cert-manager" }}
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: Issuer
 metadata:
-  name: {{ .Release.Name }}-letsencrypt-production
+  name: {{ .Release.Name }}-issuer
   namespace: {{ .Release.Namespace | default "default" }}
   labels:
     app: {{ template "fullname" . }}
@@ -15,28 +15,9 @@ spec:
     server: https://acme-v02.api.letsencrypt.org/directory
     email: admin@{{ .Values.domain }}
     privateKeySecretRef:
-      name: {{ .Release.Name }}-letsencrypt-production
+      name: {{ .Release.Name }}-tls-private-key
     solvers:
       - http01:
           ingress:
             class: {{ .Values.ingress.class | quote }}
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: {{ .Release.Name }}-tls-secret
-  namespace: {{ .Release.Namespace | default "default" }}
-  labels:
-    app: {{ template "fullname" . }}
-    chart: {{ template "chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-    stage: {{ .Values.stage | quote }}
-spec:
-  secretName: {{ .Release.Name }}-tls-secret
-  dnsNames:
-    - {{ .Values.domain }}
-  issuerRef:
-    name: {{ .Release.Name }}-letsencrypt-production
-    kind: ClusterIssuer
 {{- end -}}
