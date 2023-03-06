@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.4.0](#) (2023-03-06)
+
+
+### Features
+
+* switch to cert-manager to use Issuer instead of ClusterIssuer, avoid double cert creation issue ([48c1e9e](#))
+
 ### [2.3.1](#) (2023-02-17)
 
 ## [2.3.0](#) (2023-02-16)
