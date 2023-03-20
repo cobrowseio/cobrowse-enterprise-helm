@@ -20,4 +20,23 @@ spec:
       - http01:
           ingress:
             class: {{ .Values.ingress.class | quote }}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Release.Name }}-cert
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  secretName: {{ .Release.Name }}-tls-secret
+  dnsNames:
+    - {{ .Values.domain }}
+  issuerRef:
+    name: {{ .Release.Name }}-issuer
+    kind: Issuer
 {{- end -}}
