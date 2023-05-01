@@ -33,7 +33,7 @@ metadata:
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
 spec:
-  secretName: {{ .Release.Name }}-tls-secret
+  secretName: {{ ((.Values.ingress).tls).secretName | quote }}
   dnsNames:
     - {{ .Values.domain }}
   issuerRef:

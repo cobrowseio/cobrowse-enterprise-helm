@@ -24,11 +24,16 @@ spec:
       name: {{ .Release.Name }}-frontend-svc
       port:
         number: 8080
-{{- if eq .Values.ssl.generator "cert-manager" }}
+{{- if ((.Values.ingress).tls).secretName }}
   tls:
-  - secretName: "{{ .Release.Name }}-tls-secret"
+  - hosts:
+    - {{ .Values.domain }}
+  - secretName: {{ ((.Values.ingress).tls).secretName | quote }}
 {{- end }}
   rules:
+  {{- if ((.Values.ingress).tls).secretName }}
+  - host: {{ .Values.domain }}
+  {{- end }}
   - http:
       paths:
       - backend:

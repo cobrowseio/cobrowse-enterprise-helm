@@ -18,6 +18,7 @@ ssl:
 ingress:
   class: ""
   annotations: {}
+  tls: {}
 
 # Persistent Volume Storage
 storage:
