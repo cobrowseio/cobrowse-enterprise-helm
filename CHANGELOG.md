@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.5.0](#) (2023-05-01)
+
+
+### Features
+
+* add support for specifying ingress TLS secret name ([2038b34](#))
+
 ### [2.4.4](#) (2023-04-27)
 
 ### [2.4.3](#) (2023-04-24)
