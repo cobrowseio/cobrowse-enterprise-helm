@@ -31,9 +31,6 @@ spec:
   - secretName: {{ ((.Values.ingress).tls).secretName | quote }}
 {{- end }}
   rules:
-  {{- if ((.Values.ingress).tls).secretName }}
-  - host: {{ .Values.domain }}
-  {{- end }}
   - http:
       paths:
       - backend:
@@ -64,3 +61,6 @@ spec:
               number: 8080
         path: /sockets
         pathType: Prefix
+  {{- if ((.Values.ingress).tls).secretName }}
+    host: {{ .Values.domain }}
+  {{- end }}
