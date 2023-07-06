@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+### [2.5.2](#) (2023-07-06)
+
+
+### Bug Fixes
+
+* adjusts template to have host as part of rule ([#34](#)) ([ed28bd0](#))
+
 ### [2.5.1](#) (2023-05-03)
 
 ## [2.5.0](#) (2023-05-01)
