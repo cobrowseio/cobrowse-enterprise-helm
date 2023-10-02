@@ -2,6 +2,8 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+### [2.5.7](#) (2023-10-02)
+
 ### [2.5.6](#) (2023-09-22)
 
 ### [2.5.5](#) (2023-08-11)
