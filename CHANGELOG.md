@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+### [2.5.9](#) (2023-11-30)
+
+
+### Bug Fixes
+
+* upgrade CI to node 20 ([3351719](#))
+
 ### [2.5.8](#) (2023-10-25)
 
 ### [2.5.7](#) (2023-10-02)
