@@ -88,3 +88,4 @@ spec:
       - name: tmp
         emptyDir:
           medium: Memory
+      serviceAccountName: {{ .Values.serviceAccountName | default "" }}    

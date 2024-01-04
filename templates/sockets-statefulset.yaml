@@ -95,3 +95,4 @@ spec:
         emptyDir:
           sizeLimit: 1Mi
 {{- end }}
+      serviceAccountName: {{ .Values.serviceAccountName | default "" }}
