@@ -13,6 +13,7 @@ redis:
 stage: "enterprise"
 ssl:
   generator: ""
+serviceAccountName: ""
 
 # Kubernetes Ingress configuration
 ingress:

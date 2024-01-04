@@ -23,6 +23,7 @@
             "ssl": {
                 "generator": ""
             },
+            "serviceAccountName": "",
             "ingress": {
                 "class": "",
                 "annotations": {}
@@ -290,7 +291,10 @@
         },
         "storage": {
             "$id": "#/properties/storage",
-            "type": ["object", "boolean"],
+            "type": [
+                "object",
+                "boolean"
+            ],
             "title": "The storage schema",
             "description": "An explanation about the purpose of this instance.",
             "default": {},
@@ -307,7 +311,7 @@
                 "size"
             ],
             "properties": {
-                  "class": {
+                "class": {
                     "$id": "#/properties/storage/properties/class",
                     "type": "string",
                     "title": "The the storage class",
@@ -850,6 +854,16 @@
                 }
             },
             "additionalProperties": true
+        },
+        "serviceAccountName": {
+            "$id": "#/properties/serviceAccountName",
+            "type": "string",
+            "title": "The name of the service account to use with Cobrowse.",
+            "description": "Under which ServiceAccount should the Cobrowse pods run.",
+            "default": "",
+            "examples": [
+                "cobrowse-service-account"
+            ]
         }
     },
     "additionalProperties": true
