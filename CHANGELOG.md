@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.6.0](#) (2024-01-08)
+
+
+### Features
+
+* allow service account configuration ([1e1d16b](#))
+
 ### [2.5.10](#) (2023-12-29)
 
 ### [2.5.9](#) (2023-11-30)
