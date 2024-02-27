@@ -11,6 +11,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
+automountServiceAccountToken: false
 spec:
   replicas: {{ .Values.recording.replicas }}
   strategy:
