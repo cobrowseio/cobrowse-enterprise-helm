@@ -29,6 +29,18 @@ spec:
         component: sockets
         stage: {{ .Values.stage | quote }}
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: component
+                  operator: In
+                  values:
+                  - sockets
+              topologyKey: "kubernetes.io/hostname"
       containers:
       - envFrom:
         - configMapRef:
