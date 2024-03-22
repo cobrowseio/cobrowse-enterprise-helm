@@ -2,6 +2,14 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.7.0](#) (2024-03-22)
+
+
+### Features
+
+* adds anti affinity on hostname to sockets ([#37](#)) ([e30e52a](#))
+* disables automountServiceAccountToken ([#36](#)) ([6f71401](#))
+
 ## [2.6.0](#) (2024-01-08)
 
 
