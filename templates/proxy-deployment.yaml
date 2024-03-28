@@ -10,7 +10,6 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
-automountServiceAccountToken: false
 spec:
   replicas: {{ .Values.proxy.replicas }}
   strategy:
@@ -90,3 +89,4 @@ spec:
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
       serviceAccountName: {{ .Values.serviceAccountName | default "" }}
+      automountServiceAccountToken: false

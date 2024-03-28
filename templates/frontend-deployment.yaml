@@ -10,7 +10,6 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
-automountServiceAccountToken: false
 spec:
   replicas: {{ .Values.frontend.replicas | default "1" }}
   strategy:
@@ -90,3 +89,4 @@ spec:
         emptyDir:
           medium: Memory
       serviceAccountName: {{ .Values.serviceAccountName | default "" }}    
+      automountServiceAccountToken: false
