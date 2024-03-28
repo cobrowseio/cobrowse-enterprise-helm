@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+### [2.7.1](#) (2024-03-28)
+
+
+### Bug Fixes
+
+* automountservicetoken config ([#38](#)) ([388d32f](#))
+
 ## [2.7.0](#) (2024-03-22)
 
 
