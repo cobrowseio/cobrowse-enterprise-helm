@@ -26,6 +26,11 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/frontend-secret.yaml") . | sha256sum }}
+    {{- if .Values.frontend.pod }}
+      {{- range $key, $value := .Values.frontend.pod.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
+    {{- end }}
       labels:
         app: {{ template "fullname" . }}
         component: frontend

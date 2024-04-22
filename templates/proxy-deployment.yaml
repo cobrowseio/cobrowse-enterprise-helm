@@ -29,6 +29,11 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/path: "/metrics"
         prometheus.io/port: "8080"
+    {{- if .Values.proxy.pod }}
+      {{- range $key, $value := .Values.proxy.pod.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
+    {{- end }}
       labels:
         app: {{ template "fullname" . }}
         component: proxy
