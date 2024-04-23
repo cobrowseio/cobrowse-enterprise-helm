@@ -31,6 +31,7 @@
             "storage": {
                 "size": "50Gi"
             },
+            "cluster_domain": "cluster.local",
             "api": {
                 "replicas": 1,
                 "cpu": "",
@@ -38,6 +39,11 @@
                 "debug": "",
                 "service": {
                     "type": ""
+                },
+                "pod": {
+                    "annotations": [ 
+                        {"key": "value" }
+                    ]
                 }
             },
             "frontend": {
@@ -46,6 +52,11 @@
                 "memory": "",
                 "service": {
                     "type": ""
+                },
+                "pod": {
+                    "annotations": [ 
+                        {"key": "value" }
+                    ]
                 }
             },
             "proxy": {
@@ -55,6 +66,11 @@
                 "debug": "",
                 "service": {
                     "type": ""
+                },
+                "pod": {
+                    "annotations": [ 
+                        {"key": "value" }
+                    ]
                 }
             },
             "recording": {
@@ -64,6 +80,11 @@
                 "debug": "",
                 "service": {
                     "type": ""
+                },
+                "pod": {
+                    "annotations": [ 
+                        {"key": "value" }
+                    ]
                 }
             },
             "sockets": {
@@ -73,6 +94,11 @@
                 "debug": "",
                 "service": {
                     "type": ""
+                },
+                "pod": {
+                    "annotations": [ 
+                        {"key": "value" }
+                    ]
                 }
             }
         }
@@ -122,6 +148,16 @@
                 }
             },
             "additionalProperties": true
+        },
+        "cluster_domain": {
+            "$id": "#/properties/cluster_domain",
+            "type": "string",
+            "title": "The cluster domain",
+            "description": "The cluster domain, used to form FQDN.",
+            "default": "",
+            "examples": [
+                "cluster.local"
+            ]
         },
         "domain": {
             "$id": "#/properties/domain",
@@ -427,6 +463,34 @@
                         }
                     },
                     "additionalProperties": true
+                },
+                "pod": {
+                    "$id": "#/properties/api/properties/pod",
+                    "type": "object",
+                    "title": "The pod schema",
+                    "description": "Pod template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "annotations": [ { "key" : "value" } ]
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "annotations": {
+                            "$id": "#/properties/api/properties/pod/properties/annotations",
+                            "type": "object",
+                            "title": "The pod annotations",
+                            "description": "An array of pod annotations",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
                 }
             },
             "additionalProperties": true
@@ -508,6 +572,34 @@
                             "examples": [
                                 ""
                             ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "pod": {
+                    "$id": "#/properties/frontend/properties/pod",
+                    "type": "object",
+                    "title": "The pod schema",
+                    "description": "Pod template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "annotations": [ { "key" : "value" } ]
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "annotations": {
+                            "$id": "#/properties/frontend/properties/pod/properties/annotations",
+                            "type": "object",
+                            "title": "The pod annotations",
+                            "description": "An array of pod annotations",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
                     },
                     "additionalProperties": true
@@ -604,6 +696,34 @@
                             "examples": [
                                 ""
                             ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "pod": {
+                    "$id": "#/properties/proxy/properties/pod",
+                    "type": "object",
+                    "title": "The pod schema",
+                    "description": "Pod template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "annotations": [ { "key" : "value" } ]
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "annotations": {
+                            "$id": "#/properties/proxy/properties/pod/properties/annotations",
+                            "type": "object",
+                            "title": "The pod annotations",
+                            "description": "An array of pod annotations",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
                     },
                     "additionalProperties": true
@@ -729,6 +849,34 @@
                         }
                     },
                     "additionalProperties": true
+                },
+                "pod": {
+                    "$id": "#/properties/recording/properties/pod",
+                    "type": "object",
+                    "title": "The pod schema",
+                    "description": "Pod template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "annotations": [ { "key" : "value" } ]
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "annotations": {
+                            "$id": "#/properties/recording/properties/pod/properties/annotations",
+                            "type": "object",
+                            "title": "The pod annotations",
+                            "description": "An array of pod annotations",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
                 }
             },
             "additionalProperties": true
@@ -848,6 +996,34 @@
                             "examples": [
                                 "sockets-pvc"
                             ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "pod": {
+                    "$id": "#/properties/sockets/properties/pod",
+                    "type": "object",
+                    "title": "The pod schema",
+                    "description": "Pod template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "annotations": [ { "key" : "value" } ]
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "annotations": {
+                            "$id": "#/properties/sockets/properties/pod/properties/annotations",
+                            "type": "object",
+                            "title": "The pod annotations",
+                            "description": "An array of pod annotations",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
                     },
                     "additionalProperties": true

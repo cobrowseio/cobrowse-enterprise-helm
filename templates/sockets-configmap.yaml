@@ -15,4 +15,8 @@ data:
   DEBUG: {{ default "" .Values.sockets.debug | quote }}
   api_url: {{ printf "http://%s-api-svc:8080" .Release.Name | quote }}
   peering_port: "8081"
+{{- if .Values.cluster_domain }}
+  peering_hostname_template: {{ printf "<%%=hostname%%>.%s-sockets-headless.%s.svc.%s." .Release.Name .Release.Namespace .Values.cluster_domain | quote }}
+{{- else }}
   peering_hostname_template: {{ printf "<%%=hostname%%>.%s-sockets-headless" .Release.Name | quote }}
+{{- end }}
