@@ -24,6 +24,11 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/path: "/metrics"
         prometheus.io/port: "8080"
+    {{- if .Values.sockets.pod }}
+      {{- range $key, $value := .Values.sockets.pod.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
+    {{- end }}
       labels:
         app: {{ template "fullname" . }}
         component: sockets
