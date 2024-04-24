@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+### [2.7.2](#) (2024-04-24)
+
+
+### Features
+
+* add cluster domain config, pod annotations ([#39](#)) ([06a1cd6](#))
+
 ### [2.7.1](#) (2024-03-28)
 
 
