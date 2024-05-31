@@ -22,4 +22,4 @@ jobs:
           && rm -r kubeconform-linux-amd64.tar.gz
 
       - run: ls -la
-      - run: helm template . -f values.yaml | kubeconform -summary
+      - run: ./helm template . -f values.yaml | ./kubeconform -summary
