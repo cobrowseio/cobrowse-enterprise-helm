@@ -19,6 +19,7 @@ jobs:
       - run: |
           wget https://github.com/yannh/kubeconform/releases/download/v0.4.10/kubeconform-linux-amd64.tar.gz \
           && tar xf kubeconform-linux-amd64.tar.gz -C . \
+          && mv kubeconform-linux-amd64/kubeconform kubeconform
           && rm -r kubeconform-linux-amd64.tar.gz
 
       - run: helm template . -f values.yaml | kubeconform -summary
