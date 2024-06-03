@@ -1,0 +1,22 @@
+name: Lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: yokawasa/action-setup-kube-tools@v0.9.3
+        with:
+          setup-tools: |
+            helm
+            kubeconform
+          helm: '3.15.1'
+          kubeconform: '0.6.6'
+
+      - run: helm lint .
+      - run: helm template . -f values.yaml | kubeconform -summary
