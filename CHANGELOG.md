@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.8.0](#) (2024-08-20)
+
+
+### Features
+
+* keep pvc on uninstall ([#41](#)) ([b2ee446](#))
+
 ### [2.7.6](#) (2024-07-02)
 
 ### [2.7.5](#) (2024-06-24)
