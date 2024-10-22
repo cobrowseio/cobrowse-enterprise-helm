@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+### [2.8.3](#) (2024-10-22)
+
+
+### Bug Fixes
+
+* Add .DS_Store to .helmignore ([#42](#)) ([06ebaa1](#))
+
 ### [2.8.2](#) (2024-09-30)
 
 ### [2.8.1](#) (2024-09-19)
