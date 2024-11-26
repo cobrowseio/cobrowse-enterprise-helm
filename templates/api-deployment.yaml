@@ -51,7 +51,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-api-custom-envvars
             optional: true
-        image: {{ (.Values.api.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-api-enterprise:1.66.0" )) }}
+        image: {{ (.Values.api.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-api-enterprise:1.67.0" )) }}
         imagePullPolicy: {{ (.Values.api.image).pullPolicy }}
         livenessProbe:
           failureThreshold: 3
