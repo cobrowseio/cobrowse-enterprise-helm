@@ -19,6 +19,7 @@ metadata:
   name: api-ingress
   namespace: {{ .Release.Namespace | default "default" }}
 spec:
+{{- if not .Values.ingress.disableDefaultBackend }}
   defaultBackend:
     service:
       name: {{ .Release.Name }}-frontend-svc
@@ -29,6 +30,7 @@ spec:
   - hosts:
     - {{ .Values.domain }}
   - secretName: {{ ((.Values.ingress).tls).secretName | quote }}
+{{- end }}
 {{- end }}
   rules:
   - http:
