@@ -25,12 +25,12 @@ spec:
       name: {{ .Release.Name }}-frontend-svc
       port:
         number: 8080
+{{- end }}
 {{- if ((.Values.ingress).tls).secretName }}
   tls:
   - hosts:
     - {{ .Values.domain }}
   - secretName: {{ ((.Values.ingress).tls).secretName | quote }}
-{{- end }}
 {{- end }}
   rules:
   - http:
