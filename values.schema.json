@@ -321,16 +321,6 @@
                     ],
                     "required": [],
                     "additionalProperties": true
-                },
-                "disableDefaultBackend": {
-                    "$id": "#/properties/ingress/properties/disableDefaultBackend",
-                    "type": "boolean",
-                    "title": "If defaultBackend should be disabled",
-                    "description": "Disables the Ingress defaultBackend..",
-                    "default": "",
-                    "examples": [
-                        true, false
-                    ]
                 }
             },
             "additionalProperties": true
