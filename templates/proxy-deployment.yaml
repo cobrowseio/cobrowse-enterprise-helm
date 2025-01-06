@@ -52,7 +52,9 @@ spec:
             name: {{ .Release.Name }}-proxy-custom-envvars
             optional: true
         image: {{ (.Values.proxy.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-proxy-enterprise:1.22.1" )) }}
+        {{- if (.Values.proxy.image).pullPolicy }}
         imagePullPolicy: {{ (.Values.proxy.image).pullPolicy }}
+        {{- end}}
         livenessProbe:
           failureThreshold: 3
           httpGet:
