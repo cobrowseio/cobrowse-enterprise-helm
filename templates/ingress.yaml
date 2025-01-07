@@ -62,4 +62,6 @@ spec:
               number: 8080
         path: /
         pathType: Prefix
+  {{- if ((.Values.ingress).tls).secretName }}
     host: {{ .Values.domain }}
+  {{- end }}
