@@ -2,6 +2,19 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.9.0](#) (2025-01-14)
+
+
+### Features
+
+* move default backend to more specific rule ([#44](#)) ([753fd3e](#))
+* Remove ManagedCertificate from gcp deployment ([#43](#)) ([0c535e7](#))
+
+
+### Bug Fixes
+
+* only include imagePullPolicy when present ([#45](#)) ([2baa6c0](#))
+
 ### [2.8.4](#) (2024-10-23)
 
 ### [2.8.3](#) (2024-10-22)
