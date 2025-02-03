@@ -20,3 +20,7 @@ data:
 {{- if not .Values.storage }}
   storage: "false"
 {{- end }}
+{{- if .Values.api.serviceAccountPublicKey }}
+  service_account__public_key: |
+    {{ .Values.api.serviceAccountPublicKey }}
+{{- end}}

@@ -10,6 +10,9 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
+  {{- range $key, $value := .Values.sockets.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   serviceName: {{ .Release.Name }}-sockets-headless
   replicas: {{ .Values.sockets.replicas | default "1" }}
