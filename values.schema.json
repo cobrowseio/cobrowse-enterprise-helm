@@ -44,7 +44,10 @@
                     "annotations": [ 
                         {"key": "value" }
                     ]
-                }
+                },
+                "labels": [
+                    { "key": "value" }
+                ]
             },
             "frontend": {
                 "replicas": 1,
@@ -57,7 +60,10 @@
                     "annotations": [ 
                         {"key": "value" }
                     ]
-                }
+                },
+                "labels": [
+                    { "key": "value" }
+                ]
             },
             "proxy": {
                 "replicas": 1,
@@ -71,7 +77,10 @@
                     "annotations": [ 
                         {"key": "value" }
                     ]
-                }
+                },
+                "labels": [
+                    { "key": "value" }
+                ]
             },
             "recording": {
                 "replicas": 1,
@@ -85,7 +94,10 @@
                     "annotations": [ 
                         {"key": "value" }
                     ]
-                }
+                },
+                "labels": [
+                    { "key": "value" }
+                ]
             },
             "sockets": {
                 "replicas": 1,
@@ -99,7 +111,10 @@
                     "annotations": [ 
                         {"key": "value" }
                     ]
-                }
+                },
+                "labels": [
+                    { "key": "value" }
+                ]
             }
         }
     ],
@@ -464,6 +479,18 @@
                     },
                     "additionalProperties": true
                 },
+                "labels": {
+                    "$id": "#/properties/api/properties/labels",
+                    "type": "object",
+                    "title": "The API labels",
+                    "description": "An array of labels",
+                    "default": {},
+                    "examples": [
+                        { "key" : "value" }
+                    ],
+                    "required": [],
+                    "additionalProperties": true
+                },
                 "pod": {
                     "$id": "#/properties/api/properties/pod",
                     "type": "object",
@@ -491,6 +518,16 @@
                         }
                     },
                     "additionalProperties": true
+                },
+                "serviceAccountPublicKey": {
+                    "$id": "#/properties/api/properties/serviceAccountPublicKey",
+                    "type": "string",
+                    "title": "The public key to be used for the Service Account",
+                    "description": "This can be defined in a multi-line format.",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ]
                 }
             },
             "additionalProperties": true
@@ -574,6 +611,18 @@
                             ]
                         }
                     },
+                    "additionalProperties": true
+                },                
+                "labels": {
+                    "$id": "#/properties/frontend/properties/labels",
+                    "type": "object",
+                    "title": "The Frontend labels.",
+                    "description": "An array of labels",
+                    "default": {},
+                    "examples": [
+                        { "key" : "value" }
+                    ],
+                    "required": [],
                     "additionalProperties": true
                 },
                 "pod": {
@@ -698,6 +747,18 @@
                             ]
                         }
                     },
+                    "additionalProperties": true
+                },
+                "labels": {
+                    "$id": "#/properties/proxy/properties/labels",
+                    "type": "object",
+                    "title": "The Proxy labels",
+                    "description": "An array of labels",
+                    "default": {},
+                    "examples": [
+                        { "key" : "value" }
+                    ],
+                    "required": [],
                     "additionalProperties": true
                 },
                 "pod": {
@@ -850,6 +911,18 @@
                     },
                     "additionalProperties": true
                 },
+                "labels": {
+                    "$id": "#/properties/recording/properties/labels",
+                    "type": "object",
+                    "title": "The Recording labels",
+                    "description": "An array of labels",
+                    "default": {},
+                    "examples": [
+                        { "key" : "value" }
+                    ],
+                    "required": [],
+                    "additionalProperties": true
+                },
                 "pod": {
                     "$id": "#/properties/recording/properties/pod",
                     "type": "object",
@@ -1000,6 +1073,18 @@
                     },
                     "additionalProperties": true
                 },
+                "labels": {
+                    "$id": "#/properties/sockets/properties/labels",
+                    "type": "object",
+                    "title": "The Sockets labels",
+                    "description": "An array of labels",
+                    "default": {},
+                    "examples": [
+                        { "key" : "value" }
+                    ],
+                    "required": [],
+                    "additionalProperties": true
+                },
                 "pod": {
                     "$id": "#/properties/sockets/properties/pod",
                     "type": "object",
@@ -1027,6 +1112,16 @@
                         }
                     },
                     "additionalProperties": true
+                },
+                "peeringToken": {
+                    "$id": "#/properties/sockets/properties/peeringToken",
+                    "type": "string",
+                    "title": "The sockets peering token.",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ]
                 }
             },
             "additionalProperties": true
