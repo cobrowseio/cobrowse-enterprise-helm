@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+### [2.9.4](#) (2025-03-11)
+
+
+### Bug Fixes
+
+* secretName should be a key under the tls list item ([#47](#)) ([21c1355](#))
+
 ### [2.9.3](#) (2025-02-24)
 
 ### [2.9.2](#) (2025-01-20)
