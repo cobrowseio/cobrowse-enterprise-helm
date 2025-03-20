@@ -2,7 +2,22 @@ apiVersion: v1
 entries:
   cobrowse-enterprise:
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.642606Z"
+    created: "2025-03-20T14:10:26.161583Z"
+    description: Helm Chart for Cobrowse Enterprise
+    digest: ff02463c603e38ccc688c2feed78be2d107e77de58e4fd999a670fdb74d53b90
+    home: https://github.com/cobrowseio/cobrowse-enterprise-helm
+    keywords:
+    - cobrowse-enterprise
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: hello@cobrowse.io
+      name: Cobrowse.io
+    name: cobrowse-enterprise
+    urls:
+    - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.9.6.tgz
+    version: 2.9.6
+  - apiVersion: v1
+    created: "2025-03-20T14:10:26.161265Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 4b81db40300c2f6c4a701a3567729931ebf9bc83a620faa635f28c8205525beb
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -17,7 +32,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.9.5.tgz
     version: 2.9.5
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.642288Z"
+    created: "2025-03-20T14:10:26.160712Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 378009384246c3c71bdfa8d6f02d256de7077f9981cd31a8043216880cce0fe2
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -32,7 +47,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.9.4.tgz
     version: 2.9.4
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.641784Z"
+    created: "2025-03-20T14:10:26.160148Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 45180817a2ee7b1add4ee4cbc63749e9573784cebac867cf15b6d3cbce08cf0a
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -47,7 +62,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.9.3.tgz
     version: 2.9.3
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.641303Z"
+    created: "2025-03-20T14:10:26.159557Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 5b7ded9eb808d859c2402b56f92e92d074a429b83893913d1002ea0f4d6abe7d
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -62,7 +77,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.9.2.tgz
     version: 2.9.2
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.640792Z"
+    created: "2025-03-20T14:10:26.159081Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 540437431527c131a942148e86a212b46592183342cfd917f8391b996d449ab3
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -77,7 +92,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.9.1.tgz
     version: 2.9.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.640309Z"
+    created: "2025-03-20T14:10:26.158601Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 17d077ad714e7ddace274404fd05953731b59f32f8974f9fc04e47f63cdd5aa5
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -92,7 +107,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.9.0.tgz
     version: 2.9.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.639774Z"
+    created: "2025-03-20T14:10:26.158126Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 3decbc5d9dc5c6f8f22f2293c7c137d5041721bd222fe3e6851faaa231e3c158
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -107,7 +122,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.8.4.tgz
     version: 2.8.4
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.638968Z"
+    created: "2025-03-20T14:10:26.157633Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: d697f0e65bd4b2a104307d90e5ba9a8547661f75826851b88870016e480fe247
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -122,7 +137,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.8.3.tgz
     version: 2.8.3
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.638494Z"
+    created: "2025-03-20T14:10:26.157138Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 3b2593a530610e821c9d47cdb8a378b69a532fc769bde8dc1236cf31b6f3a9e4
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -137,7 +152,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.8.2.tgz
     version: 2.8.2
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.638007Z"
+    created: "2025-03-20T14:10:26.156614Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 350050c6bab35769e42c3feca35d2d9bfbeec05726c95e2ba06b8a46e0e5cc38
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -152,7 +167,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.8.1.tgz
     version: 2.8.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.637518Z"
+    created: "2025-03-20T14:10:26.155912Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 16f68754636cf73861c98c4295a7f212205080adaf642df6d47b776622dcf246
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -167,7 +182,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.8.0.tgz
     version: 2.8.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.63702Z"
+    created: "2025-03-20T14:10:26.155324Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 4f31372a2e18f1c6f9deaf33e64d3e2dbb55d3e7f706804ff8c6b7ebed258e42
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -182,7 +197,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.7.6.tgz
     version: 2.7.6
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.636516Z"
+    created: "2025-03-20T14:10:26.15467Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: ad2ddc2dac125eefbf26becd356edf8f79f73efbf19191bfa790e5fcf7952324
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -197,7 +212,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.7.5.tgz
     version: 2.7.5
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.636039Z"
+    created: "2025-03-20T14:10:26.154202Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: a56783c9438d379c9a02bc9fff837fa1f7012cfbf509fe4362229bfa8820717d
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -212,7 +227,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.7.4.tgz
     version: 2.7.4
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.635364Z"
+    created: "2025-03-20T14:10:26.153725Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: fc7c7cfcbdfd253f78f7376242caece99a58f0fab6a25915941cf1e1d659d2bf
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -227,7 +242,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.7.3.tgz
     version: 2.7.3
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.634822Z"
+    created: "2025-03-20T14:10:26.153059Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 7148574caf12b4451e10b810a4d40ecf383357ae1c643eadb38cbdba0fe59615
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -242,7 +257,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.7.2.tgz
     version: 2.7.2
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.634336Z"
+    created: "2025-03-20T14:10:26.152593Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: ec91b6317a84a49365e4c3e9f8ba4c335cb466a1d030b2ffac2ccce0e074a280
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -257,7 +272,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.7.1.tgz
     version: 2.7.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.633842Z"
+    created: "2025-03-20T14:10:26.152134Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 4a156ca0f9ba44ca2e155ca9ffdaa0f967c5df07a5c2a814c1c46de496a349f9
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -272,7 +287,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.7.0.tgz
     version: 2.7.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.633361Z"
+    created: "2025-03-20T14:10:26.151613Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: a208bcddb86dd8eb8f47ed5994768c252e9f3b34c5e1134e4d7ba57d66826eb1
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -287,7 +302,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.6.0.tgz
     version: 2.6.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.629938Z"
+    created: "2025-03-20T14:10:26.148078Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 4a0a6076a96cc8a0d6a3b53fefb5aed7aab4ada653cf623e43d7d2d52b4aeea5
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -302,7 +317,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.5.10.tgz
     version: 2.5.10
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.633019Z"
+    created: "2025-03-20T14:10:26.151086Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 410a3c56058d50d67af4d8a224d91850120b677665a4fdb6dcb19f51443ed30d
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -317,7 +332,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.5.9.tgz
     version: 2.5.9
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.632689Z"
+    created: "2025-03-20T14:10:26.150647Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: d4e88d4767e1bfc7c68b883806d3abe552f4fd4f3cd023db16509876a0af5522
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -332,7 +347,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.5.8.tgz
     version: 2.5.8
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.632335Z"
+    created: "2025-03-20T14:10:26.15028Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 5c6e3a3a192d6e1948160786bae5ac45ff8c381a5039bda4e2db9e01be064f84
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -347,7 +362,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.5.7.tgz
     version: 2.5.7
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.63197Z"
+    created: "2025-03-20T14:10:26.149932Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 3d1051ef84111972e9faf15598152bf4a76c365cdceab0952881f4ef08f4e285
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -362,7 +377,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.5.6.tgz
     version: 2.5.6
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.631267Z"
+    created: "2025-03-20T14:10:26.149454Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 42c0206fd39f43021ffa2f4fed5a81f4d4775e64ced89bfb69eb18ac017366c2
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -377,7 +392,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.5.5.tgz
     version: 2.5.5
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.630911Z"
+    created: "2025-03-20T14:10:26.149113Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: d6965caf49b686971249f54ee77eb935358ec2044b21e49a4116e0cb803ba09f
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -392,7 +407,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.5.4.tgz
     version: 2.5.4
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.630591Z"
+    created: "2025-03-20T14:10:26.148776Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 1f7ed8acec6694cab58d7b78867856eeec2def9d0a09bf22eb38fd7c29e55c8a
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -407,7 +422,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.5.3.tgz
     version: 2.5.3
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.630261Z"
+    created: "2025-03-20T14:10:26.148425Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: d8810c46411aaa501158aee147c83497a65001b6d75cc486bf861ed9a2f5dacb
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -422,7 +437,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.5.2.tgz
     version: 2.5.2
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.6296Z"
+    created: "2025-03-20T14:10:26.147712Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 3d9b15ab832df604e6912a31590b5f951e179936c92a92d37cfb775e90359495
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -437,7 +452,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.5.1.tgz
     version: 2.5.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.629279Z"
+    created: "2025-03-20T14:10:26.147176Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: af1bbefbb3535d33841829f78e13fc831d96975a95dd34a3231d81355609d5b6
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -452,7 +467,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.5.0.tgz
     version: 2.5.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.628827Z"
+    created: "2025-03-20T14:10:26.146704Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 83ecee559264aff575314a9af1f35998c422b7cec5f0275cf4a226c2d72d35b3
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -467,7 +482,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.4.4.tgz
     version: 2.4.4
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.628483Z"
+    created: "2025-03-20T14:10:26.146352Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 2a0747c3c573493847f28f9cec96b60957464dca2cf8db7cfab206170f3d7967
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -482,7 +497,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.4.3.tgz
     version: 2.4.3
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.628036Z"
+    created: "2025-03-20T14:10:26.145987Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 5e91aeed1d31f786934ba06be6ce570169cac474e5d35332cb0811c748070295
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -497,7 +512,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.4.2.tgz
     version: 2.4.2
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.627597Z"
+    created: "2025-03-20T14:10:26.145648Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: d68c01bbf3ce4ba03c499391748055faed77f63ea2a928f83e39dcc5fba48688
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -512,7 +527,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.4.1.tgz
     version: 2.4.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.627272Z"
+    created: "2025-03-20T14:10:26.145326Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: be3f63903e46df7e72448a8b40508e636f2b3e161189eba551caf5e58c3f4830
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -527,7 +542,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.4.0.tgz
     version: 2.4.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.626948Z"
+    created: "2025-03-20T14:10:26.144997Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: da37d11c84674077e5b5bbc43b7995e19c71706213892c0c3da97ba168d5736e
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -542,7 +557,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.3.1.tgz
     version: 2.3.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.626618Z"
+    created: "2025-03-20T14:10:26.144672Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 914376f3291c5c244fe6faa9e09447ab3a1c78b62536977d5482cba6136a0171
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -557,7 +572,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.3.0.tgz
     version: 2.3.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.626289Z"
+    created: "2025-03-20T14:10:26.144343Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 92d84779c78a747b15cf7a99d3f7456f7f2134ab21a10998b262583c349fe003
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -572,7 +587,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.2.2.tgz
     version: 2.2.2
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.625947Z"
+    created: "2025-03-20T14:10:26.144009Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 47ee57762b9d008230d6cce377cfca5794a402e6aaaf327aef8cc13013726f5e
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -587,7 +602,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.2.1.tgz
     version: 2.2.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.625604Z"
+    created: "2025-03-20T14:10:26.143658Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 7248eb4a988eea9edff5fc4e5dbccbd684137b25bde76a3a37aa718f6dff9709
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -602,7 +617,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.2.0.tgz
     version: 2.2.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.62507Z"
+    created: "2025-03-20T14:10:26.142058Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 82fcf0abaa1eb857e29e9ffec8f71aa40ad057da51da63c309e751ed62f13ad8
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -617,7 +632,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.1.1.tgz
     version: 2.1.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.624672Z"
+    created: "2025-03-20T14:10:26.141733Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: ab464ca7db1b157c43eebef1d73a05fc48d8da0490962cba19ed42eac5b98dd9
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -632,7 +647,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.1.0.tgz
     version: 2.1.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.624038Z"
+    created: "2025-03-20T14:10:26.141402Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 315116cfcddac601650e8cfdce700794eaaf90c63c03874c7b6492e43c63bb65
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -647,7 +662,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-2.0.0.tgz
     version: 2.0.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.612908Z"
+    created: "2025-03-20T14:10:26.129539Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: db47efd0fd82d93cfe94ec68537a2e55eab0fb697fb065061ecd5b2ba6e19a16
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -662,7 +677,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.10.0.tgz
     version: 1.10.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.62356Z"
+    created: "2025-03-20T14:10:26.141006Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 9f54b7cf4d85aaf7b008ba7e00d3aa342ad31cac63b94190094b305662c1f000
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -677,7 +692,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.9.5.tgz
     version: 1.9.5
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.623231Z"
+    created: "2025-03-20T14:10:26.140704Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: f4bfd3d1d511599ba4f7cd29cf97a1b8af902b00a593bb56acdbf0d7f5e17993
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -692,7 +707,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.9.4.tgz
     version: 1.9.4
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.622898Z"
+    created: "2025-03-20T14:10:26.1404Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 6ba2ad660831903ea42f12d53d688923359108ecfaed2e38961fd3a900f6c77d
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -707,7 +722,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.9.3.tgz
     version: 1.9.3
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.622579Z"
+    created: "2025-03-20T14:10:26.140096Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 3d433be8c6678295d056c76a78950e1c3c8cb4a6af1af40e36751b1aff933546
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -722,7 +737,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.9.2.tgz
     version: 1.9.2
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.622263Z"
+    created: "2025-03-20T14:10:26.13979Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 11a307b81016f4ceb1bccef7a8f95c7df22ce27ffdabaa45636b42f750aaaf4f
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -737,7 +752,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.9.1.tgz
     version: 1.9.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.62194Z"
+    created: "2025-03-20T14:10:26.139476Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 459d698b818e061057e978a24657bc8ebb96334eeaba8dd77a05ecf4e585bd0d
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -752,7 +767,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.9.0.tgz
     version: 1.9.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.621597Z"
+    created: "2025-03-20T14:10:26.139144Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 2324cb0b686002bbb8c8ddfcad854599c81519af2bab82a02463eea03e45c8ca
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -767,7 +782,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.8.5.tgz
     version: 1.8.5
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.621271Z"
+    created: "2025-03-20T14:10:26.138099Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 8b1e6d880c6241d12f4a32726ef401800cd91a93b15a3943a9c2a7db3f0ac7e2
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -782,7 +797,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.8.4.tgz
     version: 1.8.4
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.620926Z"
+    created: "2025-03-20T14:10:26.137781Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 5c0fa6f2cf0059272ac804abb092d1d3685255e08037e62d9bb21f06b8d5c343
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -797,7 +812,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.8.3.tgz
     version: 1.8.3
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.620453Z"
+    created: "2025-03-20T14:10:26.13748Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: de6e2bc3c047279fd64464792dadd1c3c604a74d908bade320a36e74c7e53846
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -812,7 +827,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.8.2.tgz
     version: 1.8.2
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.620011Z"
+    created: "2025-03-20T14:10:26.137172Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 067b1f177e06f0e899982656ef33b1faf97c94b007c32df9da3fc966e9c00a3b
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -827,7 +842,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.8.1.tgz
     version: 1.8.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.619527Z"
+    created: "2025-03-20T14:10:26.136693Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: df3d665f1d68aa6f14603b4a8ba232ccceb4b9ce17a1b06d613960f07ca8d27d
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -842,7 +857,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.8.0.tgz
     version: 1.8.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.619085Z"
+    created: "2025-03-20T14:10:26.136284Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 5a9ff75456093cea8628a5a8daa74eb016358440d58d2f2cada05d7dffa1328f
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -857,7 +872,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.7.1.tgz
     version: 1.7.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.618779Z"
+    created: "2025-03-20T14:10:26.13599Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 92ab53a8f777e1e9f835838bacc844cc0ef0ef8047328f6148e4252b3c3a50cb
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -872,7 +887,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.7.0.tgz
     version: 1.7.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.618483Z"
+    created: "2025-03-20T14:10:26.135696Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 70973d76d5f6aa6e424427c526850b7843d17f0ac6d4a10f7b5af2ca4d75dda9
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -887,7 +902,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.6.0.tgz
     version: 1.6.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.615612Z"
+    created: "2025-03-20T14:10:26.132146Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: d3c86d2a3f1ce6702fdcefe805d2b0a7bafb149161d5d94593bb9d5dd1822067
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -902,7 +917,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.12.tgz
     version: 1.5.12
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.615315Z"
+    created: "2025-03-20T14:10:26.131829Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 7ff2a0210ef5e5818f6efff7cf6b93c678fe5ebbcd35f5bd74d490434dbd5d63
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -917,7 +932,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.11.tgz
     version: 1.5.11
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.614904Z"
+    created: "2025-03-20T14:10:26.131438Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: f1728348badd3f5a27972466be93114f4e3f737364658f24a16eb94d5fdeb37b
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -932,7 +947,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.10.tgz
     version: 1.5.10
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.61819Z"
+    created: "2025-03-20T14:10:26.135376Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 6cb58c0222212c57d6d9f68fc50f4b1dd6a72ec9f42e43661fcce87435e48a94
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -947,7 +962,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.9.tgz
     version: 1.5.9
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.617915Z"
+    created: "2025-03-20T14:10:26.135093Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: a9dac23d6bab14b27834a6f119f68448cd234ff32a0bedd94ec4e79d1c7838d6
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -962,7 +977,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.8.tgz
     version: 1.5.8
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.617639Z"
+    created: "2025-03-20T14:10:26.134788Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: f9f5fd36a2a3aeb2d40f2ab31e06f0c8df0be13694410e0cf9c358a31658a6fb
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -977,7 +992,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.7.tgz
     version: 1.5.7
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.617352Z"
+    created: "2025-03-20T14:10:26.134363Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: bffe26a9bff81ac65b5362915611742f0eb1435b0c42b4dc6a9c37f973c2f1b6
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -992,7 +1007,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.6.tgz
     version: 1.5.6
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.617061Z"
+    created: "2025-03-20T14:10:26.133297Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 62c49c0c32ce953ea8808e6c93104386415a511e6139e1bf9bfec4231a05fd2f
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -1007,7 +1022,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.5.tgz
     version: 1.5.5
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.616427Z"
+    created: "2025-03-20T14:10:26.133001Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: eaacbb980787e6c548b93f8c4b81e5124c32722bcbd74759e9c34621b37e33fa
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -1022,7 +1037,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.4.tgz
     version: 1.5.4
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.616151Z"
+    created: "2025-03-20T14:10:26.132697Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 68c1a3cc6ecf7d814597a1c69442ce3be75af65374bb50b05deb7f4afb336020
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -1037,7 +1052,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.3.tgz
     version: 1.5.3
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.615881Z"
+    created: "2025-03-20T14:10:26.132424Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 7babfb16b5ef92bec023152a19effcf1d19bb01c9491e2416927d4cd6dc33d69
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -1052,7 +1067,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.2.tgz
     version: 1.5.2
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.61443Z"
+    created: "2025-03-20T14:10:26.130986Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 1a228318662c49317c2718832d559eee79c1d73330413ac4737e2a55903c1128
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -1067,7 +1082,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.1.tgz
     version: 1.5.1
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.613416Z"
+    created: "2025-03-20T14:10:26.13Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 6d7de5d32cf789050d58c167be9b56b41c62736723abc22424ea2f9f8acf7fc8
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -1082,7 +1097,7 @@ entries:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.5.0.tgz
     version: 1.5.0
   - apiVersion: v1
-    created: "2025-03-12T13:54:45.612292Z"
+    created: "2025-03-20T14:10:26.128972Z"
     description: Helm Chart for Cobrowse Enterprise
     digest: 223f5149c222214b7d661b716d4cb0eda921aefff09a3f7648f2c08096a96b50
     home: https://github.com/cobrowseio/cobrowse-enterprise-helm
@@ -1096,4 +1111,4 @@ entries:
     urls:
     - https://cobrowseio.github.io/cobrowse-enterprise-helm/packages/cobrowse-enterprise-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-12T13:54:45.611281Z"
+generated: "2025-03-20T14:10:26.128288Z"
