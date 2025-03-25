@@ -39,6 +39,9 @@ spec:
         component: api
         stage: {{ .Values.stage | quote }}
     spec:
+    {{- if .Values.customTemplateSpec }}
+      {{ .Values.customTemplateSpec }}
+    {{- end }}
       containers:
       - envFrom:
         - configMapRef:
@@ -82,14 +85,13 @@ spec:
           timeoutSeconds: 1
         resources:
           limits:
-            cpu: {{ .Values.api.cpu | default "256m" }}
-            memory: {{ .Values.api.memory | default "256Mi" }}
+            cpu: {{ coalesce .Values.api.limits.cpu .Values.api.cpu "256m" }}
+            memory: {{ coalesce .Values.api.limits.memory .Values.api.memory "256Mi" }}
           requests:
             cpu: {{ .Values.api.cpu | default "256m" }}
             memory: {{ .Values.api.memory | default "256Mi" }}
         {{- if .Values.containerSecurityContext.enabled }}
-        securityContext:
-          {{ include "defaultSecurityContext" . | nindent 10 }}
+        securityContext: {{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.api.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.api.runAs).user | default "1000" }}
         {{- end }}
