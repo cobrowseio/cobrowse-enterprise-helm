@@ -42,8 +42,6 @@ image:
 
 # API configurations
 api:
-  image:
-    ref: ghcr.io/cobrowseio/cobrowse-api-enterprise:1.73.0 
   replicas: 1
   cpu: ""
   memory: ""

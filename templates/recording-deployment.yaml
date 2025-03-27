@@ -11,6 +11,9 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
+  {{- range $key, $value := .Values.recording.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   replicas: {{ .Values.recording.replicas }}
   strategy:
@@ -40,8 +43,8 @@ spec:
         component: recording
         stage: {{ .Values.stage | quote }}
     spec:
-    {{- if .Values.customTemplateSpec }}
-      {{ .Values.customTemplateSpec }}
+    {{- if .Values.recording.nodeSelector}}
+      nodeSelector:{{ toYaml .Values.recording.nodeSelector | nindent 8 }}
     {{- end }}
       containers:
       # Recording container
@@ -98,7 +101,7 @@ spec:
             cpu: {{ .Values.recording.cpu | default "256m"}}
             memory: {{ .Values.recording.memory | default "256Mi"}}
         {{- if .Values.containerSecurityContext.enabled }}
-        securityContext: {{ include "defaultSecurityContext" . | nindent 10 }}
+        securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.recording.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.recording.runAs).user | default "1000" }}
         {{- end }}
@@ -149,7 +152,7 @@ spec:
             cpu: {{ .Values.chromium.cpu | default "700m"}}
             memory: {{ .Values.chromium.memory | default "1G"}}
         {{- if .Values.containerSecurityContext.enabled }}
-        securityContext: {{ include "defaultSecurityContext" . | nindent 10 }}
+        securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.chromium.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.chromium.runAs).user | default "1000" }}
         {{- end }}
