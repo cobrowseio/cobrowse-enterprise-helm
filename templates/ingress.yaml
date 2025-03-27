@@ -9,9 +9,9 @@ metadata:
     stage: {{ .Values.stage | quote }}
   annotations:
     kubernetes.io/ingress.class: {{ .Values.ingress.class | quote }}
-{{- if eq .Values.ingress.class "gce" }}
+  {{- if eq .Values.ingress.class "gce" }}
     networking.gke.io/v1beta1.FrontendConfig: "api-frontend-config"
-{{- end }}
+  {{- end }}
   {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}

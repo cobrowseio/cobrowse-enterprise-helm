@@ -10,6 +10,9 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
+  {{- range $key, $value := .Values.frontend.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   replicas: {{ .Values.frontend.replicas | default "1" }}
   strategy:
@@ -36,6 +39,9 @@ spec:
         component: frontend
         stage: {{ .Values.stage | quote }}
     spec:
+    {{- if .Values.frontend.nodeSelector}}
+      nodeSelector:{{ toYaml .Values.frontend.nodeSelector | nindent 8 }}
+    {{- end }}
       containers:
       - envFrom:
         - configMapRef:
@@ -78,14 +84,13 @@ spec:
           name: tmp
         resources:
           limits:
-            cpu: {{ .Values.frontend.cpu | default "256m"}}
-            memory: {{ .Values.frontend.memory | default "256Mi"}}
+            cpu: {{ coalesce .Values.frontend.limits.cpu .Values.frontend.cpu "256m"}}
+            memory: {{ coalesce .Values.frontend.limits.memory .Values.frontend.memory "256Mi"}}
           requests:
             cpu: {{ .Values.frontend.cpu | default "256m"}}
             memory: {{ .Values.frontend.memory | default "256Mi"}}
         {{- if .Values.containerSecurityContext.enabled }}
-        securityContext:
-          {{ include "defaultSecurityContext" . | nindent 10 }}
+        securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.frontend.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.frontend.runAs).user | default "1000" }}
         {{- end }}
@@ -95,5 +100,5 @@ spec:
       - name: tmp
         emptyDir:
           medium: Memory
-      serviceAccountName: {{ .Values.serviceAccountName | default "" }}    
+      serviceAccountName: {{ .Values.serviceAccountName | default "" }}
       automountServiceAccountToken: false

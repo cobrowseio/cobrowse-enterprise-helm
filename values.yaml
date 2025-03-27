@@ -45,6 +45,9 @@ api:
   replicas: 1
   cpu: ""
   memory: ""
+  limits:
+    cpu: ""
+    memory: "" 
   debug: ""
 
   service:
@@ -56,6 +59,9 @@ frontend:
   replicas: 1
   cpu: ""
   memory: ""
+  limits:
+    cpu: ""
+    memory: "" 
 
   service:
     type: ""
@@ -66,7 +72,11 @@ proxy:
   replicas: 1
   cpu: ""
   memory: ""
+  limits:
+    cpu: ""
+    memory: "" 
   debug: ""
+  
 
   service:
     type: ""
@@ -77,6 +87,9 @@ recording:
   replicas: 1
   cpu: ""
   memory: ""
+  limits:
+    cpu: ""
+    memory: "" 
   debug: ""
 
   service:
@@ -90,13 +103,18 @@ recording:
 chromium:
   cpu: ""
   memory: ""
-
+  limits:
+    cpu: ""
+    memory: ""
 
 # Sockets configurations
 sockets:
   replicas: 1
   cpu: ""
   memory: ""
+  limits:
+    cpu: ""
+    memory: "" 
   debug: ""
 
   service:

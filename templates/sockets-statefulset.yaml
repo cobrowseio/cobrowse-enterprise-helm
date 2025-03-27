@@ -10,6 +10,9 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
+  {{- range $key, $value := .Values.sockets.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   serviceName: {{ .Release.Name }}-sockets-headless
   replicas: {{ .Values.sockets.replicas | default "1" }}
@@ -34,6 +37,9 @@ spec:
         component: sockets
         stage: {{ .Values.stage | quote }}
     spec:
+    {{- if .Values.sockets.nodeSelector}}
+      nodeSelector:{{ toYaml .Values.sockets.nodeSelector | nindent 8 }}
+    {{- end }}
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -92,14 +98,13 @@ spec:
           name: data-traces
         resources:
           limits:
-            cpu: {{ .Values.sockets.cpu | default "256m" }}
-            memory: {{ .Values.sockets.memory | default "256Mi" }}
+            cpu: {{ coalesce .Values.sockets.limits.cpu .Values.sockets.cpu "256m" }}
+            memory: {{ coalesce .Values.sockets.limits.memory .Values.sockets.memory "256Mi" }}
           requests:
             cpu: {{ .Values.sockets.cpu | default "256m" }}
             memory: {{ .Values.sockets.memory | default "256Mi" }}
         {{- if .Values.containerSecurityContext.enabled }}
-        securityContext:
-          {{ include "defaultSecurityContext" . | nindent 10 }}
+        securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.sockets.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.sockets.runAs).user | default "1000" }}
         {{- end }}

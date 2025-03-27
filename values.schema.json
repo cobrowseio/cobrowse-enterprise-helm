@@ -44,7 +44,10 @@
                     "annotations": [ 
                         {"key": "value" }
                     ]
-                }
+                },
+                "labels": [
+                    { "key": "value" }
+                ]
             },
             "frontend": {
                 "replicas": 1,
@@ -57,7 +60,10 @@
                     "annotations": [ 
                         {"key": "value" }
                     ]
-                }
+                },
+                "labels": [
+                    { "key": "value" }
+                ]
             },
             "proxy": {
                 "replicas": 1,
@@ -71,7 +77,10 @@
                     "annotations": [ 
                         {"key": "value" }
                     ]
-                }
+                },
+                "labels": [
+                    { "key": "value" }
+                ]
             },
             "recording": {
                 "replicas": 1,
@@ -85,7 +94,10 @@
                     "annotations": [ 
                         {"key": "value" }
                     ]
-                }
+                },
+                "labels": [
+                    { "key": "value" }
+                ]
             },
             "sockets": {
                 "replicas": 1,
@@ -99,7 +111,10 @@
                     "annotations": [ 
                         {"key": "value" }
                     ]
-                }
+                },
+                "labels": [
+                    { "key": "value" }
+                ]
             }
         }
     ],
@@ -426,6 +441,43 @@
                         ""
                     ]
                 },
+                "limits": {
+                    "$id": "#/properties/api/properties/limits",
+                    "type": "object",
+                    "title": "The limits schema",
+                    "description": "CPU and Memory limits.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "cpu": "",
+                            "memory": ""
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "cpu": {
+                            "$id": "#/properties/api/properties/limits/properties/cpu",
+                            "type": "string",
+                            "title": "The cpu limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        },
+                        "memory": {
+                            "$id": "#/properties/api/properties/limits/properties/memory",
+                            "type": "string",
+                            "title": "The memory limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
                 "debug": {
                     "$id": "#/properties/api/properties/debug",
                     "type": "string",
@@ -462,6 +514,18 @@
                             ]
                         }
                     },
+                    "additionalProperties": true
+                },
+                "labels": {
+                    "$id": "#/properties/api/properties/labels",
+                    "type": "object",
+                    "title": "The API labels",
+                    "description": "An array of labels",
+                    "default": {},
+                    "examples": [
+                        { "key" : "value" }
+                    ],
+                    "required": [],
                     "additionalProperties": true
                 },
                 "pod": {
@@ -548,6 +612,43 @@
                         ""
                     ]
                 },
+                "limits": {
+                    "$id": "#/properties/api/properties/limits",
+                    "type": "object",
+                    "title": "The limits schema",
+                    "description": "CPU and Memory limits.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "cpu": "",
+                            "memory": ""
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "cpu": {
+                            "$id": "#/properties/api/properties/limits/properties/cpu",
+                            "type": "string",
+                            "title": "The cpu limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        },
+                        "memory": {
+                            "$id": "#/properties/api/properties/limits/properties/memory",
+                            "type": "string",
+                            "title": "The memory limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
                 "service": {
                     "$id": "#/properties/frontend/properties/service",
                     "type": "object",
@@ -574,6 +675,18 @@
                             ]
                         }
                     },
+                    "additionalProperties": true
+                },
+                "labels": {
+                    "$id": "#/properties/frontend/properties/labels",
+                    "type": "object",
+                    "title": "The Frontend labels.",
+                    "description": "An array of labels",
+                    "default": {},
+                    "examples": [
+                        { "key" : "value" }
+                    ],
+                    "required": [],
                     "additionalProperties": true
                 },
                 "pod": {
@@ -662,6 +775,43 @@
                         ""
                     ]
                 },
+                "limits": {
+                    "$id": "#/properties/api/properties/limits",
+                    "type": "object",
+                    "title": "The limits schema",
+                    "description": "CPU and Memory limits.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "cpu": "",
+                            "memory": ""
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "cpu": {
+                            "$id": "#/properties/api/properties/limits/properties/cpu",
+                            "type": "string",
+                            "title": "The cpu limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        },
+                        "memory": {
+                            "$id": "#/properties/api/properties/limits/properties/memory",
+                            "type": "string",
+                            "title": "The memory limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
                 "debug": {
                     "$id": "#/properties/proxy/properties/debug",
                     "type": "string",
@@ -698,6 +848,18 @@
                             ]
                         }
                     },
+                    "additionalProperties": true
+                },
+                "labels": {
+                    "$id": "#/properties/proxy/properties/labels",
+                    "type": "object",
+                    "title": "The Proxy labels",
+                    "description": "An array of labels",
+                    "default": {},
+                    "examples": [
+                        { "key" : "value" }
+                    ],
+                    "required": [],
                     "additionalProperties": true
                 },
                 "pod": {
@@ -786,6 +948,43 @@
                         ""
                     ]
                 },
+                "limits": {
+                    "$id": "#/properties/recording/properties/limits",
+                    "type": "object",
+                    "title": "The limits schema",
+                    "description": "CPU and Memory limits.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "cpu": "",
+                            "memory": ""
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "cpu": {
+                            "$id": "#/properties/recording/properties/limits/properties/cpu",
+                            "type": "string",
+                            "title": "The cpu limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        },
+                        "memory": {
+                            "$id": "#/properties/recording/properties/limits/properties/memory",
+                            "type": "string",
+                            "title": "The memory limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
                 "debug": {
                     "$id": "#/properties/recording/properties/debug",
                     "type": "string",
@@ -848,6 +1047,18 @@
                             ]
                         }
                     },
+                    "additionalProperties": true
+                },
+                "labels": {
+                    "$id": "#/properties/recording/properties/labels",
+                    "type": "object",
+                    "title": "The Recording labels",
+                    "description": "An array of labels",
+                    "default": {},
+                    "examples": [
+                        { "key" : "value" }
+                    ],
+                    "required": [],
                     "additionalProperties": true
                 },
                 "pod": {
@@ -936,6 +1147,43 @@
                         ""
                     ]
                 },
+                "limits": {
+                    "$id": "#/properties/sockets/properties/limits",
+                    "type": "object",
+                    "title": "The limits schema",
+                    "description": "CPU and Memory limits.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "cpu": "",
+                            "memory": ""
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "cpu": {
+                            "$id": "#/properties/sockets/properties/limits/properties/cpu",
+                            "type": "string",
+                            "title": "The cpu limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        },
+                        "memory": {
+                            "$id": "#/properties/sockets/properties/limits/properties/memory",
+                            "type": "string",
+                            "title": "The memory limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
                 "debug": {
                     "$id": "#/properties/sockets/properties/debug",
                     "type": "string",
@@ -1000,6 +1248,18 @@
                     },
                     "additionalProperties": true
                 },
+                "labels": {
+                    "$id": "#/properties/sockets/properties/labels",
+                    "type": "object",
+                    "title": "The Sockets labels",
+                    "description": "An array of labels",
+                    "default": {},
+                    "examples": [
+                        { "key" : "value" }
+                    ],
+                    "required": [],
+                    "additionalProperties": true
+                },
                 "pod": {
                     "$id": "#/properties/sockets/properties/pod",
                     "type": "object",
@@ -1027,6 +1287,16 @@
                         }
                     },
                     "additionalProperties": true
+                },
+                "peeringToken": {
+                    "$id": "#/properties/sockets/properties/peeringToken",
+                    "type": "string",
+                    "title": "The sockets peering token.",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ]
                 }
             },
             "additionalProperties": true
