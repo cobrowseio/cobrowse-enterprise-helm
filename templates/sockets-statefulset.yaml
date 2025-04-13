@@ -64,7 +64,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-sockets-custom-envvars
             optional: true
-        image: {{ (.Values.sockets.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-api-sockets-enterprise:1.14.0" )) }}
+        image: {{ (.Values.sockets.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-api-sockets-enterprise:1.14.1" )) }}
         {{- if (.Values.sockets.image).pullPolicy }}
         imagePullPolicy: {{ (.Values.sockets.image).pullPolicy }}
         {{- end}}
