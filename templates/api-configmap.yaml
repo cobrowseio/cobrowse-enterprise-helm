@@ -17,6 +17,7 @@ data:
   sockets_url: {{ printf "http://%s-sockets-svc:8080" .Release.Name | quote }}
   license_key: {{ default "" .Values.license | quote }}
   superusers: {{ default "" .Values.superusers | quote }}
+  account_creators: {{ default "(?!)" .Values.superusers | quote }}
 {{- if not .Values.storage }}
   storage: "false"
 {{- end }}
