@@ -24,6 +24,8 @@ jobs:
         run: echo 'DEPLOYMENT_FILE_PATH="templates/${{ inputs.component }}-${{ inputs.component == 'sockets' && 'statefulset' || 'deployment' }}.yaml"' >> $GITHUB_ENV
       - name: Checkout source code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_REPO_TOKEN }}
       - name: Update deployment version
         run: sed -Ei 's/(image:.*-enterprise):[0-9.]+/\1:${{ inputs.component_version }}/g' "${{ env.DEPLOYMENT_FILE_PATH }}"
       - name: Commit version bump
