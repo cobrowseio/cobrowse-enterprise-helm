@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.11.0](#) (2025-05-15)
+
+
+### Features
+
+* add helm param for account_creators ([#50](#)) ([a894026](#))
+
 ### [2.10.1](#) (2025-04-09)
 
 ## [2.10.0](#) (2025-04-04)
