@@ -28,7 +28,8 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/frontend-secret.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/frontend-secret.yaml") . | sha256sum }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/frontend-configmap.yaml") . | sha256sum }}
     {{- if .Values.frontend.pod }}
       {{- range $key, $value := .Values.frontend.pod.annotations }}
         {{ $key }}: {{ $value | quote }}
