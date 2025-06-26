@@ -89,10 +89,10 @@ spec:
         resources:
           limits:
             cpu: {{ coalesce .Values.api.limits.cpu .Values.api.cpu "500m" }}
-            memory: {{ coalesce .Values.api.limits.memory .Values.api.memory "1G" }}
+            memory: {{ coalesce .Values.api.limits.memory .Values.api.memory "1Gi" }}
           requests:
             cpu: {{ .Values.api.cpu | default "500m" }}
-            memory: {{ .Values.api.memory | default "1G" }}
+            memory: {{ .Values.api.memory | default "1Gi" }}
         {{- if .Values.containerSecurityContext.enabled }}
         securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.api.runAs).group | default "1000" }}

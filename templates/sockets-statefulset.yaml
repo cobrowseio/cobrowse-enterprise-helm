@@ -100,10 +100,10 @@ spec:
         resources:
           limits:
             cpu: {{ coalesce .Values.sockets.limits.cpu .Values.sockets.cpu "250m" }}
-            memory: {{ coalesce .Values.sockets.limits.memory .Values.sockets.memory "500M" }}
+            memory: {{ coalesce .Values.sockets.limits.memory .Values.sockets.memory "512Mi" }}
           requests:
             cpu: {{ .Values.sockets.cpu | default "250m" }}
-            memory: {{ .Values.sockets.memory | default "500M" }}
+            memory: {{ .Values.sockets.memory | default "512Mi" }}
         {{- if .Values.containerSecurityContext.enabled }}
         securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.sockets.runAs).group | default "1000" }}

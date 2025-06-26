@@ -89,10 +89,10 @@ spec:
         resources:
           limits:
             cpu: {{ coalesce .Values.proxy.limits.cpu .Values.proxy.cpu "500m"}}
-            memory: {{ coalesce .Values.proxy.limits.memory .Values.proxy.memory "1G"}}
+            memory: {{ coalesce .Values.proxy.limits.memory .Values.proxy.memory "1Gi"}}
           requests:
             cpu: {{ .Values.proxy.cpu | default "500m"}}
-            memory: {{ .Values.proxy.memory | default "1G"}}
+            memory: {{ .Values.proxy.memory | default "1Gi"}}
         {{- if .Values.containerSecurityContext.enabled }}
         securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.proxy.runAs).group | default "1000" }}

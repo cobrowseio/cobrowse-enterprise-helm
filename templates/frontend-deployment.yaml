@@ -85,10 +85,10 @@ spec:
         resources:
           limits:
             cpu: {{ coalesce .Values.frontend.limits.cpu .Values.frontend.cpu "250m"}}
-            memory: {{ coalesce .Values.frontend.limits.memory .Values.frontend.memory "500M"}}
+            memory: {{ coalesce .Values.frontend.limits.memory .Values.frontend.memory "512Mi"}}
           requests:
             cpu: {{ .Values.frontend.cpu | default "250m"}}
-            memory: {{ .Values.frontend.memory | default "500M"}}
+            memory: {{ .Values.frontend.memory | default "512Mi"}}
         {{- if .Values.containerSecurityContext.enabled }}
         securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.frontend.runAs).group | default "1000" }}
