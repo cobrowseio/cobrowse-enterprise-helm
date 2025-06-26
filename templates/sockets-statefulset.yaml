@@ -15,7 +15,8 @@ metadata:
   {{- end }}
 spec:
   serviceName: {{ .Release.Name }}-sockets-headless
-  replicas: {{ .Values.sockets.replicas | default "1" }}
+  # default to 2 given the PodDisruptionBudget set to minAvailable: 1
+  replicas: {{ .Values.sockets.replicas | default "2" }}
   selector:
     matchLabels:
       component: sockets
@@ -98,11 +99,11 @@ spec:
           name: data-traces
         resources:
           limits:
-            cpu: {{ coalesce .Values.sockets.limits.cpu .Values.sockets.cpu "256m" }}
-            memory: {{ coalesce .Values.sockets.limits.memory .Values.sockets.memory "256Mi" }}
+            cpu: {{ coalesce .Values.sockets.limits.cpu .Values.sockets.cpu "250m" }}
+            memory: {{ coalesce .Values.sockets.limits.memory .Values.sockets.memory "500M" }}
           requests:
-            cpu: {{ .Values.sockets.cpu | default "256m" }}
-            memory: {{ .Values.sockets.memory | default "256Mi" }}
+            cpu: {{ .Values.sockets.cpu | default "250m" }}
+            memory: {{ .Values.sockets.memory | default "500M" }}
         {{- if .Values.containerSecurityContext.enabled }}
         securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.sockets.runAs).group | default "1000" }}

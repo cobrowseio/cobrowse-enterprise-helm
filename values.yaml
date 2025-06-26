@@ -20,6 +20,7 @@ ingress:
   class: ""
   annotations: {}
   tls: {}
+  disabled:  false
 
 # Persistent Volume Storage
 storage:
