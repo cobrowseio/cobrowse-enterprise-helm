@@ -55,7 +55,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-frontend-custom-envvars
             optional: true
-        image: {{ (.Values.frontend.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-frontend-enterprise:4.12.4" )) }}
+        image: {{ (.Values.frontend.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-frontend-enterprise:4.12.5" )) }}
         {{- if (.Values.frontend.image).pullPolicy }}
         imagePullPolicy: {{ (.Values.frontend.image).pullPolicy }}
         {{- end}}
