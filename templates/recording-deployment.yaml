@@ -96,11 +96,11 @@ spec:
           name: tmp
         resources:
           limits:
-            cpu: {{ coalesce .Values.recording.limits.cpu .Values.recording.cpu "256m"}}
-            memory: {{ coalesce .Values.recording.limits.memory .Values.recording.memory "256Mi"}}
+            cpu: {{ coalesce .Values.recording.limits.cpu .Values.recording.cpu "250m"}}
+            memory: {{ coalesce .Values.recording.limits.memory .Values.recording.memory "512Mi"}}
           requests:
-            cpu: {{ .Values.recording.cpu | default "256m"}}
-            memory: {{ .Values.recording.memory | default "256Mi"}}
+            cpu: {{ .Values.recording.cpu | default "250m"}}
+            memory: {{ .Values.recording.memory | default "512Mi"}}
         {{- if .Values.containerSecurityContext.enabled }}
         securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.recording.runAs).group | default "1000" }}
