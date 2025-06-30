@@ -14,7 +14,7 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
-  replicas: {{ .Values.api.replicas | default "1" }}
+  replicas: {{ .Values.api.replicas | default "2" }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -89,11 +89,11 @@ spec:
           timeoutSeconds: 1
         resources:
           limits:
-            cpu: {{ coalesce .Values.api.limits.cpu .Values.api.cpu "256m" }}
-            memory: {{ coalesce .Values.api.limits.memory .Values.api.memory "256Mi" }}
+            cpu: {{ coalesce .Values.api.limits.cpu .Values.api.cpu "500m" }}
+            memory: {{ coalesce .Values.api.limits.memory .Values.api.memory "1Gi" }}
           requests:
-            cpu: {{ .Values.api.cpu | default "256m" }}
-            memory: {{ .Values.api.memory | default "256Mi" }}
+            cpu: {{ .Values.api.cpu | default "500m" }}
+            memory: {{ .Values.api.memory | default "1Gi" }}
         {{- if .Values.containerSecurityContext.enabled }}
         securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.api.runAs).group | default "1000" }}

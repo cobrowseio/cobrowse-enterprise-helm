@@ -1,0 +1,10 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: proxy-pdb
+spec:
+  minAvailable: "50%"
+  selector:
+    matchLabels:
+      component: proxy
+      app: {{ template "fullname" . }}

@@ -1,0 +1,10 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: api-pdb
+spec:
+  minAvailable: "50%"
+  selector:
+    matchLabels:
+      component: api
+      app: {{ template "fullname" . }}
