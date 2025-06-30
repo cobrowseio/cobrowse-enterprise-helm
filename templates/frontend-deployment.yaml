@@ -14,7 +14,7 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
-  replicas: {{ .Values.frontend.replicas | default "1" }}
+  replicas: {{ .Values.frontend.replicas | default "2" }}
   strategy:
     type: RollingUpdate
     rollingUpdate:

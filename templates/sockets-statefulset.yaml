@@ -99,11 +99,11 @@ spec:
           name: data-traces
         resources:
           limits:
-            cpu: {{ coalesce .Values.sockets.limits.cpu .Values.sockets.cpu "250m" }}
-            memory: {{ coalesce .Values.sockets.limits.memory .Values.sockets.memory "512Mi" }}
+            cpu: {{ coalesce .Values.sockets.limits.cpu .Values.sockets.cpu "500m" }}
+            memory: {{ coalesce .Values.sockets.limits.memory .Values.sockets.memory "1Gi" }}
           requests:
-            cpu: {{ .Values.sockets.cpu | default "250m" }}
-            memory: {{ .Values.sockets.memory | default "512Mi" }}
+            cpu: {{ .Values.sockets.cpu | default "500m" }}
+            memory: {{ .Values.sockets.memory | default "1Gi" }}
         {{- if .Values.containerSecurityContext.enabled }}
         securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
           runAsGroup: {{ (.Values.sockets.runAs).group | default "1000" }}
