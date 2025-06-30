@@ -1,10 +1,10 @@
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: sockets-pdb
+  name: recording-pdb
 spec:
   minAvailable: "50%"
   selector:
     matchLabels:
-      component: sockets
+      component: recording
       app: {{ template "fullname" . }}

@@ -1,10 +1,10 @@
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: sockets-pdb
+  name: proxy-pdb
 spec:
   minAvailable: "50%"
   selector:
     matchLabels:
-      component: sockets
+      component: proxy
       app: {{ template "fullname" . }}
