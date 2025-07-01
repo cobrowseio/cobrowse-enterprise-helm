@@ -15,7 +15,6 @@ metadata:
   {{- end }}
 spec:
   serviceName: {{ .Release.Name }}-sockets-headless
-  # default to 2 given the PodDisruptionBudget set to minAvailable: 1
   replicas: {{ .Values.sockets.replicas | default "2" }}
   selector:
     matchLabels:
