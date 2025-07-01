@@ -3,7 +3,7 @@ kind: PodDisruptionBudget
 metadata:
   name: recording-pdb
 spec:
-  minAvailable: "50%"
+  minAvailable: {{ ternary "50%" 0 (ge  (int .Values.recording.replicas) 2) }}
   selector:
     matchLabels:
       component: recording

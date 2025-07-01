@@ -43,7 +43,7 @@ image:
 
 # API configurations
 api:
-  replicas: 1
+  replicas: 2
   cpu: ""
   memory: ""
   limits:
@@ -57,7 +57,7 @@ api:
 
 # Frontend configurations
 frontend:
-  replicas: 1
+  replicas: 2
   cpu: ""
   memory: ""
   limits:
@@ -70,7 +70,7 @@ frontend:
 
 # Proxy configurations
 proxy:
-  replicas: 1
+  replicas: 2
   cpu: ""
   memory: ""
   limits:
@@ -85,7 +85,7 @@ proxy:
 
 # Recording configurations
 recording:
-  replicas: 1
+  replicas: 2
   cpu: ""
   memory: ""
   limits:
@@ -110,7 +110,7 @@ chromium:
 
 # Sockets configurations
 sockets:
-  replicas: 1
+  replicas: 2
   cpu: ""
   memory: ""
   limits:
