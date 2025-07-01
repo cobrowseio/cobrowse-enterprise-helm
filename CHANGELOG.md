@@ -2,6 +2,19 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.12.0](#) (2025-07-01)
+
+
+### Features
+
+* add pdb and increase resource defaults ([#52](#)) ([81bd8cd](#))
+
+
+### Bug Fixes
+
+* replica defaults and recording pdb ([#53](#)) ([8f99d39](#))
+* roll deployment when config maps change ([#51](#)) ([911a9ba](#))
+
 ## [2.11.0](#) (2025-05-15)
 
 
