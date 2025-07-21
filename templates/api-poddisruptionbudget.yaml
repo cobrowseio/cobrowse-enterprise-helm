@@ -10,7 +10,7 @@ metadata:
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
 spec:
-  minAvailable: "50%"
+  minAvailable: {{ ternary 0 "50%" (eq (int .Values.api.replicas) 1) }}
   selector:
     matchLabels:
       component: api

@@ -10,7 +10,7 @@ metadata:
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
 spec:
-  minAvailable: {{ ternary "50%" 0 (ge  (int .Values.recording.replicas) 2) }}
+  minAvailable: {{ ternary 0 "50%" (eq (int .Values.recording.replicas) 1) }}
   selector:
     matchLabels:
       component: recording
