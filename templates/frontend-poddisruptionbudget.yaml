@@ -2,8 +2,15 @@ apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: frontend-pdb
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
 spec:
-  minAvailable: "50%"
+  minAvailable: {{ ternary 0 "50%" (eq (int .Values.frontend.replicas) 1) }}
   selector:
     matchLabels:
       component: frontend
