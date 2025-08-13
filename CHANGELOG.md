@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+### [2.12.1](#) (2025-08-13)
+
+
+### Bug Fixes
+
+* add namespace in pdbs ([#54](#)) ([6a3408f](#))
+
 ## [2.12.0](#) (2025-07-01)
 
 
