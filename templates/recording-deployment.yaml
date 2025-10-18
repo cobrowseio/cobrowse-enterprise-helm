@@ -60,7 +60,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-recording-custom-envvars
             optional: true
-        image: {{ (.Values.recording.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-recording-enterprise:1.12.12" )) }}
+        image: {{ (.Values.recording.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-recording-enterprise:1.12.13" )) }}
         {{- if (.Values.recording.image).pullPolicy }}
         imagePullPolicy: {{ (.Values.recording.image).pullPolicy }}
         {{- end}}
@@ -113,7 +113,7 @@ spec:
         - configMapRef:
             name: {{ .Release.Name }}-chromium-custom-envvars
             optional: true
-        image: {{ (.Values.chromium.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-chromium-enterprise:1.12.12" )) }}
+        image: {{ (.Values.chromium.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-chromium-enterprise:1.12.13" )) }}
         {{- if (.Values.chromium.image).pullPolicy }}
         imagePullPolicy: {{ (.Values.chromium.image).pullPolicy }}
         {{- end}}
