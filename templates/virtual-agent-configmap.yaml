@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-virtual-agent-envvars
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+data:
+  PORT: "8080"
+  STAGE: {{ .Values.stage | quote }}
+  DEBUG: {{ default "" .Values.virtualAgent.debug | quote }}
+  frontend_url: {{ printf "https://%s" .Values.domain | quote }}
+

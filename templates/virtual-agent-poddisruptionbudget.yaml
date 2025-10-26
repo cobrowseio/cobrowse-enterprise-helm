@@ -1,0 +1,17 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: virtual-agent-pdb
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  minAvailable: {{ ternary 0 "50%" (eq (int .Values.virtualAgent.replicas) 1) }}
+  selector:
+    matchLabels:
+      component: virtual-agent
+      app: {{ template "fullname" . }}

@@ -75,3 +75,6 @@ output_changelog cobrowse-recording recording-deployment $HELM_PREV_VERSION
 echo ""
 echo "### Cobrowse Enterprise Frontend"
 output_changelog cobrowse-frontend frontend-deployment $HELM_PREV_VERSION
+echo ""
+echo "### Cobrowse Enterprise Virtual Agent"
+output_changelog cobrowse-virtual-agent virtual-agent-deployment $HELM_PREV_VERSION
