@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-virtual-agent
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    component: virtual-agent
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+  {{- range $key, $value := .Values.virtualAgent.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.virtualAgent.replicas | default "2" }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 0
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      component: virtual-agent
+      stage: {{ .Values.stage | quote }}
+  template:
+    metadata:
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/virtual-agent-secret.yaml") . | sha256sum }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/virtual-agent-configmap.yaml") . | sha256sum }}
+    {{- if .Values.virtualAgent.pod }}
+      {{- range $key, $value := .Values.virtualAgent.pod.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
+    {{- end }}
+      labels:
+        app: {{ template "fullname" . }}
+        component: virtual-agent
+        stage: {{ .Values.stage | quote }}
+    spec:
+    {{- if .Values.virtualAgent.nodeSelector}}
+      nodeSelector:{{ toYaml .Values.virtualAgent.nodeSelector | nindent 8 }}
+    {{- end }}
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-virtual-agent-envvars
+        - configMapRef:
+            name: {{ .Release.Name }}-virtual-agent-custom-envvars
+            optional: true
+        - secretRef:
+            name: {{ .Release.Name }}-virtual-agent-envvars
+        - secretRef:
+            name: {{ .Release.Name }}-virtual-agent-custom-envvars
+            optional: true
+        image: {{ (.Values.virtualAgent.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-virtual-agent-enterprise:4.22.1" )) }}
+        {{- if (.Values.virtualAgent.image).pullPolicy }}
+        imagePullPolicy: {{ (.Values.virtualAgent.image).pullPolicy }}
+        {{- end}}
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 1
+        name: virtual-agent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 1
+        volumeMounts:
+        - mountPath: "/tmp"
+          name: tmp
+        resources:
+          limits:
+            cpu: {{ coalesce .Values.virtualAgent.limits.cpu .Values.virtualAgent.cpu "250m"}}
+            memory: {{ coalesce .Values.virtualAgent.limits.memory .Values.virtualAgent.memory "512Mi"}}
+          requests:
+            cpu: {{ .Values.virtualAgent.cpu | default "250m"}}
+            memory: {{ .Values.virtualAgent.memory | default "512Mi"}}
+        {{- if .Values.containerSecurityContext.enabled }}
+        securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
+          runAsGroup: {{ (.Values.virtualAgent.runAs).group | default "1000" }}
+          runAsUser: {{ (.Values.virtualAgent.runAs).user | default "1000" }}
+        {{- end }}
+      imagePullSecrets:
+      - name: {{ .Release.Name }}-docker-cfg
+      volumes:
+      - name: tmp
+        emptyDir:
+          medium: Memory
+      serviceAccountName: {{ .Values.serviceAccountName | default "" }}
+      automountServiceAccountToken: false

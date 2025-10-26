@@ -125,5 +125,17 @@ sockets:
     # persistentVolumeClaimName: "cobrowse-sockets-pvc"
   }
 
+# Virtual-agent configurations
+virtualAgent:
+  replicas: 2
+  cpu: ""
+  memory: ""
+  limits:
+    cpu: ""
+    memory: "" 
+
+  service:
+    type: ""
+
 containerSecurityContext:
   enabled: true
