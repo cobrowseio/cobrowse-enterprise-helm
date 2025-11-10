@@ -14,13 +14,14 @@ stage: "enterprise"
 ssl:
   generator: ""
 serviceAccountName: ""
+mongoConfigMapName: ""
 
 # Kubernetes Ingress configuration
 ingress:
   class: ""
   annotations: {}
   tls: {}
-  disabled:  false
+  disabled: false
 
 # Persistent Volume Storage
 storage:
@@ -48,7 +49,7 @@ api:
   memory: ""
   limits:
     cpu: ""
-    memory: "" 
+    memory: ""
   debug: ""
 
   service:
@@ -62,7 +63,7 @@ frontend:
   memory: ""
   limits:
     cpu: ""
-    memory: "" 
+    memory: ""
 
   service:
     type: ""
@@ -75,9 +76,9 @@ proxy:
   memory: ""
   limits:
     cpu: ""
-    memory: "" 
+    memory: ""
   debug: ""
-  
+
 
   service:
     type: ""
@@ -90,7 +91,7 @@ recording:
   memory: ""
   limits:
     cpu: ""
-    memory: "" 
+    memory: ""
   debug: ""
 
   service:
@@ -115,7 +116,7 @@ sockets:
   memory: ""
   limits:
     cpu: ""
-    memory: "" 
+    memory: ""
   debug: ""
 
   service:

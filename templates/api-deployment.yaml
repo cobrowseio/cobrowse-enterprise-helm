@@ -99,7 +99,16 @@ spec:
           runAsGroup: {{ (.Values.api.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.api.runAs).user | default "1000" }}
         {{- end }}
+        volumeMounts:
+          - name: mongo-ca-cert
+            mountPath: "/var/run/cobrowse"
+            readOnly: true
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
       serviceAccountName: {{ .Values.serviceAccountName | default "" }}
       automountServiceAccountToken: false
+      volumes:
+        - name: mongo-ca-cert
+          configMap:
+            name: {{ .Values.mongoConfigMapName | default ( printf "%s-mongo-ca-cert" .Release.Name ) }}
+            optional: true
