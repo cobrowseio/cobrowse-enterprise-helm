@@ -43,8 +43,8 @@ spec:
         component: proxy
         stage: {{ .Values.stage | quote }}
     spec:
-    {{- if .Values.frontend.nodeSelector}}
-      nodeSelector:{{ toYaml .Values.frontend.nodeSelector | nindent 8 }}
+    {{- if .Values.proxy.nodeSelector}}
+      nodeSelector:{{ toYaml .Values.proxy.nodeSelector | nindent 8 }}
     {{- end }}
       containers:
       - envFrom:
