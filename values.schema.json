@@ -24,7 +24,7 @@
                 "generator": ""
             },
             "serviceAccountName": "",
-            "mongoConfigMapName": "",
+            "volumeMountedConfigMapName": "",
             "ingress": {
                 "class": "",
                 "annotations": {}
@@ -1312,10 +1312,10 @@
                 "cobrowse-service-account"
             ]
         },
-        "mongoConfigMapName": {
-            "$id": "#/properties/mongoConfigMapName",
+        "volumeMountedConfigMapName": {
+            "$id": "#/properties/volumeMountedConfigMapName",
             "type": "string",
-            "title": "The name of the config map containing the Mongo certificate authority certificate.",
+            "title": "The name of the config map containing custom certificate authorities for Mongo TLS connections.",
             "description": "Only required when connecting to a Mongo server using TLS. This is mounted at /var/run/cobrowse",
             "default": "",
             "examples": [

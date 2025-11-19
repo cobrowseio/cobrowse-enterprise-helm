@@ -14,7 +14,7 @@ stage: "enterprise"
 ssl:
   generator: ""
 serviceAccountName: ""
-mongoConfigMapName: ""
+volumeMountedConfigMapName: ""
 
 # Kubernetes Ingress configuration
 ingress:

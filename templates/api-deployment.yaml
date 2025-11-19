@@ -100,7 +100,7 @@ spec:
           runAsUser: {{ (.Values.api.runAs).user | default "1000" }}
         {{- end }}
         volumeMounts:
-          - name: mongo-ca-cert
+          - name: mounted-config-map
             mountPath: "/var/run/cobrowse"
             readOnly: true
       imagePullSecrets:
@@ -108,7 +108,7 @@ spec:
       serviceAccountName: {{ .Values.serviceAccountName | default "" }}
       automountServiceAccountToken: false
       volumes:
-        - name: mongo-ca-cert
+        - name: mounted-config-map
           configMap:
-            name: {{ .Values.mongoConfigMapName | default ( printf "%s-mongo-ca-cert" .Release.Name ) }}
+            name: {{ .Values.volumeMountedConfigMapName | default ( printf "%s-volume-mounted-config-map" .Release.Name ) }}
             optional: true
