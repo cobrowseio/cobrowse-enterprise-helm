@@ -58,6 +58,13 @@ spec:
         pathType: Prefix
       - backend:
           service:
+            name: {{ .Release.Name }}-virtual-agent-svc
+            port:
+              number: 8080
+        path: /virtual-agent
+        pathType: Prefix
+      - backend:
+          service:
             name: {{ .Release.Name }}-frontend-svc
             port:
               number: 8080
