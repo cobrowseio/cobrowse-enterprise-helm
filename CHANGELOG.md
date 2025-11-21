@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.13.0](#) (2025-11-21)
+
+
+### Features
+
+* support volume mounted config for API ([#56](#)) ([f86d3c9](#))
+
 ### [2.12.6](#) (2025-10-16)
 
 ### [2.12.5](#) (2025-10-11)
