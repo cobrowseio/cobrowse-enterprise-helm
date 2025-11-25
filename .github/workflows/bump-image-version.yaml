@@ -11,6 +11,7 @@ on:
           - proxy
           - recording
           - sockets
+          - virtual-agent
         required: true
       component_version:
         description: The new version of the component

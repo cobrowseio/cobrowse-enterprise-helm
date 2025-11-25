@@ -134,7 +134,8 @@
         "frontend",
         "proxy",
         "recording",
-        "sockets"
+        "sockets",
+        "virtualAgent"
     ],
     "properties": {
         "imageCredentials": {
@@ -1298,6 +1299,167 @@
                     "examples": [
                         ""
                     ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "virtualAgent": {
+            "$id": "#/properties/virtualAgent",
+            "type": "object",
+            "title": "The virtualAgent schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "replicas": 2,
+                    "cpu": "",
+                    "memory": "",
+                    "service": {
+                        "type": ""
+                    }
+                }
+            ],
+            "required": [
+                "replicas",
+                "cpu",
+                "memory",
+                "service"
+            ],
+            "properties": {
+                "replicas": {
+                    "$id": "#/properties/virtualAgent/properties/replicas",
+                    "type": "integer",
+                    "title": "The replicas schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                },
+                "cpu": {
+                    "$id": "#/properties/virtualAgent/properties/cpu",
+                    "type": "string",
+                    "title": "The cpu schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ]
+                },
+                "memory": {
+                    "$id": "#/properties/virtualAgent/properties/memory",
+                    "type": "string",
+                    "title": "The memory schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ]
+                },
+                "limits": {
+                    "$id": "#/properties/virtualAgent/properties/limits",
+                    "type": "object",
+                    "title": "The limits schema",
+                    "description": "CPU and Memory limits.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "cpu": "",
+                            "memory": ""
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "cpu": {
+                            "$id": "#/properties/virtualAgent/properties/limits/properties/cpu",
+                            "type": "string",
+                            "title": "The cpu limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        },
+                        "memory": {
+                            "$id": "#/properties/virtualAgent/properties/limits/properties/memory",
+                            "type": "string",
+                            "title": "The memory limit schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "service": {
+                    "$id": "#/properties/virtualAgent/properties/service",
+                    "type": "object",
+                    "title": "The service schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "type": ""
+                        }
+                    ],
+                    "required": [
+                        "type"
+                    ],
+                    "properties": {
+                        "type": {
+                            "$id": "#/properties/virtualAgent/properties/service/properties/type",
+                            "type": "string",
+                            "title": "The type schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "labels": {
+                    "$id": "#/properties/virtualAgent/properties/labels",
+                    "type": "object",
+                    "title": "The Virtual Agent labels.",
+                    "description": "An array of labels",
+                    "default": {},
+                    "examples": [
+                        { "key" : "value" }
+                    ],
+                    "required": [],
+                    "additionalProperties": true
+                },
+                "pod": {
+                    "$id": "#/properties/virtualAgent/properties/pod",
+                    "type": "object",
+                    "title": "The pod schema",
+                    "description": "Pod template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "annotations": [ { "key" : "value" } ]
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "annotations": {
+                            "$id": "#/properties/virtualAgent/properties/pod/properties/annotations",
+                            "type": "object",
+                            "title": "The pod annotations",
+                            "description": "An array of pod annotations",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
                 }
             },
             "additionalProperties": true
