@@ -44,6 +44,13 @@ spec:
         component: recording
         stage: {{ .Values.stage | quote }}
     spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            component: recording
     {{- if .Values.recording.nodeSelector}}
       nodeSelector:{{ toYaml .Values.recording.nodeSelector | nindent 8 }}
     {{- end }}

@@ -40,6 +40,13 @@ spec:
         component: frontend
         stage: {{ .Values.stage | quote }}
     spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            component: frontend
     {{- if .Values.frontend.nodeSelector}}
       nodeSelector:{{ toYaml .Values.frontend.nodeSelector | nindent 8 }}
     {{- end }}
