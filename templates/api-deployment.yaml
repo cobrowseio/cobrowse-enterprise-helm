@@ -43,6 +43,13 @@ spec:
         component: api
         stage: {{ .Values.stage | quote }}
     spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            component: api
     {{- if .Values.api.nodeSelector}}
       nodeSelector:{{ toYaml .Values.api.nodeSelector | nindent 8 }}
     {{- end }}
