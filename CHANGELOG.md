@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.14.0](#) (2025-12-03)
+
+
+### Features
+
+* topology support ([#57](#)) ([68c41aa](#))
+
 ## [2.13.0](#) (2025-11-21)
 
 
