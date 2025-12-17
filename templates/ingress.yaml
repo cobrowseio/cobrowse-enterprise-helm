@@ -70,6 +70,13 @@ spec:
               number: 8080
         path: /
         pathType: Prefix
+      - backend:
+          service:
+            name: {{ .Release.Name }}-frontend-svc
+            port:
+              number: 3000
+        path: /health
+        pathType: Prefix
   {{- if ((.Values.ingress).tls).secretName }}
     host: {{ .Values.domain }}
   {{- end }}
