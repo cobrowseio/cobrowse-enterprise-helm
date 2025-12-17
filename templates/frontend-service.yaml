@@ -15,9 +15,14 @@ metadata:
   {{- end }}
 spec:
   ports:
-  - port: 8080
+  - name: frontend
+    port: 8080
     protocol: TCP
     targetPort: 8080
+  - name: healthcheck
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
   selector:
     component: frontend
     stage: {{ .Values.stage | quote }}
