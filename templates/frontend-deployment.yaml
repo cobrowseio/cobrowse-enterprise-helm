@@ -51,6 +51,13 @@ spec:
       nodeSelector:{{ toYaml .Values.frontend.nodeSelector | nindent 8 }}
     {{- end }}
       containers:
+      - name: healthcheck
+          image: hashicorp/http-echo
+        args:
+          - "-text={\"status\":\"ok\"}"
+          - "-listen=:3000"
+        ports:
+          - containerPort: 3000
       - envFrom:
         - configMapRef:
             name: {{ .Release.Name }}-frontend-envvars
