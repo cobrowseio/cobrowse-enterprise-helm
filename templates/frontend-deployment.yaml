@@ -90,6 +90,9 @@ spec:
         volumeMounts:
         - mountPath: "/tmp"
           name: tmp
+        - name: mounted-config-map
+          mountPath: "/var/run/cobrowse"
+          readOnly: true
         resources:
           limits:
             cpu: {{ coalesce .Values.frontend.limits.cpu .Values.frontend.cpu "250m"}}
@@ -108,5 +111,9 @@ spec:
       - name: tmp
         emptyDir:
           medium: Memory
+      - name: mounted-config-map
+        configMap:
+          name: {{ .Values.volumeMountedConfigMapName | default ( printf "%s-volume-mounted-config-map" .Release.Name ) }}
+          optional: true
       serviceAccountName: {{ .Values.serviceAccountName | default "" }}
       automountServiceAccountToken: false

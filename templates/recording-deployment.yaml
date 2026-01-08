@@ -101,6 +101,9 @@ spec:
           name: data-recordings
         - mountPath: "/tmp"
           name: tmp
+        - name: mounted-config-map
+          mountPath: "/var/run/cobrowse"
+          readOnly: true
         resources:
           limits:
             cpu: {{ coalesce .Values.recording.limits.cpu .Values.recording.cpu "250m"}}
@@ -152,6 +155,9 @@ spec:
         volumeMounts:
         - mountPath: "/tmp"
           name: tmp
+        - name: mounted-config-map
+          mountPath: "/var/run/cobrowse"
+          readOnly: true
         resources:
           limits:
             cpu: {{ coalesce .Values.chromium.limits.cpu .Values.chromium.cpu "700m"}}
@@ -178,5 +184,9 @@ spec:
       - name: tmp
         emptyDir:
           medium: Memory
+      - name: mounted-config-map
+        configMap:
+          name: {{ .Values.volumeMountedConfigMapName | default ( printf "%s-volume-mounted-config-map" .Release.Name ) }}
+          optional: true
       serviceAccountName: {{ .Values.serviceAccountName | default "" }}
       automountServiceAccountToken: false
