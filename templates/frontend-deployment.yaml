@@ -102,11 +102,19 @@ spec:
           runAsGroup: {{ (.Values.frontend.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.frontend.runAs).user | default "1000" }}
         {{- end }}
+        volumeMounts:
+        - name: mounted-config-map
+          mountPath: "/var/run/cobrowse"
+          readOnly: true
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
       volumes:
       - name: tmp
         emptyDir:
           medium: Memory
+      - name: mounted-config-map
+        configMap:
+          name: {{ .Values.volumeMountedConfigMapName | default ( printf "%s-volume-mounted-config-map" .Release.Name ) }}
+          optional: true
       serviceAccountName: {{ .Values.serviceAccountName | default "" }}
       automountServiceAccountToken: false

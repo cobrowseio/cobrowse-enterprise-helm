@@ -113,6 +113,10 @@ spec:
           runAsGroup: {{ (.Values.recording.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.recording.runAs).user | default "1000" }}
         {{- end }}
+        volumeMounts:
+        - name: mounted-config-map
+          mountPath: "/var/run/cobrowse"
+          readOnly: true
       # Chromium container
       - envFrom:
         - configMapRef:
@@ -164,6 +168,10 @@ spec:
           runAsGroup: {{ (.Values.chromium.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.chromium.runAs).user | default "1000" }}
         {{- end }}
+        volumeMounts:
+        - name: mounted-config-map
+          mountPath: "/var/run/cobrowse"
+          readOnly: true
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
       volumes:
@@ -178,5 +186,9 @@ spec:
       - name: tmp
         emptyDir:
           medium: Memory
+      - name: mounted-config-map
+        configMap:
+          name: {{ .Values.volumeMountedConfigMapName | default ( printf "%s-volume-mounted-config-map" .Release.Name ) }}
+          optional: true
       serviceAccountName: {{ .Values.serviceAccountName | default "" }}
       automountServiceAccountToken: false
