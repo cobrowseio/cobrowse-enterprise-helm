@@ -112,10 +112,10 @@ spec:
           readOnly: true
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
-      serviceAccountName: {{ .Values.serviceAccountName | default "" }}
-      automountServiceAccountToken: false
       volumes:
       - name: mounted-config-map
         configMap:
           name: {{ .Values.volumeMountedConfigMapName | default ( printf "%s-volume-mounted-config-map" .Release.Name ) }}
           optional: true
+      serviceAccountName: {{ .Values.serviceAccountName | default "" }}
+      automountServiceAccountToken: false
