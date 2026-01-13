@@ -14,6 +14,7 @@ data:
   STAGE: {{ .Values.stage | quote }}
   DEBUG: {{ default "" .Values.api.debug | quote }}
   frontend_url: {{ printf "https://%s" .Values.domain | quote }}
+  frontend_service_url:  {{ printf "http://%s-frontend-svc:8080" .Release.Name | quote }} 
   sockets_url: {{ printf "http://%s-sockets-svc:8080" .Release.Name | quote }}
   license_key: {{ default "" .Values.license | quote }}
   superusers: {{ default "" .Values.superusers | quote }}
