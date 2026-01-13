@@ -1,0 +1,74 @@
+suite: frontend deployment
+templates:
+  - templates/frontend-deployment.yaml
+  - templates/frontend-secret.yaml
+  - templates/frontend-configmap.yaml
+tests:
+  - it: deploys the frontend service
+    template: templates/frontend-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.selector.matchLabels.component
+          value: frontend
+      - equal:
+          path: spec.replicas
+          value: 2
+
+  - it: may run multiple replicas
+    set:
+      frontend.replicas: 3
+    template: templates/frontend-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 3
+
+  - it: runs a frontend container
+    template: templates/frontend-deployment.yaml
+    asserts:
+      - isKind:
+          of: Deployment
+      - lengthEqual:
+          path: spec.template.spec.containers
+          count: 1
+      - equal:
+          path: spec.template.spec.containers[0].name
+          value: frontend
+
+  - it: has a /tmp for nginx
+    template: templates/frontend-deployment.yaml
+    asserts:
+      - contains:
+          any: true
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: tmp
+            mountPath: /tmp
+
+      - contains:
+          any: true
+          path: spec.template.spec.volumes
+          content:
+            name: tmp
+            emptyDir:
+              medium: Memory
+
+  - it: may mount volumes containing certificate authorities
+    template: templates/frontend-deployment.yaml
+    asserts:
+      - contains:
+          any: true
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: mounted-config-map
+            mountPath: "/var/run/cobrowse"
+            readOnly: true
+
+      - contains:
+          any: true
+          path: spec.template.spec.volumes
+          content:
+            name: mounted-config-map
+            configMap:
+              name: "RELEASE-NAME-volume-mounted-config-map"
+              optional: true

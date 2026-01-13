@@ -1,0 +1,70 @@
+suite: recording container
+templates:
+  - templates/recording-deployment.yaml
+  - templates/recording-secret.yaml
+  - templates/recording-configmap.yaml
+  - templates/chromium-secret.yaml
+  - templates/chromium-configmap.yaml
+tests:
+  - it: runs a recording container
+    template: templates/recording-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].name
+          value: recording
+
+  - it: mounts a volume to store session recordings
+    template: templates/recording-deployment.yaml
+    asserts:
+      - contains:
+          any: true
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: data-recordings
+            mountPath: /data
+
+      - contains:
+          any: true
+          path: spec.template.spec.volumes
+          content:
+            name: data-recordings
+            persistentVolumeClaim:
+              claimName: RELEASE-NAME-sockets-pvc
+
+  - it: mounts a volume to spool temporary files to
+    template: templates/recording-deployment.yaml
+    asserts:
+      - contains:
+          any: true
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: tmp
+            mountPath: /tmp
+
+      - contains:
+          any: true
+          path: spec.template.spec.volumes
+          content:
+            name: tmp
+            emptyDir:
+              medium: Memory
+
+  - it: may mount volumes containing certificate authorities
+    template: templates/recording-deployment.yaml
+    asserts:
+      - contains:
+          any: true
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: mounted-config-map
+            mountPath: "/var/run/cobrowse"
+            readOnly: true
+
+      - contains:
+          any: true
+          path: spec.template.spec.volumes
+          content:
+            name: mounted-config-map
+            configMap:
+              name: "RELEASE-NAME-volume-mounted-config-map"
+              optional: true

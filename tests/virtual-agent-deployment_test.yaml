@@ -1,0 +1,74 @@
+suite: virtual-agent deployment
+templates:
+  - templates/virtual-agent-secret.yaml
+  - templates/virtual-agent-configmap.yaml
+  - templates/virtual-agent-deployment.yaml
+tests:
+  - it: deploys the virtual-agent service
+    template: templates/virtual-agent-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.selector.matchLabels.component
+          value: virtual-agent
+      - equal:
+          path: spec.replicas
+          value: 2
+
+  - it: may run multiple replicas
+    set:
+      virtualAgent.replicas: 3
+    template: templates/virtual-agent-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 3
+
+  - it: runs a virtual-agent container
+    template: templates/virtual-agent-deployment.yaml
+    asserts:
+      - isKind:
+          of: Deployment
+      - lengthEqual:
+          path: spec.template.spec.containers
+          count: 1
+      - equal:
+          path: spec.template.spec.containers[0].name
+          value: virtual-agent
+
+  - it: mounts a volume to spool temporary files to
+    template: templates/virtual-agent-deployment.yaml
+    asserts:
+      - contains:
+          any: true
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: tmp
+            mountPath: /tmp
+
+      - contains:
+          any: true
+          path: spec.template.spec.volumes
+          content:
+            name: tmp
+            emptyDir:
+              medium: Memory
+
+  - it: may mount volumes containing certificate authorities
+    template: templates/virtual-agent-deployment.yaml
+    asserts:
+      - contains:
+          any: true
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: mounted-config-map
+            mountPath: "/var/run/cobrowse"
+            readOnly: true
+
+      - contains:
+          any: true
+          path: spec.template.spec.volumes
+          content:
+            name: mounted-config-map
+            configMap:
+              name: "RELEASE-NAME-volume-mounted-config-map"
+              optional: true

@@ -20,3 +20,5 @@ jobs:
 
       - run: helm lint .
       - run: helm template . -f values.yaml | kubeconform -summary
+      - run: helm plugin install https://github.com/helm-unittest/helm-unittest
+      - run: helm unittest .

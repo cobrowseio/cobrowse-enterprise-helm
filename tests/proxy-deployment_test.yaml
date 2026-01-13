@@ -1,0 +1,56 @@
+suite: proxy deployment
+templates:
+  - templates/proxy-secret.yaml
+  - templates/proxy-configmap.yaml
+  - templates/proxy-deployment.yaml
+tests:
+  - it: deploys the proxy service
+    template: templates/proxy-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.selector.matchLabels.component
+          value: proxy
+      - equal:
+          path: spec.replicas
+          value: 2
+
+  - it: may run multiple replicas
+    set:
+      proxy.replicas: 3
+    template: templates/proxy-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 3
+
+  - it: runs a proxy container
+    template: templates/proxy-deployment.yaml
+    asserts:
+      - isKind:
+          of: Deployment
+      - lengthEqual:
+          path: spec.template.spec.containers
+          count: 1
+      - equal:
+          path: spec.template.spec.containers[0].name
+          value: proxy
+
+  - it: may mount volumes containing certificate authorities
+    template: templates/proxy-deployment.yaml
+    asserts:
+      - contains:
+          any: true
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: mounted-config-map
+            mountPath: "/var/run/cobrowse"
+            readOnly: true
+
+      - contains:
+          any: true
+          path: spec.template.spec.volumes
+          content:
+            name: mounted-config-map
+            configMap:
+              name: "RELEASE-NAME-volume-mounted-config-map"
+              optional: true
