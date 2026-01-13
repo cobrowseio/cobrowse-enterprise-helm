@@ -1,0 +1,31 @@
+suite: recording deployment
+templates:
+  - templates/recording-deployment.yaml
+  - templates/recording-secret.yaml
+  - templates/recording-configmap.yaml
+  - templates/chromium-secret.yaml
+  - templates/chromium-configmap.yaml
+tests:
+  - it: deploys the recording service
+    template: templates/recording-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.selector.matchLabels.component
+          value: recording
+      - equal:
+          path: spec.replicas
+          value: 2
+      - isKind:
+          of: Deployment
+      - lengthEqual:
+          path: spec.template.spec.containers
+          count: 2
+
+  - it: may run multiple replicas
+    set:
+      recording.replicas: 3
+    template: templates/recording-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 3

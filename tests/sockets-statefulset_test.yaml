@@ -1,0 +1,74 @@
+suite: sockets stateful set
+templates:
+  - templates/sockets-secret.yaml
+  - templates/sockets-configmap.yaml
+  - templates/sockets-statefulset.yaml
+tests:
+  - it: deploys the sockets service
+    template: templates/sockets-statefulset.yaml
+    asserts:
+      - equal:
+          path: spec.selector.matchLabels.component
+          value: sockets
+      - equal:
+          path: spec.replicas
+          value: 2
+
+  - it: may run multiple replicas
+    set:
+      sockets.replicas: 3
+    template: templates/sockets-statefulset.yaml
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 3
+
+  - it: runs a sockets container
+    template: templates/sockets-statefulset.yaml
+    asserts:
+      - isKind:
+          of: StatefulSet
+      - lengthEqual:
+          path: spec.template.spec.containers
+          count: 1
+      - equal:
+          path: spec.template.spec.containers[0].name
+          value: sockets
+
+  - it: has storage for session traces
+    template: templates/sockets-statefulset.yaml
+    asserts:
+      - contains:
+          any: true
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: data-traces
+            mountPath: "/data"
+
+      - contains:
+          any: true
+          path: spec.template.spec.volumes
+          content:
+            name: data-traces
+            persistentVolumeClaim:
+              claimName: "RELEASE-NAME-sockets-pvc"
+
+  - it: may mount volumes containing certificate authorities
+    template: templates/sockets-statefulset.yaml
+    asserts:
+      - contains:
+          any: true
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: mounted-config-map
+            mountPath: "/var/run/cobrowse"
+            readOnly: true
+
+      - contains:
+          any: true
+          path: spec.template.spec.volumes
+          content:
+            name: mounted-config-map
+            configMap:
+              name: "RELEASE-NAME-volume-mounted-config-map"
+              optional: true

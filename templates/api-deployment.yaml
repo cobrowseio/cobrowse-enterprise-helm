@@ -94,6 +94,10 @@ spec:
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 1
+        volumeMounts:
+        - name: mounted-config-map
+          mountPath: "/var/run/cobrowse"
+          readOnly: true
         resources:
           limits:
             cpu: {{ coalesce .Values.api.limits.cpu .Values.api.cpu "500m" }}
@@ -106,16 +110,12 @@ spec:
           runAsGroup: {{ (.Values.api.runAs).group | default "1000" }}
           runAsUser: {{ (.Values.api.runAs).user | default "1000" }}
         {{- end }}
-        volumeMounts:
-        - name: mounted-config-map
-          mountPath: "/var/run/cobrowse"
-          readOnly: true
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
-      serviceAccountName: {{ .Values.serviceAccountName | default "" }}
-      automountServiceAccountToken: false
       volumes:
       - name: mounted-config-map
         configMap:
           name: {{ .Values.volumeMountedConfigMapName | default ( printf "%s-volume-mounted-config-map" .Release.Name ) }}
           optional: true
+      serviceAccountName: {{ .Values.serviceAccountName | default "" }}
+      automountServiceAccountToken: false
