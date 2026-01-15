@@ -2,6 +2,15 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.15.0](#) (2026-01-15)
+
+
+### Features
+
+* add frontend service url configuration ([#61](#)) ([e45731f](#))
+* add virtual agent service ([#55](#)) ([579b49e](#))
+* support for corporate proxies and their certificate bundles ([#60](#)) ([a4eea0d](#))
+
 ## [2.14.0](#) (2025-12-03)
 
 
