@@ -55,7 +55,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-virtual-agent-custom-envvars
             optional: true
-        image: {{ (.Values.virtualAgent.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-virtual-agent-enterprise:0.0.34" )) }}
+        image: {{ (.Values.virtualAgent.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-virtual-agent-enterprise:0.0.35" )) }}
         {{- if (.Values.virtualAgent.image).pullPolicy }}
         imagePullPolicy: {{ (.Values.virtualAgent.image).pullPolicy }}
         {{- end}}
