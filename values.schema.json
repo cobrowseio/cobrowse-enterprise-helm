@@ -48,7 +48,10 @@
                 },
                 "labels": [
                     { "key": "value" }
-                ]
+                ],
+                "ingress": {
+                    "securityPolicy": ""
+                }
             },
             "frontend": {
                 "replicas": 1,
@@ -554,6 +557,32 @@
                             ],
                             "required": [],
                             "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "ingress": {
+                    "$id": "#/properties/api/properties/ingress",
+                    "type": "object",
+                    "title": "The ingress schema",
+                    "description": "Ingress template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "securityPolicy": "waf-security-policy"
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "securityPolicy": {
+                            "$id": "#/properties/api/properties/pod/properties/securityPolicy",
+                            "type": "string",
+                            "title": "Name of the GCP security policy",
+                            "description": "Name of the GCP security policy",
+                            "default": "",
+                            "examples": [
+                                "waf-security-policy"
+                            ]
                         }
                     },
                     "additionalProperties": true

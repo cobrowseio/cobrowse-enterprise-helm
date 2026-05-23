@@ -1,0 +1,80 @@
+suite: GCE backend config
+templates:
+  - templates/gce-extras.yaml
+tests:
+  - it: does nothing outside of GCP
+    template: templates/gce-extras.yaml
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: configures a GCP loadbalancer backend for the API
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-backendconfig
+    asserts:
+      - isKind:
+          of: BackendConfig
+      - isNullOrEmpty:
+          path: spec
+
+  - it: can attach a given WAF security policy to the API
+    set:
+      ingress:
+        class: "gce"
+      api:
+        ingress:
+          securityPolicy: "waf-policy"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-backendconfig
+    asserts:
+      - equal:
+          path: spec.securityPolicy.name
+          value: 'waf-policy'
+
+  - it: increases the timeout to the sockets container
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-sockets-backendconfig
+    asserts:
+      - equal:
+          path: spec.timeoutSec
+          value: 604800
+
+  - it: increases the timeout to the recording container
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-recording-backendconfig
+    asserts:
+      - equal:
+          path: spec.timeoutSec
+          value: 604800
+
+  - it: redirects http requests to https automatically
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-frontend-config
+    asserts:
+      - isKind:
+          of: FrontendConfig
+      - equal:
+          path: spec.redirectToHttps.enabled
+          value: true

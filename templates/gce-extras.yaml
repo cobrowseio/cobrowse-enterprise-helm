@@ -2,6 +2,23 @@
 apiVersion: cloud.google.com/v1beta1
 kind: BackendConfig
 metadata:
+  name: api-backendconfig
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  {{- if ne .Values.api.ingress.securityPolicy "" }}
+  securityPolicy:
+    name: {{ .Values.api.ingress.securityPolicy | quote }}
+  {{- end }}
+---
+apiVersion: cloud.google.com/v1beta1
+kind: BackendConfig
+metadata:
   name: api-sockets-backendconfig
   namespace: {{ .Release.Namespace | default "default" }}
   labels:

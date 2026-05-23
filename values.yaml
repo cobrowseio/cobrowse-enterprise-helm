@@ -52,6 +52,9 @@ api:
     memory: ""
   debug: ""
 
+  ingress:
+    securityPolicy: ""
+
   service:
     type: ""
 

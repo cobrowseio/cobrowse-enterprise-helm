@@ -1,0 +1,34 @@
+suite: api service
+templates:
+  - templates/api-service.yaml
+tests:
+  - it: exposes the API service
+    template: templates/api-service.yaml
+    asserts:
+      - equal:
+          path: spec.selector.component
+          value: "api"
+      - lengthEqual:
+          path: spec.ports
+          count: 1
+      - contains:
+          path: spec.ports
+          content:
+            port: 8080
+            targetPort: 8080
+            protocol: "TCP"
+
+  - it: configures a load balancer in GCE
+    set:
+      ingress:
+        class: "gce"
+    template: templates/api-service.yaml
+    asserts:
+      - isSubset:
+          path: metadata.annotations
+          content:
+            cloud.google.com/neg: '{"ingress": true}'
+      - isSubset:
+          path: metadata.annotations
+          content:
+            cloud.google.com/backend-config: '{"ports": {"8080":"api-backendconfig"}}'
