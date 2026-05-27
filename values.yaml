@@ -68,6 +68,9 @@ frontend:
     cpu: ""
     memory: ""
 
+  ingress:
+    securityPolicy: ""
+
   service:
     type: ""
 
@@ -82,6 +85,8 @@ proxy:
     memory: ""
   debug: ""
 
+  ingress:
+    securityPolicy: ""
 
   service:
     type: ""
@@ -96,6 +101,9 @@ recording:
     cpu: ""
     memory: ""
   debug: ""
+
+  ingress:
+    securityPolicy: ""
 
   service:
     type: ""
@@ -122,6 +130,9 @@ sockets:
     memory: ""
   debug: ""
 
+  ingress:
+    securityPolicy: ""
+
   service:
     type: ""
 
@@ -137,6 +148,9 @@ virtualAgent:
   limits:
     cpu: ""
     memory: "" 
+
+  ingress:
+    securityPolicy: ""
 
   service:
     type: ""

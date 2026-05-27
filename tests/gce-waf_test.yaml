@@ -1,0 +1,183 @@
+suite: GCE WAF configuration
+templates:
+  - templates/gce-extras.yaml
+tests:
+  - it: does nothing outside of GCP
+    template: templates/gce-extras.yaml
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: creates a load balancer for the API service with no WAF policy
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-backendconfig
+    asserts:
+      - isNullOrEmpty:
+          path: spec
+
+  - it: can attach a given WAF security policy to the API
+    set:
+      ingress:
+        class: "gce"
+      api:
+        ingress:
+          securityPolicy: "waf-policy"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-backendconfig
+    asserts:
+      - equal:
+          path: spec.securityPolicy.name
+          value: 'waf-policy'
+
+  - it: creates a load balancer for the Socket service with no WAF policy
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-sockets-backendconfig
+    asserts:
+      - notExists:
+          path: spec.securityPolicy.name
+
+  - it: can attach a given WAF security policy to the Sockets service
+    set:
+      ingress:
+        class: "gce"
+      sockets:
+        ingress:
+          securityPolicy: "waf-policy"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-sockets-backendconfig
+    asserts:
+      - equal:
+          path: spec.securityPolicy.name
+          value: 'waf-policy'
+
+  - it: creates a load balancer for the recording service with no WAF policy
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-recording-backendconfig
+    asserts:
+      - notExists:
+          path: spec.securityPolicy.name
+
+  - it: can attach a given WAF security policy to the recording container
+    set:
+      ingress:
+        class: "gce"
+      recording:
+        ingress:
+          securityPolicy: "waf-policy"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-recording-backendconfig
+    asserts:
+      - equal:
+          path: spec.securityPolicy.name
+          value: 'waf-policy'
+
+  - it: creates a load balancer for the proxy service with no WAF policy
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-proxy-backendconfig
+    asserts:
+      - isKind:
+          of: BackendConfig
+      - notExists:
+          path: spec.securityPolicy.name
+
+  - it: can attach a given WAF security policy to the proxy container
+    set:
+      ingress:
+        class: "gce"
+      proxy:
+        ingress:
+          securityPolicy: "waf-policy"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-proxy-backendconfig
+    asserts:
+      - equal:
+          path: spec.securityPolicy.name
+          value: 'waf-policy'
+
+  - it: creates a load balancer for the virtual agent service with no WAF policy
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-virtual-agent-backendconfig
+    asserts:
+      - isKind:
+          of: BackendConfig
+      - notExists:
+          path: spec.securityPolicy.name
+
+  - it: can attach a given WAF security policy to the virtualAgent container
+    set:
+      ingress:
+        class: "gce"
+      virtualAgent:
+        ingress:
+          securityPolicy: "waf-policy"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-virtual-agent-backendconfig
+    asserts:
+      - equal:
+          path: spec.securityPolicy.name
+          value: 'waf-policy'
+
+  - it: creates a load balancer for the frontend service with no WAF policy
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-frontend-backendconfig
+    asserts:
+      - isKind:
+          of: BackendConfig
+      - notExists:
+          path: spec.securityPolicy.name
+
+  - it: can attach a given WAF security policy to the frontend container
+    set:
+      ingress:
+        class: "gce"
+      frontend:
+        ingress:
+          securityPolicy: "waf-policy"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-frontend-backendconfig
+    asserts:
+      - equal:
+          path: spec.securityPolicy.name
+          value: 'waf-policy'

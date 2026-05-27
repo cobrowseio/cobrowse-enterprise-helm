@@ -67,7 +67,10 @@
                 },
                 "labels": [
                     { "key": "value" }
-                ]
+                ],
+                "ingress": {
+                    "securityPolicy": ""
+                }
             },
             "proxy": {
                 "replicas": 1,
@@ -84,7 +87,10 @@
                 },
                 "labels": [
                     { "key": "value" }
-                ]
+                ],
+                "ingress": {
+                    "securityPolicy": ""
+                }
             },
             "recording": {
                 "replicas": 1,
@@ -101,7 +107,10 @@
                 },
                 "labels": [
                     { "key": "value" }
-                ]
+                ],
+                "ingress": {
+                    "securityPolicy": ""
+                }
             },
             "sockets": {
                 "replicas": 1,
@@ -118,7 +127,10 @@
                 },
                 "labels": [
                     { "key": "value" }
-                ]
+                ],
+                "ingress": {
+                    "securityPolicy": ""
+                }
             }
         }
     ],
@@ -575,7 +587,7 @@
                     "required": [],
                     "properties": {
                         "securityPolicy": {
-                            "$id": "#/properties/api/properties/pod/properties/securityPolicy",
+                            "$id": "#/properties/api/properties/ingress/properties/securityPolicy",
                             "type": "string",
                             "title": "Name of the GCP security policy",
                             "description": "Name of the GCP security policy",
@@ -744,6 +756,32 @@
                             ],
                             "required": [],
                             "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "ingress": {
+                    "$id": "#/properties/frontend/properties/ingress",
+                    "type": "object",
+                    "title": "The ingress schema",
+                    "description": "Ingress template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "securityPolicy": "waf-security-policy"
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "securityPolicy": {
+                            "$id": "#/properties/frontend/properties/ingress/properties/securityPolicy",
+                            "type": "string",
+                            "title": "Name of the GCP security policy",
+                            "description": "Name of the GCP security policy",
+                            "default": "",
+                            "examples": [
+                                "waf-security-policy"
+                            ]
                         }
                     },
                     "additionalProperties": true
@@ -917,6 +955,32 @@
                             ],
                             "required": [],
                             "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "ingress": {
+                    "$id": "#/properties/proxy/properties/ingress",
+                    "type": "object",
+                    "title": "The ingress schema",
+                    "description": "Ingress template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "securityPolicy": "waf-security-policy"
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "securityPolicy": {
+                            "$id": "#/properties/proxy/properties/ingress/properties/securityPolicy",
+                            "type": "string",
+                            "title": "Name of the GCP security policy",
+                            "description": "Name of the GCP security policy",
+                            "default": "",
+                            "examples": [
+                                "waf-security-policy"
+                            ]
                         }
                     },
                     "additionalProperties": true
@@ -1116,6 +1180,32 @@
                             ],
                             "required": [],
                             "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "ingress": {
+                    "$id": "#/properties/recording/properties/ingress",
+                    "type": "object",
+                    "title": "The ingress schema",
+                    "description": "Ingress template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "securityPolicy": "waf-security-policy"
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "securityPolicy": {
+                            "$id": "#/properties/recording/properties/ingress/properties/securityPolicy",
+                            "type": "string",
+                            "title": "Name of the GCP security policy",
+                            "description": "Name of the GCP security policy",
+                            "default": "",
+                            "examples": [
+                                "waf-security-policy"
+                            ]
                         }
                     },
                     "additionalProperties": true
@@ -1328,6 +1418,32 @@
                     "examples": [
                         ""
                     ]
+                },
+                "ingress": {
+                    "$id": "#/properties/sockets/properties/ingress",
+                    "type": "object",
+                    "title": "The ingress schema",
+                    "description": "Ingress template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "securityPolicy": "waf-security-policy"
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "securityPolicy": {
+                            "$id": "#/properties/sockets/properties/ingress/properties/securityPolicy",
+                            "type": "string",
+                            "title": "Name of the GCP security policy",
+                            "description": "Name of the GCP security policy",
+                            "default": "",
+                            "examples": [
+                                "waf-security-policy"
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
                 }
             },
             "additionalProperties": true
@@ -1486,6 +1602,32 @@
                             ],
                             "required": [],
                             "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "ingress": {
+                    "$id": "#/properties/virtualAgent/properties/ingress",
+                    "type": "object",
+                    "title": "The ingress schema",
+                    "description": "Ingress template properties",
+                    "default": {},
+                    "examples": [
+                        {
+                            "securityPolicy": "waf-security-policy"
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "securityPolicy": {
+                            "$id": "#/properties/virtualAgent/properties/ingress/properties/securityPolicy",
+                            "type": "string",
+                            "title": "Name of the GCP security policy",
+                            "description": "Name of the GCP security policy",
+                            "default": "",
+                            "examples": [
+                                "waf-security-policy"
+                            ]
                         }
                     },
                     "additionalProperties": true

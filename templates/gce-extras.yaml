@@ -1,5 +1,5 @@
 {{- if eq .Values.ingress.class "gce" -}}
-apiVersion: cloud.google.com/v1beta1
+apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
   name: api-backendconfig
@@ -16,7 +16,7 @@ spec:
     name: {{ .Values.api.ingress.securityPolicy | quote }}
   {{- end }}
 ---
-apiVersion: cloud.google.com/v1beta1
+apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
   name: api-sockets-backendconfig
@@ -29,8 +29,29 @@ metadata:
     stage: {{ .Values.stage | quote }}
 spec:
   timeoutSec: 604800
+  {{- if ne .Values.sockets.ingress.securityPolicy "" }}
+  securityPolicy:
+    name: {{ .Values.sockets.ingress.securityPolicy | quote }}
+  {{- end }}
 ---
-apiVersion: cloud.google.com/v1beta1
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: api-proxy-backendconfig
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  {{- if ne .Values.proxy.ingress.securityPolicy "" }}
+  securityPolicy:
+    name: {{ .Values.proxy.ingress.securityPolicy | quote }}
+  {{- end }}
+---
+apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
   name: api-recording-backendconfig
@@ -43,6 +64,44 @@ metadata:
     stage: {{ .Values.stage | quote }}
 spec:
   timeoutSec: 604800
+  {{- if ne .Values.recording.ingress.securityPolicy "" }}
+  securityPolicy:
+    name: {{ .Values.recording.ingress.securityPolicy | quote }}
+  {{- end }}
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: api-virtual-agent-backendconfig
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  {{- if ne .Values.virtualAgent.ingress.securityPolicy "" }}
+  securityPolicy:
+    name: {{ .Values.virtualAgent.ingress.securityPolicy | quote }}
+  {{- end }}
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: api-frontend-backendconfig
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+spec:
+  {{- if ne .Values.frontend.ingress.securityPolicy "" }}
+  securityPolicy:
+    name: {{ .Values.frontend.ingress.securityPolicy | quote }}
+  {{- end }}
 ---
 apiVersion: networking.gke.io/v1beta1
 kind: FrontendConfig
