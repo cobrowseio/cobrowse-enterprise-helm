@@ -1,13 +1,13 @@
-suite: api service
+suite: virtual-agent service
 templates:
-  - templates/api-service.yaml
+  - templates/virtual-agent-service.yaml
 tests:
-  - it: exposes the api service
-    template: templates/api-service.yaml
+  - it: exposes the virtual-agent service
+    template: templates/virtual-agent-service.yaml
     asserts:
       - equal:
           path: spec.selector.component
-          value: "api"
+          value: "virtual-agent"
       - lengthEqual:
           path: spec.ports
           count: 1
@@ -19,13 +19,13 @@ tests:
             protocol: "TCP"
 
   - it: does not configure a GCE load balancer outside of GCP
-    template: templates/api-service.yaml
+    template: templates/virtual-agent-service.yaml
     asserts:
       - notExists:
           path: metadata.annotations["cloud.google.com/neg"]
 
   - it: configures a default GCE load balancer in GCP
-    template: templates/api-service.yaml
+    template: templates/virtual-agent-service.yaml
     set:
       ingress:
         class: "gce"
@@ -36,40 +36,40 @@ tests:
             cloud.google.com/neg: '{"ingress": true}'
 
   - it: supports custom annotations
-    template: templates/api-service.yaml
+    template: templates/virtual-agent-service.yaml
     set:
-      api:
+      virtualAgent:
         service:
           annotations:
-            cloud.google.com/backend-config: '{"ports": {"8080":"api-backendconfig"}}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"virtual-agent-backendconfig"}}'
     asserts:
       - isSubset:
           path: metadata.annotations
           content:
-            cloud.google.com/backend-config: '{"ports": {"8080":"api-backendconfig"}}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"virtual-agent-backendconfig"}}'
 
   - it: merges custom annotations with the cloud provider defaults
-    template: templates/api-service.yaml
+    template: templates/virtual-agent-service.yaml
     set:
       ingress:
         class: "gce"
-      api:
+      virtualAgent:
         service:
           annotations:
-            cloud.google.com/backend-config: '{"ports": {"8080":"api-backendconfig"}}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"virtual-agent-backendconfig"}}'
     asserts:
       - isSubset:
           path: metadata.annotations
           content:
             cloud.google.com/neg: '{"ingress": true}'
-            cloud.google.com/backend-config: '{"ports": {"8080":"api-backendconfig"}}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"virtual-agent-backendconfig"}}'
 
   - it: prioritises custom annotations over provider defaults
-    template: templates/api-service.yaml
+    template: templates/virtual-agent-service.yaml
     set:
       ingress:
         class: "gce"
-      api:
+      virtualAgent:
         service:
           annotations:
             cloud.google.com/neg: '{"ingress": false}'

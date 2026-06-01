@@ -39,7 +39,8 @@
                 "memory": "",
                 "debug": "",
                 "service": {
-                    "type": ""
+                    "type": "",
+                    "annotations": {}
                 },
                 "pod": {
                     "annotations": [ 
@@ -48,17 +49,15 @@
                 },
                 "labels": [
                     { "key": "value" }
-                ],
-                "ingress": {
-                    "securityPolicy": ""
-                }
+                ]
             },
             "frontend": {
                 "replicas": 1,
                 "cpu": "",
                 "memory": "",
                 "service": {
-                    "type": ""
+                    "type": "",
+                    "annotations": {}
                 },
                 "pod": {
                     "annotations": [ 
@@ -67,10 +66,7 @@
                 },
                 "labels": [
                     { "key": "value" }
-                ],
-                "ingress": {
-                    "securityPolicy": ""
-                }
+                ]
             },
             "proxy": {
                 "replicas": 1,
@@ -78,7 +74,8 @@
                 "memory": "",
                 "debug": "",
                 "service": {
-                    "type": ""
+                    "type": "",
+                    "annotations": {}
                 },
                 "pod": {
                     "annotations": [ 
@@ -87,10 +84,7 @@
                 },
                 "labels": [
                     { "key": "value" }
-                ],
-                "ingress": {
-                    "securityPolicy": ""
-                }
+                ]
             },
             "recording": {
                 "replicas": 1,
@@ -98,7 +92,8 @@
                 "memory": "",
                 "debug": "",
                 "service": {
-                    "type": ""
+                    "type": "",
+                    "annotations": {}
                 },
                 "pod": {
                     "annotations": [ 
@@ -107,10 +102,7 @@
                 },
                 "labels": [
                     { "key": "value" }
-                ],
-                "ingress": {
-                    "securityPolicy": ""
-                }
+                ]
             },
             "sockets": {
                 "replicas": 1,
@@ -118,7 +110,8 @@
                 "memory": "",
                 "debug": "",
                 "service": {
-                    "type": ""
+                    "type": "",
+                    "annotations": {}
                 },
                 "pod": {
                     "annotations": [ 
@@ -127,10 +120,7 @@
                 },
                 "labels": [
                     { "key": "value" }
-                ],
-                "ingress": {
-                    "securityPolicy": ""
-                }
+                ]
             }
         }
     ],
@@ -513,7 +503,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -529,6 +520,18 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/api/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
                     },
                     "additionalProperties": true
@@ -562,39 +565,13 @@
                             "$id": "#/properties/api/properties/pod/properties/annotations",
                             "type": "object",
                             "title": "The pod annotations",
-                            "description": "An array of pod annotations",
+                            "description": "A map of pod annotations",
                             "default": {},
                             "examples": [
                                 { "key" : "value" }
                             ],
                             "required": [],
                             "additionalProperties": true
-                        }
-                    },
-                    "additionalProperties": true
-                },
-                "ingress": {
-                    "$id": "#/properties/api/properties/ingress",
-                    "type": "object",
-                    "title": "The ingress schema",
-                    "description": "Ingress template properties",
-                    "default": {},
-                    "examples": [
-                        {
-                            "securityPolicy": "waf-security-policy"
-                        }
-                    ],
-                    "required": [],
-                    "properties": {
-                        "securityPolicy": {
-                            "$id": "#/properties/api/properties/ingress/properties/securityPolicy",
-                            "type": "string",
-                            "title": "Name of the GCP security policy",
-                            "description": "Name of the GCP security policy",
-                            "default": "",
-                            "examples": [
-                                "waf-security-policy"
-                            ]
                         }
                     },
                     "additionalProperties": true
@@ -700,7 +677,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -716,7 +694,20 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/frontend/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
+
                     },
                     "additionalProperties": true
                 },
@@ -756,32 +747,6 @@
                             ],
                             "required": [],
                             "additionalProperties": true
-                        }
-                    },
-                    "additionalProperties": true
-                },
-                "ingress": {
-                    "$id": "#/properties/frontend/properties/ingress",
-                    "type": "object",
-                    "title": "The ingress schema",
-                    "description": "Ingress template properties",
-                    "default": {},
-                    "examples": [
-                        {
-                            "securityPolicy": "waf-security-policy"
-                        }
-                    ],
-                    "required": [],
-                    "properties": {
-                        "securityPolicy": {
-                            "$id": "#/properties/frontend/properties/ingress/properties/securityPolicy",
-                            "type": "string",
-                            "title": "Name of the GCP security policy",
-                            "description": "Name of the GCP security policy",
-                            "default": "",
-                            "examples": [
-                                "waf-security-policy"
-                            ]
                         }
                     },
                     "additionalProperties": true
@@ -899,7 +864,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -915,7 +881,20 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/proxy/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
+
                     },
                     "additionalProperties": true
                 },
@@ -955,32 +934,6 @@
                             ],
                             "required": [],
                             "additionalProperties": true
-                        }
-                    },
-                    "additionalProperties": true
-                },
-                "ingress": {
-                    "$id": "#/properties/proxy/properties/ingress",
-                    "type": "object",
-                    "title": "The ingress schema",
-                    "description": "Ingress template properties",
-                    "default": {},
-                    "examples": [
-                        {
-                            "securityPolicy": "waf-security-policy"
-                        }
-                    ],
-                    "required": [],
-                    "properties": {
-                        "securityPolicy": {
-                            "$id": "#/properties/proxy/properties/ingress/properties/securityPolicy",
-                            "type": "string",
-                            "title": "Name of the GCP security policy",
-                            "description": "Name of the GCP security policy",
-                            "default": "",
-                            "examples": [
-                                "waf-security-policy"
-                            ]
                         }
                     },
                     "additionalProperties": true
@@ -1098,7 +1051,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -1114,7 +1068,20 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/recording/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
+
                     },
                     "additionalProperties": true
                 },
@@ -1180,32 +1147,6 @@
                             ],
                             "required": [],
                             "additionalProperties": true
-                        }
-                    },
-                    "additionalProperties": true
-                },
-                "ingress": {
-                    "$id": "#/properties/recording/properties/ingress",
-                    "type": "object",
-                    "title": "The ingress schema",
-                    "description": "Ingress template properties",
-                    "default": {},
-                    "examples": [
-                        {
-                            "securityPolicy": "waf-security-policy"
-                        }
-                    ],
-                    "required": [],
-                    "properties": {
-                        "securityPolicy": {
-                            "$id": "#/properties/recording/properties/ingress/properties/securityPolicy",
-                            "type": "string",
-                            "title": "Name of the GCP security policy",
-                            "description": "Name of the GCP security policy",
-                            "default": "",
-                            "examples": [
-                                "waf-security-policy"
-                            ]
                         }
                     },
                     "additionalProperties": true
@@ -1323,7 +1264,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -1339,7 +1281,20 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/sockets/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
+
                     },
                     "additionalProperties": true
                 },
@@ -1418,32 +1373,6 @@
                     "examples": [
                         ""
                     ]
-                },
-                "ingress": {
-                    "$id": "#/properties/sockets/properties/ingress",
-                    "type": "object",
-                    "title": "The ingress schema",
-                    "description": "Ingress template properties",
-                    "default": {},
-                    "examples": [
-                        {
-                            "securityPolicy": "waf-security-policy"
-                        }
-                    ],
-                    "required": [],
-                    "properties": {
-                        "securityPolicy": {
-                            "$id": "#/properties/sockets/properties/ingress/properties/securityPolicy",
-                            "type": "string",
-                            "title": "Name of the GCP security policy",
-                            "description": "Name of the GCP security policy",
-                            "default": "",
-                            "examples": [
-                                "waf-security-policy"
-                            ]
-                        }
-                    },
-                    "additionalProperties": true
                 }
             },
             "additionalProperties": true
@@ -1546,7 +1475,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -1562,7 +1492,20 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/virtualAgent/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
+
                     },
                     "additionalProperties": true
                 },
@@ -1602,32 +1545,6 @@
                             ],
                             "required": [],
                             "additionalProperties": true
-                        }
-                    },
-                    "additionalProperties": true
-                },
-                "ingress": {
-                    "$id": "#/properties/virtualAgent/properties/ingress",
-                    "type": "object",
-                    "title": "The ingress schema",
-                    "description": "Ingress template properties",
-                    "default": {},
-                    "examples": [
-                        {
-                            "securityPolicy": "waf-security-policy"
-                        }
-                    ],
-                    "required": [],
-                    "properties": {
-                        "securityPolicy": {
-                            "$id": "#/properties/virtualAgent/properties/ingress/properties/securityPolicy",
-                            "type": "string",
-                            "title": "Name of the GCP security policy",
-                            "description": "Name of the GCP security policy",
-                            "default": "",
-                            "examples": [
-                                "waf-security-policy"
-                            ]
                         }
                     },
                     "additionalProperties": true

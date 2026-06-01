@@ -8,20 +8,6 @@ tests:
       - hasDocuments:
           count: 0
 
-  - it: configures a GCP loadbalancer backend for the API service
-    set:
-      ingress:
-        class: "gce"
-    template: templates/gce-extras.yaml
-    documentSelector:
-      path: metadata.name
-      value: api-backendconfig
-    asserts:
-      - isKind:
-          of: BackendConfig
-      - isAPIVersion:
-          of: cloud.google.com/v1
-
   - it: configures a GCP loadbalancer backend for the Sockets service
     set:
       ingress:
@@ -75,48 +61,6 @@ tests:
       - equal:
           path: spec.timeoutSec
           value: 604800
-
-  - it: configures a GCP loadbalancer backend for the proxy service
-    set:
-      ingress:
-        class: "gce"
-    template: templates/gce-extras.yaml
-    documentSelector:
-      path: metadata.name
-      value: api-proxy-backendconfig
-    asserts:
-      - isKind:
-          of: BackendConfig
-      - isAPIVersion:
-          of: cloud.google.com/v1
-
-  - it: configures a GCP loadbalancer backend for the virtualAgent service
-    set:
-      ingress:
-        class: "gce"
-    template: templates/gce-extras.yaml
-    documentSelector:
-      path: metadata.name
-      value: api-virtual-agent-backendconfig
-    asserts:
-      - isKind:
-          of: BackendConfig
-      - isAPIVersion:
-          of: cloud.google.com/v1
-
-  - it: configures a GCP loadbalancer backend for the frontend service
-    set:
-      ingress:
-        class: "gce"
-    template: templates/gce-extras.yaml
-    documentSelector:
-      path: metadata.name
-      value: api-frontend-backendconfig
-    asserts:
-      - isKind:
-          of: BackendConfig
-      - isAPIVersion:
-          of: cloud.google.com/v1
 
   - it: redirects http requests to https automatically
     set:

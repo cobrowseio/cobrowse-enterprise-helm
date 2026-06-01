@@ -1,13 +1,13 @@
-suite: api service
+suite: frontend service
 templates:
-  - templates/api-service.yaml
+  - templates/frontend-service.yaml
 tests:
-  - it: exposes the api service
-    template: templates/api-service.yaml
+  - it: exposes the frontend service
+    template: templates/frontend-service.yaml
     asserts:
       - equal:
           path: spec.selector.component
-          value: "api"
+          value: "frontend"
       - lengthEqual:
           path: spec.ports
           count: 1
@@ -19,13 +19,13 @@ tests:
             protocol: "TCP"
 
   - it: does not configure a GCE load balancer outside of GCP
-    template: templates/api-service.yaml
+    template: templates/frontend-service.yaml
     asserts:
       - notExists:
           path: metadata.annotations["cloud.google.com/neg"]
 
   - it: configures a default GCE load balancer in GCP
-    template: templates/api-service.yaml
+    template: templates/frontend-service.yaml
     set:
       ingress:
         class: "gce"
@@ -36,40 +36,40 @@ tests:
             cloud.google.com/neg: '{"ingress": true}'
 
   - it: supports custom annotations
-    template: templates/api-service.yaml
+    template: templates/frontend-service.yaml
     set:
-      api:
+      frontend:
         service:
           annotations:
-            cloud.google.com/backend-config: '{"ports": {"8080":"api-backendconfig"}}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"frontend-backendconfig"}}'
     asserts:
       - isSubset:
           path: metadata.annotations
           content:
-            cloud.google.com/backend-config: '{"ports": {"8080":"api-backendconfig"}}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"frontend-backendconfig"}}'
 
   - it: merges custom annotations with the cloud provider defaults
-    template: templates/api-service.yaml
+    template: templates/frontend-service.yaml
     set:
       ingress:
         class: "gce"
-      api:
+      frontend:
         service:
           annotations:
-            cloud.google.com/backend-config: '{"ports": {"8080":"api-backendconfig"}}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"frontend-backendconfig"}}'
     asserts:
       - isSubset:
           path: metadata.annotations
           content:
             cloud.google.com/neg: '{"ingress": true}'
-            cloud.google.com/backend-config: '{"ports": {"8080":"api-backendconfig"}}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"frontend-backendconfig"}}'
 
   - it: prioritises custom annotations over provider defaults
-    template: templates/api-service.yaml
+    template: templates/frontend-service.yaml
     set:
       ingress:
         class: "gce"
-      api:
+      frontend:
         service:
           annotations:
             cloud.google.com/neg: '{"ingress": false}'
@@ -78,3 +78,4 @@ tests:
           path: metadata.annotations
           content:
             cloud.google.com/neg: '{"ingress": false}'
+

@@ -44,3 +44,9 @@ Create the default image reference for the specified image and version
 {{- define "image" }}
 {{- printf "%s%s%s" (ternary .repo "" (ne .repo "")) (ternary "/" "" (ne .repo "")) .image }}
 {{- end }}
+
+{{- define "service.annotations" }}
+{{- $merged_annotations := merge (dict) (default dict .annotations) (default dict .default) }}
+  annotations:
+  {{- toYaml $merged_annotations | nindent 4 }}
+{{- end }}

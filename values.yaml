@@ -52,12 +52,10 @@ api:
     memory: ""
   debug: ""
 
-  ingress:
-    securityPolicy: ""
-
   service:
     type: ""
-
+    annotations:
+      {}
 
 # Frontend configurations
 frontend:
@@ -68,11 +66,9 @@ frontend:
     cpu: ""
     memory: ""
 
-  ingress:
-    securityPolicy: ""
-
   service:
     type: ""
+    annotations: {}
 
 
 # Proxy configurations
@@ -85,12 +81,9 @@ proxy:
     memory: ""
   debug: ""
 
-  ingress:
-    securityPolicy: ""
-
   service:
     type: ""
-
+    annotations: {}
 
 # Recording configurations
 recording:
@@ -102,11 +95,9 @@ recording:
     memory: ""
   debug: ""
 
-  ingress:
-    securityPolicy: ""
-
   service:
     type: ""
+    annotations: {}
 
   storage: {
     # persistentVolumeClaimName: "cobrowse-sockets-pvc"
@@ -130,11 +121,9 @@ sockets:
     memory: ""
   debug: ""
 
-  ingress:
-    securityPolicy: ""
-
   service:
     type: ""
+    annotations: {}
 
   storage: {
     # persistentVolumeClaimName: "cobrowse-sockets-pvc"
@@ -147,13 +136,11 @@ virtualAgent:
   memory: ""
   limits:
     cpu: ""
-    memory: "" 
-
-  ingress:
-    securityPolicy: ""
+    memory: ""
 
   service:
     type: ""
+    annotations: {}
 
 containerSecurityContext:
   enabled: true

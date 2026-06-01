@@ -1,0 +1,84 @@
+suite: recording service
+templates:
+  - templates/recording-service.yaml
+tests:
+  - it: exposes the recording service
+    template: templates/recording-service.yaml
+    documentSelector:
+      path: metadata.name
+      value: RELEASE-NAME-recording-svc
+    asserts:
+      - equal:
+          path: spec.selector.component
+          value: "recording"
+      - lengthEqual:
+          path: spec.ports
+          count: 1
+      - contains:
+          path: spec.ports
+          content:
+            port: 8080
+            targetPort: 8080
+            protocol: "TCP"
+
+  - it: does not configure a GCE load balancer outside of GCP
+    template: templates/recording-service.yaml
+    documentSelector:
+      path: metadata.name
+      value: RELEASE-NAME-recording-svc
+    asserts:
+      - notExists:
+          path: metadata.annotations["cloud.google.com/neg"]
+
+  - it: configures a default GCE load balancer in GCP with an increased timeout
+    template: templates/recording-service.yaml
+    documentSelector:
+      path: metadata.name
+      value: RELEASE-NAME-recording-svc
+    set:
+      ingress:
+        class: "gce"
+    asserts:
+      - isSubset:
+          path: metadata.annotations
+          content:
+            cloud.google.com/neg: '{"ingress": true}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"api-recording-backendconfig"}}'
+
+  - it: merges custom annotations and default annotations
+    template: templates/recording-service.yaml
+    documentSelector:
+      path: metadata.name
+      value: RELEASE-NAME-recording-svc
+    set:
+      ingress:
+        class: "gce"
+      recording:
+        service:
+          annotations:
+            custom: "value"
+    asserts:
+      - isSubset:
+          path: metadata.annotations
+          content:
+            custom: "value"
+            cloud.google.com/neg: '{"ingress": true}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"api-recording-backendconfig"}}'
+
+  - it: prioritises custom annotations over provider defaults
+    template: templates/recording-service.yaml
+    documentSelector:
+      path: metadata.name
+      value: RELEASE-NAME-recording-svc
+    set:
+      ingress:
+        class: "gce"
+      recording:
+        service:
+          annotations:
+            cloud.google.com/backend-config: '{"ports": {"8080":"custom-recording-backendconfig"}}'
+    asserts:
+      - isSubset:
+          path: metadata.annotations
+          content:
+            cloud.google.com/backend-config: '{"ports": {"8080":"custom-recording-backendconfig"}}'
