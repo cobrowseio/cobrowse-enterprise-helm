@@ -1,0 +1,84 @@
+suite: sockets service
+templates:
+  - templates/sockets-service.yaml
+tests:
+  - it: exposes the sockets service
+    template: templates/sockets-service.yaml
+    documentSelector:
+      path: metadata.name
+      value: RELEASE-NAME-sockets-svc
+    asserts:
+      - equal:
+          path: spec.selector.component
+          value: "sockets"
+      - lengthEqual:
+          path: spec.ports
+          count: 1
+      - contains:
+          path: spec.ports
+          content:
+            port: 8080
+            targetPort: 8080
+            protocol: "TCP"
+
+  - it: does not configure a GCE load balancer outside of GCP
+    template: templates/sockets-service.yaml
+    documentSelector:
+      path: metadata.name
+      value: RELEASE-NAME-sockets-svc
+    asserts:
+      - notExists:
+          path: metadata.annotations["cloud.google.com/neg"]
+
+  - it: configures a default GCE load balancer in GCP with an increased timeout
+    template: templates/sockets-service.yaml
+    documentSelector:
+      path: metadata.name
+      value: RELEASE-NAME-sockets-svc
+    set:
+      ingress:
+        class: "gce"
+    asserts:
+      - isSubset:
+          path: metadata.annotations
+          content:
+            cloud.google.com/neg: '{"ingress": true}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"api-sockets-backendconfig"}}'
+
+  - it: merges custom annotations and default annotations
+    template: templates/sockets-service.yaml
+    documentSelector:
+      path: metadata.name
+      value: RELEASE-NAME-sockets-svc
+    set:
+      ingress:
+        class: "gce"
+      sockets:
+        service:
+          annotations:
+            custom: "value"
+    asserts:
+      - isSubset:
+          path: metadata.annotations
+          content:
+            custom: "value"
+            cloud.google.com/neg: '{"ingress": true}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"api-sockets-backendconfig"}}'
+
+  - it: prioritises custom annotations over provider defaults
+    template: templates/sockets-service.yaml
+    documentSelector:
+      path: metadata.name
+      value: RELEASE-NAME-sockets-svc
+    set:
+      ingress:
+        class: "gce"
+      sockets:
+        service:
+          annotations:
+            cloud.google.com/backend-config: '{"ports": {"8080":"custom-sockets-backendconfig"}}'
+    asserts:
+      - isSubset:
+          path: metadata.annotations
+          content:
+            cloud.google.com/backend-config: '{"ports": {"8080":"custom-sockets-backendconfig"}}'

@@ -1,0 +1,78 @@
+suite: GCE backend config
+templates:
+  - templates/gce-extras.yaml
+tests:
+  - it: does nothing outside of GCP
+    template: templates/gce-extras.yaml
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: configures a GCP loadbalancer backend for the Sockets service
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-sockets-backendconfig
+    asserts:
+      - isKind:
+          of: BackendConfig
+      - isAPIVersion:
+          of: cloud.google.com/v1
+
+  - it: increases the timeout to the sockets service
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-sockets-backendconfig
+    asserts:
+      - equal:
+          path: spec.timeoutSec
+          value: 604800
+
+  - it: configures a GCP loadbalancer backend for the recording service
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-recording-backendconfig
+    asserts:
+      - isKind:
+          of: BackendConfig
+      - isAPIVersion:
+          of: cloud.google.com/v1
+
+  - it: increases the timeout to the recording service
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-recording-backendconfig
+    asserts:
+      - equal:
+          path: spec.timeoutSec
+          value: 604800
+
+  - it: redirects http requests to https automatically
+    set:
+      ingress:
+        class: "gce"
+    template: templates/gce-extras.yaml
+    documentSelector:
+      path: metadata.name
+      value: api-frontend-config
+    asserts:
+      - isKind:
+          of: FrontendConfig
+      - equal:
+          path: spec.redirectToHttps.enabled
+          value: true

@@ -9,10 +9,11 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
-  annotations:
+  {{- $default_annotations := dict }}
   {{- if eq .Values.ingress.class "gce" }}
-    cloud.google.com/neg: '{"ingress": true}'
+  {{- $_ := set $default_annotations "cloud.google.com/neg" "{\"ingress\": true}" }}
   {{- end }}
+  {{- template "service.annotations" (dict "annotations" .Values.virtualAgent.service.annotations "default" $default_annotations) }}
 spec:
   ports:
   - port: 8080

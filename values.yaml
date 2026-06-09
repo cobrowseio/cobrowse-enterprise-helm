@@ -54,7 +54,8 @@ api:
 
   service:
     type: ""
-
+    annotations:
+      {}
 
 # Frontend configurations
 frontend:
@@ -67,6 +68,7 @@ frontend:
 
   service:
     type: ""
+    annotations: {}
 
 
 # Proxy configurations
@@ -79,10 +81,9 @@ proxy:
     memory: ""
   debug: ""
 
-
   service:
     type: ""
-
+    annotations: {}
 
 # Recording configurations
 recording:
@@ -96,6 +97,7 @@ recording:
 
   service:
     type: ""
+    annotations: {}
 
   storage: {
     # persistentVolumeClaimName: "cobrowse-sockets-pvc"
@@ -121,6 +123,7 @@ sockets:
 
   service:
     type: ""
+    annotations: {}
 
   storage: {
     # persistentVolumeClaimName: "cobrowse-sockets-pvc"
@@ -133,10 +136,11 @@ virtualAgent:
   memory: ""
   limits:
     cpu: ""
-    memory: "" 
+    memory: ""
 
   service:
     type: ""
+    annotations: {}
 
 containerSecurityContext:
   enabled: true

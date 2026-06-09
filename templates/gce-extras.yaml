@@ -1,5 +1,5 @@
 {{- if eq .Values.ingress.class "gce" -}}
-apiVersion: cloud.google.com/v1beta1
+apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
   name: api-sockets-backendconfig
@@ -13,7 +13,7 @@ metadata:
 spec:
   timeoutSec: 604800
 ---
-apiVersion: cloud.google.com/v1beta1
+apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
   name: api-recording-backendconfig

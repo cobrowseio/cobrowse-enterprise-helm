@@ -1,0 +1,81 @@
+suite: frontend service
+templates:
+  - templates/frontend-service.yaml
+tests:
+  - it: exposes the frontend service
+    template: templates/frontend-service.yaml
+    asserts:
+      - equal:
+          path: spec.selector.component
+          value: "frontend"
+      - lengthEqual:
+          path: spec.ports
+          count: 1
+      - contains:
+          path: spec.ports
+          content:
+            port: 8080
+            targetPort: 8080
+            protocol: "TCP"
+
+  - it: does not configure a GCE load balancer outside of GCP
+    template: templates/frontend-service.yaml
+    asserts:
+      - notExists:
+          path: metadata.annotations["cloud.google.com/neg"]
+
+  - it: configures a default GCE load balancer in GCP
+    template: templates/frontend-service.yaml
+    set:
+      ingress:
+        class: "gce"
+    asserts:
+      - isSubset:
+          path: metadata.annotations
+          content:
+            cloud.google.com/neg: '{"ingress": true}'
+
+  - it: supports custom annotations
+    template: templates/frontend-service.yaml
+    set:
+      frontend:
+        service:
+          annotations:
+            cloud.google.com/backend-config: '{"ports": {"8080":"frontend-backendconfig"}}'
+    asserts:
+      - isSubset:
+          path: metadata.annotations
+          content:
+            cloud.google.com/backend-config: '{"ports": {"8080":"frontend-backendconfig"}}'
+
+  - it: merges custom annotations with the cloud provider defaults
+    template: templates/frontend-service.yaml
+    set:
+      ingress:
+        class: "gce"
+      frontend:
+        service:
+          annotations:
+            cloud.google.com/backend-config: '{"ports": {"8080":"frontend-backendconfig"}}'
+    asserts:
+      - isSubset:
+          path: metadata.annotations
+          content:
+            cloud.google.com/neg: '{"ingress": true}'
+            cloud.google.com/backend-config: '{"ports": {"8080":"frontend-backendconfig"}}'
+
+  - it: prioritises custom annotations over provider defaults
+    template: templates/frontend-service.yaml
+    set:
+      ingress:
+        class: "gce"
+      frontend:
+        service:
+          annotations:
+            cloud.google.com/neg: '{"ingress": false}'
+    asserts:
+      - isSubset:
+          path: metadata.annotations
+          content:
+            cloud.google.com/neg: '{"ingress": false}'
+

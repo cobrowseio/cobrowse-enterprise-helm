@@ -39,7 +39,8 @@
                 "memory": "",
                 "debug": "",
                 "service": {
-                    "type": ""
+                    "type": "",
+                    "annotations": {}
                 },
                 "pod": {
                     "annotations": [ 
@@ -55,7 +56,8 @@
                 "cpu": "",
                 "memory": "",
                 "service": {
-                    "type": ""
+                    "type": "",
+                    "annotations": {}
                 },
                 "pod": {
                     "annotations": [ 
@@ -72,7 +74,8 @@
                 "memory": "",
                 "debug": "",
                 "service": {
-                    "type": ""
+                    "type": "",
+                    "annotations": {}
                 },
                 "pod": {
                     "annotations": [ 
@@ -89,7 +92,8 @@
                 "memory": "",
                 "debug": "",
                 "service": {
-                    "type": ""
+                    "type": "",
+                    "annotations": {}
                 },
                 "pod": {
                     "annotations": [ 
@@ -106,7 +110,8 @@
                 "memory": "",
                 "debug": "",
                 "service": {
-                    "type": ""
+                    "type": "",
+                    "annotations": {}
                 },
                 "pod": {
                     "annotations": [ 
@@ -498,7 +503,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -514,6 +520,18 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/api/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
                     },
                     "additionalProperties": true
@@ -547,7 +565,7 @@
                             "$id": "#/properties/api/properties/pod/properties/annotations",
                             "type": "object",
                             "title": "The pod annotations",
-                            "description": "An array of pod annotations",
+                            "description": "A map of pod annotations",
                             "default": {},
                             "examples": [
                                 { "key" : "value" }
@@ -659,7 +677,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -675,7 +694,20 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/frontend/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
+
                     },
                     "additionalProperties": true
                 },
@@ -832,7 +864,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -848,7 +881,20 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/proxy/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
+
                     },
                     "additionalProperties": true
                 },
@@ -1005,7 +1051,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -1021,7 +1068,20 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/recording/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
+
                     },
                     "additionalProperties": true
                 },
@@ -1204,7 +1264,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -1220,7 +1281,20 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/sockets/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
+
                     },
                     "additionalProperties": true
                 },
@@ -1401,7 +1475,8 @@
                     "default": {},
                     "examples": [
                         {
-                            "type": ""
+                            "type": "",
+                            "annotations": {"key": "value"}
                         }
                     ],
                     "required": [
@@ -1417,7 +1492,20 @@
                             "examples": [
                                 ""
                             ]
+                        },
+                        "annotations": {
+                            "$id": "#/properties/virtualAgent/properties/service/properties/annotations",
+                            "type": "object",
+                            "title": "The annotations schema",
+                            "description": "Annotations template properties",
+                            "default": {},
+                            "examples": [
+                                { "key" : "value" }
+                            ],
+                            "required": [],
+                            "additionalProperties": true
                         }
+
                     },
                     "additionalProperties": true
                 },
