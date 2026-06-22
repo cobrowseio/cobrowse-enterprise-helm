@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-sdk-js
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    component: sdk-js
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+  {{- range $key, $value := .Values.sdk-js.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.sdk-js.replicas | default "2" }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 0
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      component: sdk-js
+      stage: {{ .Values.stage | quote }}
+  template:
+    metadata:
+      annotations:
+    {{- if .Values.sdk-js.pod }}
+      {{- range $key, $value := .Values.sdk-js.pod.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
+    {{- end }}
+      labels:
+        app: {{ template "fullname" . }}
+        component: sdk-js
+        stage: {{ .Values.stage | quote }}
+    spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            component: sdk-js
+    {{- if .Values.sdk-js.nodeSelector}}
+      nodeSelector:{{ toYaml .Values.sdk-js.nodeSelector | nindent 8 }}
+    {{- end }}
+      containers:
+        image: {{ (.Values.sdk-js.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-sdk-js-enterprise:3.25.0" )) }}
+        {{- if (.Values.sdk-js.image).pullPolicy }}
+        imagePullPolicy: {{ (.Values.sdk-js.image).pullPolicy }}
+        {{- end}}
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 1
+        name: sdk-js
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 1
+        volumeMounts:
+        - mountPath: "/tmp"
+          name: tmp
+        resources:
+          limits:
+            cpu: {{ coalesce .Values.sdk-js.limits.cpu .Values.sdk-js.cpu "250m"}}
+            memory: {{ coalesce .Values.sdk-js.limits.memory .Values.sdk-js.memory "512Mi"}}
+          requests:
+            cpu: {{ .Values.sdk-js.cpu | default "250m"}}
+            memory: {{ .Values.sdk-js.memory | default "512Mi"}}
+        {{- if .Values.containerSecurityContext.enabled }}
+        securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
+          runAsGroup: {{ (.Values.sdk-js.runAs).group | default "1000" }}
+          runAsUser: {{ (.Values.sdk-js.runAs).user | default "1000" }}
+        {{- end }}
+      imagePullSecrets:
+      - name: {{ .Release.Name }}-docker-cfg
+      volumes:
+      - name: tmp
+        emptyDir:
+          medium: Memory
+      serviceAccountName: {{ .Values.serviceAccountName | default "" }}
+      automountServiceAccountToken: false

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-sdk-js-svc
+  namespace: {{ .Release.Namespace | default "default" }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    stage: {{ .Values.stage | quote }}
+  {{- $default_annotations := dict }}
+  {{- if eq .Values.ingress.class "gce" }}
+  {{- $_ := set $default_annotations "cloud.google.com/neg" "{\"ingress\": true}" }}
+  {{- end }}
+  {{- template "service.annotations" (dict "annotations" .Values.sdk-js.service.annotations "default" $default_annotations) }}
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    component: sdk-js
+    stage: {{ .Values.stage | quote }}
+  type: {{ .Values.sdk-js.service.type | default "ClusterIP" }}
