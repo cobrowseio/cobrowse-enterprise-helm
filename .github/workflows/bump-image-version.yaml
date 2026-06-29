@@ -21,26 +21,12 @@ jobs:
   bump-image-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+      - uses: cobrowseio/actions/.github/actions/git-auth@master
         id: app-token
         with:
           client-id: ${{ vars.COBROWSE_BOT_CLIENT_ID }}
           private-key: ${{ secrets.COBROWSE_BOT_KEY }}
           permission-contents: write
-
-      - name: Get GitHub App User ID
-        id: get-user-id
-        run: echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-
-      - name: Configure Git
-        run: |
-          git config --global user.name '${{ steps.app-token.outputs.app-slug }}[bot]'
-          git config --global user.email '${{ steps.get-user-id.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com'
-          gh auth setup-git
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Resolve deployment file
         run: echo 'DEPLOYMENT_FILE_PATH="templates/${{ inputs.component }}-${{ inputs.component == 'sockets' && 'statefulset' || 'deployment' }}.yaml"' >> $GITHUB_ENV
