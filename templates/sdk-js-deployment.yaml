@@ -49,7 +49,7 @@ spec:
       nodeSelector:{{ toYaml .Values.sdkJs.nodeSelector | nindent 8 }}
     {{- end }}
       containers:
-        image: {{ (.Values.sdkJs.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-sdk-js-enterprise:3.25.0" )) }}
+      - image: {{ (.Values.sdkJs.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-sdk-js-enterprise:3.25.0" )) }}
         {{- if (.Values.sdkJs.image).pullPolicy }}
         imagePullPolicy: {{ (.Values.sdkJs.image).pullPolicy }}
         {{- end}}
