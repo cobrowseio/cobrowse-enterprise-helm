@@ -13,7 +13,7 @@ metadata:
   {{- if eq .Values.ingress.class "gce" }}
   {{- $_ := set $default_annotations "cloud.google.com/neg" "{\"ingress\": true}" }}
   {{- end }}
-  {{- template "service.annotations" (dict "annotations" .Values.sdk-js.service.annotations "default" $default_annotations) }}
+  {{- template "service.annotations" (dict "annotations" .Values.sdkJs.service.annotations "default" $default_annotations) }}
 spec:
   ports:
   - port: 8080
@@ -22,4 +22,4 @@ spec:
   selector:
     component: sdk-js
     stage: {{ .Values.stage | quote }}
-  type: {{ .Values.sdk-js.service.type | default "ClusterIP" }}
+  type: {{ .Values.sdkJs.service.type | default "ClusterIP" }}

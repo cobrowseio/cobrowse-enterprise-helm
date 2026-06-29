@@ -10,11 +10,11 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     stage: {{ .Values.stage | quote }}
-  {{- range $key, $value := .Values.sdk-js.labels }}
+  {{- range $key, $value := .Values.sdkJs.labels }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
-  replicas: {{ .Values.sdk-js.replicas | default "2" }}
+  replicas: {{ .Values.sdkJs.replicas | default "2" }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -28,8 +28,8 @@ spec:
   template:
     metadata:
       annotations:
-    {{- if .Values.sdk-js.pod }}
-      {{- range $key, $value := .Values.sdk-js.pod.annotations }}
+    {{- if .Values.sdkJs.pod }}
+      {{- range $key, $value := .Values.sdkJs.pod.annotations }}
         {{ $key }}: {{ $value | quote }}
       {{- end }}
     {{- end }}
@@ -45,13 +45,13 @@ spec:
         labelSelector:
           matchLabels:
             component: sdk-js
-    {{- if .Values.sdk-js.nodeSelector}}
-      nodeSelector:{{ toYaml .Values.sdk-js.nodeSelector | nindent 8 }}
+    {{- if .Values.sdkJs.nodeSelector}}
+      nodeSelector:{{ toYaml .Values.sdkJs.nodeSelector | nindent 8 }}
     {{- end }}
       containers:
-        image: {{ (.Values.sdk-js.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-sdk-js-enterprise:3.25.0" )) }}
-        {{- if (.Values.sdk-js.image).pullPolicy }}
-        imagePullPolicy: {{ (.Values.sdk-js.image).pullPolicy }}
+        image: {{ (.Values.sdkJs.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-sdk-js-enterprise:3.25.0" )) }}
+        {{- if (.Values.sdkJs.image).pullPolicy }}
+        imagePullPolicy: {{ (.Values.sdkJs.image).pullPolicy }}
         {{- end}}
         livenessProbe:
           failureThreshold: 3
@@ -79,15 +79,15 @@ spec:
           name: tmp
         resources:
           limits:
-            cpu: {{ coalesce .Values.sdk-js.limits.cpu .Values.sdk-js.cpu "250m"}}
-            memory: {{ coalesce .Values.sdk-js.limits.memory .Values.sdk-js.memory "512Mi"}}
+            cpu: {{ coalesce .Values.sdkJs.limits.cpu .Values.sdkJs.cpu "250m"}}
+            memory: {{ coalesce .Values.sdkJs.limits.memory .Values.sdkJs.memory "512Mi"}}
           requests:
-            cpu: {{ .Values.sdk-js.cpu | default "250m"}}
-            memory: {{ .Values.sdk-js.memory | default "512Mi"}}
+            cpu: {{ .Values.sdkJs.cpu | default "250m"}}
+            memory: {{ .Values.sdkJs.memory | default "512Mi"}}
         {{- if .Values.containerSecurityContext.enabled }}
         securityContext:{{ include "defaultSecurityContext" . | nindent 10 }}
-          runAsGroup: {{ (.Values.sdk-js.runAs).group | default "1000" }}
-          runAsUser: {{ (.Values.sdk-js.runAs).user | default "1000" }}
+          runAsGroup: {{ (.Values.sdkJs.runAs).group | default "1000" }}
+          runAsUser: {{ (.Values.sdkJs.runAs).user | default "1000" }}
         {{- end }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-docker-cfg
