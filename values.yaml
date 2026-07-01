@@ -142,5 +142,18 @@ virtualAgent:
     type: ""
     annotations: {}
 
+# Frontend configurations
+sdkJs:
+  replicas: 2
+  cpu: ""
+  memory: ""
+  limits:
+    cpu: ""
+    memory: ""
+
+  service:
+    type: ""
+    annotations: {}
+
 containerSecurityContext:
   enabled: true
