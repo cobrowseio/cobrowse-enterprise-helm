@@ -21,18 +21,26 @@ jobs:
   bump-image-version:
     runs-on: ubuntu-latest
     steps:
+      - uses: cobrowseio/actions/.github/actions/git-auth@master
+        id: app-token
+        with:
+          client-id: ${{ vars.COBROWSE_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.COBROWSE_BOT_KEY }}
+          permission-contents: write
+
       - name: Resolve deployment file
         run: echo 'DEPLOYMENT_FILE_PATH="templates/${{ inputs.component }}-${{ inputs.component == 'sockets' && 'statefulset' || 'deployment' }}.yaml"' >> $GITHUB_ENV
+
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
-          token: ${{ secrets.GH_REPO_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
+
       - name: Update deployment version
         run: sed -Ei 's/(image:.*-enterprise):[0-9.]+/\1:${{ inputs.component_version }}/g' "${{ env.DEPLOYMENT_FILE_PATH }}"
+
       - name: Commit version bump
         run: |
-          git config --global user.name '${{ github.actor }}'
-          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
           git add "${{ env.DEPLOYMENT_FILE_PATH }}"
           git commit -m "chore(${{ inputs.component }}): bump image version to ${{ inputs.component_version }}"
           git push
