@@ -14,7 +14,7 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
-  replicas: {{ .Values.api.replicas | default "2" }}
+  replicas: {{ .Values.api.replicas | default "0" }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -65,7 +65,7 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-api-custom-envvars
             optional: true
-        image: {{ (.Values.api.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-api-enterprise:1.109.2" )) }}
+        image: {{ (.Values.api.image).ref | default (include "image" (dict "repo" .Values.image.repo "image" "cobrowse-api-enterprise:1.109.3" )) }}
         {{- if (.Values.api.image).pullPolicy }}
         imagePullPolicy: {{ (.Values.api.image).pullPolicy }}
         {{- end}}

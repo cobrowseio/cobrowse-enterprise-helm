@@ -15,7 +15,7 @@ metadata:
   {{- end }}
 spec:
   serviceName: {{ .Release.Name }}-sockets-headless
-  replicas: {{ .Values.sockets.replicas | default "2" }}
+  replicas: {{ .Values.sockets.replicas | default "0" }}
   selector:
     matchLabels:
       component: sockets

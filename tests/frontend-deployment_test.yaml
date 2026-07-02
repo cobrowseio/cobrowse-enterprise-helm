@@ -14,6 +14,15 @@ tests:
           path: spec.replicas
           value: 2
 
+  - it: may run no replicas
+    set:
+      frontend.replicas: 0
+    template: templates/frontend-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 0
+
   - it: may run multiple replicas
     set:
       frontend.replicas: 3
