@@ -14,11 +14,7 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
-<<<<<<< HEAD
-  replicas: {{ .Values.sdkJs.replicas | default "2" }}
-=======
   replicas: {{ .Values.sdkJs.replicas | default "0" }}
->>>>>>> master
   strategy:
     type: RollingUpdate
     rollingUpdate:
