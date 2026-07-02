@@ -14,6 +14,15 @@ tests:
           path: spec.replicas
           value: 2
 
+  - it: may run no replicas
+    set:
+      virtualAgent.replicas: 0
+    template: templates/virtual-agent-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 0
+
   - it: may run multiple replicas
     set:
       virtualAgent.replicas: 3

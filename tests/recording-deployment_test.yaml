@@ -21,6 +21,15 @@ tests:
           path: spec.template.spec.containers
           count: 2
 
+  - it: may run no replicas
+    set:
+      recording.replicas: 0
+    template: templates/recording-deployment.yaml
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 0
+
   - it: may run multiple replicas
     set:
       recording.replicas: 3
