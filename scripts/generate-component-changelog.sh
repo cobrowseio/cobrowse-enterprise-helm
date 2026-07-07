@@ -78,3 +78,6 @@ output_changelog cobrowse-frontend frontend-deployment $HELM_PREV_VERSION
 echo ""
 echo "### Cobrowse Enterprise Virtual Agent"
 output_changelog cobrowse-virtual-agent virtual-agent-deployment $HELM_PREV_VERSION
+echo ""
+echo "### Cobrowse Enterprise SDK JS"
+output_changelog cobrowse-sdk-js sdk-js-deployment $HELM_PREV_VERSION

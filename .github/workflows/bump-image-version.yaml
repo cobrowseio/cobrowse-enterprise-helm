@@ -12,6 +12,7 @@ on:
           - recording
           - sockets
           - virtual-agent
+          - sdk-js
         required: true
       component_version:
         description: The new version of the component
