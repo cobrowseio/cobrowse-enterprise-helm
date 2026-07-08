@@ -21,7 +21,7 @@ jobs:
           client-id: ${{ vars.COBROWSE_BOT_CLIENT_ID }}
           private-key: ${{ secrets.COBROWSE_BOT_KEY }}
           permission-actions: write
-          repositories: ${{ github.repository }}
+          repositories: ${{ inputs.repo }}
       - name: Repository dispatch
         uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6.4.1
         with:
