@@ -2,6 +2,20 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+## [2.16.0](#) (2026-07-22)
+
+
+### Features
+
+* add sdk-js service ([#64](#)) ([f50f020](#))
+* support GCP security policies ([#62](#)) ([42c6813](#))
+
+
+### Bug Fixes
+
+* allow the number of replicas to be 0 ([#65](#)) ([956ccc6](#))
+* virtual agent healthcheck should use http for GCP ([#67](#)) ([be58c76](#))
+
 ### [2.15.4](#) (2026-05-13)
 
 ### [2.15.3](#) (2026-04-21)
