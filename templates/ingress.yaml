@@ -65,17 +65,17 @@ spec:
         pathType: Prefix
       - backend:
           service:
-            name: {{ .Release.Name }}-frontend-svc
-            port:
-              number: 8080
-        path: /
-        pathType: Prefix
-      - backend:
-          service:
             name: {{ .Release.Name }}-sdk-js-svc
             port:
               number: 8080
         path: /sdk-js
+        pathType: Prefix
+      - backend:
+          service:
+            name: {{ .Release.Name }}-frontend-svc
+            port:
+              number: 8080
+        path: /
         pathType: Prefix
   {{- if ((.Values.ingress).tls).secretName }}
     host: {{ .Values.domain }}
