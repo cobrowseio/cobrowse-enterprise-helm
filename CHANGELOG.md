@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+### [2.16.1](#) (2026-09-22)
+
+
+### Bug Fixes
+
+* sdk-js rule before frontend ([#69](#)) ([cafb345](#))
+
 ## [2.16.0](#) (2026-07-22)
 
 
