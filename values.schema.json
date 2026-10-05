@@ -43,7 +43,7 @@
                     "annotations": {}
                 },
                 "pod": {
-                    "annotations": [ 
+                    "annotations": [
                         {"key": "value" }
                     ]
                 },
@@ -60,7 +60,7 @@
                     "annotations": {}
                 },
                 "pod": {
-                    "annotations": [ 
+                    "annotations": [
                         {"key": "value" }
                     ]
                 },
@@ -78,7 +78,7 @@
                     "annotations": {}
                 },
                 "pod": {
-                    "annotations": [ 
+                    "annotations": [
                         {"key": "value" }
                     ]
                 },
@@ -96,7 +96,7 @@
                     "annotations": {}
                 },
                 "pod": {
-                    "annotations": [ 
+                    "annotations": [
                         {"key": "value" }
                     ]
                 },
@@ -114,7 +114,7 @@
                     "annotations": {}
                 },
                 "pod": {
-                    "annotations": [ 
+                    "annotations": [
                         {"key": "value" }
                     ]
                 },
