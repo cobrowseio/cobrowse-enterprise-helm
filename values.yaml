@@ -103,6 +103,11 @@ recording:
     # persistentVolumeClaimName: "cobrowse-sockets-pvc"
   }
 
+  # Scratch space (/tmp) shared by the recording and chromium containers,
+  # backed by the node's local disk. The pod is evicted if it grows past this.
+  tmp:
+    sizeLimit: "1Gi"
+
 # Chromium configurations
 chromium:
   cpu: ""

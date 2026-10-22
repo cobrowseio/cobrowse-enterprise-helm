@@ -29,7 +29,20 @@ tests:
           content:
             name: tmp
             emptyDir:
-              medium: Memory
+              sizeLimit: 1Gi
+
+  - it: may configure the size limit of the temporary files volume
+    template: templates/recording-deployment.yaml
+    set:
+      recording.tmp.sizeLimit: 4Gi
+    asserts:
+      - contains:
+          any: true
+          path: spec.template.spec.volumes
+          content:
+            name: tmp
+            emptyDir:
+              sizeLimit: 4Gi
 
   - it: may mount volumes containing certificate authorities
     template: templates/recording-deployment.yaml

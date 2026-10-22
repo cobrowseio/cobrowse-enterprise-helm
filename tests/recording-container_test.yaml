@@ -47,7 +47,7 @@ tests:
           content:
             name: tmp
             emptyDir:
-              medium: Memory
+              sizeLimit: 1Gi
 
   - it: may mount volumes containing certificate authorities
     template: templates/recording-deployment.yaml
