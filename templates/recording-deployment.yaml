@@ -183,7 +183,7 @@ spec:
 {{- end }}
       - name: tmp
         emptyDir:
-          medium: Memory
+          sizeLimit: {{ (.Values.recording.tmp).sizeLimit | default "1Gi" }}
       - name: mounted-config-map
         configMap:
           name: {{ .Values.volumeMountedConfigMapName | default ( printf "%s-volume-mounted-config-map" .Release.Name ) }}

@@ -1111,6 +1111,32 @@
                     },
                     "additionalProperties": true
                 },
+                "tmp": {
+                    "$id": "#/properties/recording/properties/tmp",
+                    "type": "object",
+                    "title": "The tmp schema",
+                    "description": "Scratch space (/tmp) shared by the recording and chromium containers.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "sizeLimit": "1Gi"
+                        }
+                    ],
+                    "required": [],
+                    "properties": {
+                        "sizeLimit": {
+                            "$id": "#/properties/recording/properties/tmp/properties/sizeLimit",
+                            "type": "string",
+                            "title": "The size limit of the tmp volume",
+                            "description": "Maximum size of the disk-backed /tmp volume. The pod is evicted when it is exceeded.",
+                            "default": "1Gi",
+                            "examples": [
+                                "1Gi"
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
                 "labels": {
                     "$id": "#/properties/recording/properties/labels",
                     "type": "object",
