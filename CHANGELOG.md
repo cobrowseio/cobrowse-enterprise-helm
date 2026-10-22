@@ -2,6 +2,13 @@
 
 This is the changelog for the helm chart only. For the full enterprise release changelog please see [here](https://github.com/cobrowseio/cobrowse-enterprise-helm/releases)
 
+### [2.16.4](#) (2026-10-22)
+
+
+### Bug Fixes
+
+* **recording:** back the /tmp volume with node disk instead of memory ([#74](#)) ([117bee1](#))
+
 ### [2.16.3](#) (2026-09-30)
 
 ### [2.16.2](#) (2026-09-23)
